@@ -28,10 +28,16 @@ $ catkin_make
 
 ## Creating a Package for using the Navigation Stack ##
 **NOTE:** Do not execute this section, it's just documentation to how the nav_husky_gazebo package was set up.
-Create the nav_husky_gazebo package with its dependencies:
+1. Create the nav_husky_gazebo package with its dependencies:
 ```
 $ catkin_create_pkg nav_husky_gazebo rospy move_base nav_msgs sensor_msgs std_msgs tf
 ```
+2. Create 4 .yaml configuration files in `config/`:
+  - costmap common
+  - local costmap
+  - global costmap
+  - local base planner
+**NOTE:** Consult [ROS nav stack SetUp](http://wiki.ros.org/navigation/Tutorials/RobotSetup) and the [Husky Github](https://github.com/husky/husky) to see how the parameters were selected. Specifically look at the Husky URDF on the Github.
 
 ### Useful ROS Resources ###
 - [ROS Wiki](http://wiki.ros.org)
