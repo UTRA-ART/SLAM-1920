@@ -7,12 +7,13 @@ This project runs on ROS Kinetic for Ubuntu 16.04
 2. Install husky desktop and simulator. See: [Clearpath ROS Tutorial](https://www.clearpathrobotics.com/assets/guides/ros/Drive%20a%20Husky.html) or [Husky Simulation Wiki](http://wiki.ros.org/husky_gazebo/Tutorials/Simulating%20Husky).
 Run:
 ```
-  sudo apt-get update
-  sudo apt-get install ros-kinetic-husky-desktop
-  sudo apt-get install ros-kinetic-husky-simulator
+$ sudo apt-get update
+$ sudo apt-get install ros-kinetic-husky-desktop
+$ sudo apt-get install ros-kinetic-husky-simulator
 ```
+3. Install the Navigation stack: `sudo apt-get install ros-kinetic-navigation`
 
-## Creating the ROS Workspace & Creating Packages ##
+## Creating the ROS Workspace ##
 Before cloning the git repository, create a workspace. Then run:
 ```
 # Creates CMake file in src
@@ -23,6 +24,13 @@ $ catkin_init_workspace
 # Creates setup files - build/ and devel/ folders
 $ cd ~/slam-ws
 $ catkin_make
+```
+
+## Creating a Package for using the Navigation Stack ##
+**NOTE:** Do not execute this section, it's just documentation to how the nav_husky_gazebo package was set up.
+Create the nav_husky_gazebo package with its dependencies:
+```
+$ catkin_create_pkg nav_husky_gazebo rospy move_base nav_msgs sensor_msgs std_msgs tf
 ```
 
 ### Useful ROS Resources ###
