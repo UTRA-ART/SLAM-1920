@@ -1,0 +1,8 @@
+global_costmap:
+  # Because we don't have a map to load in, we use the odom frame as our global frame
+  # The only downside is that the robot cannot localize at all ... (I think)
+  global_frame: /odom #/map
+  robot_base_frame: base_link
+  update_frequency: 5.0
+  static_map: false # Not supplying a static map
+  
