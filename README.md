@@ -38,7 +38,18 @@ $ catkin_create_pkg nav_husky_gazebo rospy move_base nav_msgs sensor_msgs std_ms
   - global costmap
   - local base planner
 **NOTE:** Consult [ROS nav stack SetUp](http://wiki.ros.org/navigation/Tutorials/RobotSetup) and the [Husky Github](https://github.com/husky/husky) to see how the parameters were selected. Specifically look at the Husky URDF on the Github.
-3. Create launch file for Navigation Stack `launch/move_base.launch`. 
+3. Create launch file for Navigation Stack `launch/move_base.launch`.
+4. Run `$ catkin_make` to and then `source slam-ws/devel/setup.bash`. This will build the package (needs to be done everytime it is edited?)
+  - **NOTE:** I forgot what it exactly does but it's something along the lines of making the package available to ROS. These two commands must be run anytime a new package is added.
+
+To run the Navigation Stack:
+```
+# Start up the Robot in simulation
+$ roslaunch husky_gazebo husky_empty_world.launch
+
+# Start up the Navigation Stack
+$ roslaunch .../launch/move_base.launch
+```
 
 ### Useful ROS Resources ###
 - [ROS Wiki](http://wiki.ros.org)
