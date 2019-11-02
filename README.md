@@ -12,6 +12,19 @@ Run:
   sudo apt-get install ros-kinetic-husky-simulator
 ```
 
+## Creating the ROS Workspace & Creating Packages ##
+Before cloning the git repository, create a workspace. Then run:
+```
+# Creates CMake file in src
+$ mkdir -p ~/slam-ws/src
+$ cd ~/slam-ws/src
+$ catkin_init_workspace
+
+# Creates setup files - build/ and devel/ folders
+$ cd ~/slam-ws
+$ catkin_make
+```
+
 ### Useful ROS Resources ###
 - [ROS Wiki](http://wiki.ros.org)
 - [A Gentle Introduction to ROS](https://cse.sc.edu/~jokane/agitr/agitr-letter.pdf)
