@@ -1,3 +1,11 @@
+# Navigation Function (navigation path)
+NavfnROS:
+  # Specifies whether or not to allow navfn to create plans that traverse unknown space.
+  allow_unknown: true
+  # A tolerance on the goal point for the planner.
+  default_tolerance: 0.1
+
+# Plans robot movement [I think]
 TrajectoryPlannerROS:
   max_vel_x: 0.45
   min_vel_x: 0.1
@@ -9,4 +17,6 @@ TrajectoryPlannerROS:
   acc_lim_y: 2.5
 
   holonomic_robot: true
+
+  # Sets distances in cost function to meters instead of cells (allows different map resolutions)
   meter_scoring: true
