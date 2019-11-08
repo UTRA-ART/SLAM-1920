@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot name="caffeine_sim" xmlns:xacro="http://ros.org/wiki/xacro">
+   <gazebo reference="base_link">
+      <material>Gazebo/Purple</material>
+   </gazebo>
+
+   <gazebo reference="right_front_wheel">
+      <material>Gazebo/Black</material>
+   </gazebo>
+
+   <gazebo reference="right_back_wheel">
+      <material>Gazebo/Black</material>
+   </gazebo>
+
+   <gazebo reference="left_front_wheel">
+      <material>Gazebo/Black</material>
+   </gazebo>
+
+   <gazebo reference="left_back_wheel">
+      <material>Gazebo/Black</material>
+   </gazebo>
+
+
+        <gazebo>
+                <plugin name="caffeine_controller" filename="libgazebo_ros_skid_steer_drive.so">
+                        <updateRate>30.0</updateRate>
+                        <robotNamespace>caffeine</robotNamespace>
+                        <leftFrontJoint>left_front_wheel_joint</leftFrontJoint>
+                        <rightFrontJoint>right_front_wheel_joint</rightFrontJoint>
+                        <leftRearJoint>left_back_wheel_joint</leftRearJoint>
+                        <rightRearJoint>right_back_wheel_joint</rightRearJoint>
+                        <wheelSeparation>0.67</wheelSeparation>
+                        <wheelDiameter>0.1</wheelDiameter>
+                        <robotBaseFrame>base_link</robotBaseFrame>
+                        <torque>20</torque>
+                        <commandTopic>cmd_vel</commandTopic>
+                        <odometryTopic>odom</odometryTopic>
+                        <odometryFrame>odom</odometryFrame>
+                        <odometrySource>world</odometrySource>
+                        <publishOdomTF>true</publishOdomTF>
+                        <publishWheelJointState>true</publishWheelJointState>
+                        <broadcastTF>true</broadcastTF>
+                </plugin>
+        </gazebo>
+
+        <gazebo>
+                <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+                        <robotNamespace>caffeine</robotNamespace>
+                </plugin>
+        </gazebo>
+
+</robot>
