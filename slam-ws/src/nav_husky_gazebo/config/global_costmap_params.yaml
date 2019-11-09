@@ -1,8 +1,7 @@
 global_costmap:
-  # Because we don't have a map to load in, we use the odom frame as our global frame
-  # The only downside is that the robot cannot localize at all ... (I think)
-  global_frame: /odom #/map
+  global_frame: /odom   # Because we don't have a map to load in, we use the odom frame as our global frame (rather than /map)
   robot_base_frame: base_link
   update_frequency: 5.0
-  static_map: false # Not supplying a static map
+  rolling_window: true  # Set this to true bc static map == false (this makes setting 2D nav goals in rviz work)
+  static_map: false     # Not supplying a static map
   
