@@ -16,7 +16,8 @@ TrajectoryPlannerROS:
   acc_lim_x: 2.5
   acc_lim_y: 2.5
 
-  holonomic_robot: true
+  # Husky robot is not Holonomic
+  holonomic_robot: false
 
   # Sets distances in cost function to meters instead of cells (allows different map resolutions)
   meter_scoring: true
