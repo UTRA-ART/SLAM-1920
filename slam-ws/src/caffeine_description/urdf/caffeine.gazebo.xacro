@@ -33,7 +33,7 @@
                         <wheelDiameter>0.1</wheelDiameter>
                         <robotBaseFrame>base_link</robotBaseFrame>
                         <torque>20</torque>
-                        <commandTopic>cmd_vel</commandTopic>
+                        <topicName>cmd_vel</topicName>
                         <odometryTopic>odom</odometryTopic>
                         <odometryFrame>odom</odometryFrame>
                         <odometrySource>world</odometrySource>
@@ -46,6 +46,7 @@
         <gazebo>
                 <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
                         <robotNamespace>caffeine</robotNamespace>
+                        <legacyModeNS>true</legacyModeNS>
                 </plugin>
         </gazebo>
 
