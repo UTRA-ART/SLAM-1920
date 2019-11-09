@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 import rospy
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
@@ -17,9 +15,11 @@ def movebase_client(x, y, yaw):
   goal.target_pose.header.frame_id = "base_link"
   goal.target_pose.header.stamp = rospy.Time.now()
 
+  # Set goal position
   goal.target_pose.pose.position.x = x;
   goal.target_pose.pose.position.y = y;
 
+  # Convert yaw to quaternion and set pose
   q = quaternion_from_euler(0, 0, yaw)
   goal.target_pose.pose.orientation.x = q[0];
   goal.target_pose.pose.orientation.y = q[1];
