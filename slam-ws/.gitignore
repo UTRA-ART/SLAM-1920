@@ -5,4 +5,4 @@ build/
 devel/
 .catkin_workspace
 src/CMakeLists.txt
-*.pyc #compiled python files should be automatically generated
+*.pyc

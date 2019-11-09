@@ -3,8 +3,9 @@
 import rospy
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from tf.transformations import quaternion_from_euler
 
-def movebase_client():
+def movebase_client(x, y, yaw):
   # Create an action client called "move_base" with action definition file "MoveBaseAction"
   client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
   # Waits until the action server has started up and started listening for goals.
@@ -16,10 +17,14 @@ def movebase_client():
   goal.target_pose.header.frame_id = "base_link"
   goal.target_pose.header.stamp = rospy.Time.now()
 
-  # Move 1.0 meters forward along the x axis of the "base_link" coordinate frame
-  goal.target_pose.pose.position.x = 1.0;
-  # No rotation of the mobile base frame w.r.t. base_link frame
-  goal.target_pose.pose.orientation.w = 1.0;
+  goal.target_pose.pose.position.x = x;
+  goal.target_pose.pose.position.y = y;
+
+  q = quaternion_from_euler(0, 0, yaw)
+  goal.target_pose.pose.orientation.x = q[0];
+  goal.target_pose.pose.orientation.y = q[1];
+  goal.target_pose.pose.orientation.z = q[2];
+  goal.target_pose.pose.orientation.w = q[3];
 
   client.send_goal(goal)
   wait = client.wait_for_result()
