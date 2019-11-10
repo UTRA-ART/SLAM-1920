@@ -26,6 +26,7 @@ def movebase_client(x, y, yaw):
   goal.target_pose.pose.orientation.z = q[2];
   goal.target_pose.pose.orientation.w = q[3];
 
+  # Sends goal and waits until the action is completed (or aborted if it is impossible)
   client.send_goal(goal)
   wait = client.wait_for_result()
 
