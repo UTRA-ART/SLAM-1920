@@ -6,7 +6,7 @@ import sys
 
 if __name__ == '__main__':
    if len(sys.argv) < 4:
-        rospy.logerr("Error: Insufficient Arguments. Usage is 'rosrun nav_goal movebase_client x y yaw' where x is distance to move in x, y is distance to move in y, and yaw is rotation in radians.")
+        rospy.logerr("Error: Insufficient Arguments - Usage is 'rosrun nav_goal movebase_client x y yaw' where x is distance to move in x, y is distance to move in y, and yaw is rotation in radians.")
    else:
 	try:
 		x = float(sys.argv[1])
@@ -16,6 +16,6 @@ if __name__ == '__main__':
         	rospy.init_node('movebase_client_py')
         	result = nav_goal.movebase_client.movebase_client(x, y, yaw)
         	if result:
-            		rospy.loginfo("Goal execution done!")
+            		rospy.loginfo("Nav Goal successfully sent to MoveBaseAction server!")
     	except rospy.ROSInterruptException:
-        	rospy.logerr("Error: Navigation test interrupted.")
+        	rospy.logerr("Error - Navigation test interrupted.")
