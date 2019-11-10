@@ -1,8 +1,13 @@
 *~
 
-# .gitignore
+# Catkin Workspace
 build/
 devel/
 .catkin_workspace
 src/CMakeLists.txt
+
+# Catkin custom files
+CATKIN_IGNORE
+
+# Python Byte Code
 *.pyc
