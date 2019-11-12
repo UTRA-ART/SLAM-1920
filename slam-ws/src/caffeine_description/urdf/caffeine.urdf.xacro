@@ -105,4 +105,30 @@
                 <axis xyz="0 1 0"/>
         </joint>
         <xacro:Transmission joint="left_back_wheel_joint"/>
+
+
+        <!-- Hokuyo sensor -->
+        <link name="hokuyo_link">
+           <collision>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                 <box size="${hokuyo_length} ${hokuyo_width} ${hokuyo_height}"/>
+              </geometry>
+           </collision>
+           <visual>
+              <origin xyz="0 0 0" rpy="0 0 0"/>
+              <geometry>
+                 <mesh filename="package://caffeine_description/urdf/meshes/hokuyo.dae"/>
+              </geometry>
+           </visual>
+           <inertial>
+              <mass value="${hokuyo_mass}"/>
+              <xacro:box_inertia mass="${hokuyo_mass}" length="${hokuyo_length}" width="${hokuyo_width}" height="${hokuyo_height}"/>
+           </inertial>
+        </link>
+        <joint name="hokuyo_joint" type="fixed">
+           <parent link="base_link"/>
+           <child link="hokuyo_link"/>
+           <origin xyz="0 0 ${base_height/2.0}" rpy="0 0 0"/>
+        </joint>
 </robot>

@@ -1,0 +1,1 @@
+hokuyo.dae file was taken from somewhere in the gazebo_plugins folder
