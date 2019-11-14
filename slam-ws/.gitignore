@@ -11,3 +11,6 @@ CATKIN_IGNORE
 
 # Python Byte Code
 *.pyc
+
+# VSCode
+.vscode/*

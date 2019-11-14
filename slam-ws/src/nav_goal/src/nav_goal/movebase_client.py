@@ -16,15 +16,15 @@ def movebase_client(x, y, yaw):
   goal.target_pose.header.stamp = rospy.Time.now()
 
   # Set goal position
-  goal.target_pose.pose.position.x = x;
-  goal.target_pose.pose.position.y = y;
+  goal.target_pose.pose.position.x = x
+  goal.target_pose.pose.position.y = y
 
   # Convert yaw to quaternion and set pose
   q = quaternion_from_euler(0, 0, yaw)
-  goal.target_pose.pose.orientation.x = q[0];
-  goal.target_pose.pose.orientation.y = q[1];
-  goal.target_pose.pose.orientation.z = q[2];
-  goal.target_pose.pose.orientation.w = q[3];
+  goal.target_pose.pose.orientation.x = q[0]
+  goal.target_pose.pose.orientation.y = q[1]
+  goal.target_pose.pose.orientation.z = q[2]
+  goal.target_pose.pose.orientation.w = q[3]
 
   # Sends goal and waits until the action is completed (or aborted if it is impossible)
   client.send_goal(goal)
@@ -35,4 +35,4 @@ def movebase_client(x, y, yaw):
     rospy.logerr("Action server not available!")
     rospy.signal_shutdown("Action server not available!")
   else:
-    return client.get_result()
+    return client.get_goal_status_text()
