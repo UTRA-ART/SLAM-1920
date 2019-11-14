@@ -5,24 +5,24 @@ import rospy
 import sys
 
 if __name__ == '__main__':
-	rospy.init_node('movebase_client_py')
+    rospy.init_node('movebase_client_py')
 
-   	if len(sys.argv) < 4:
-		rospy.logerr("Error: Insufficient Arguments - Usage is 'rosrun nav_goal movebase_client x y yaw' where x is distance to move in x, y is distance to move in y, and yaw is rotation in radians.")
-   		rospy.signal_shutdown("Error: Insufficient Arguments - Usage is 'rosrun nav_goal movebase_client x y yaw' where x is distance to move in x, y is distance to move in y, and yaw is rotation in radians.")
-	else:
-		try:
-			x = float(sys.argv[1])
-			y = float(sys.argv[2])
-			yaw = float(sys.argv[3])
-		except:
-			rospy.logerr("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
-			rospy.signal_shutdown("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
-			sys.exit(1)
-			
-		try:
-			result = nav_goal.movebase_client.movebase_client(x, y, yaw)
-			rospy.loginfo(result)
-		except:
-			rospy.logerr("Error - Navigation failed for unknown reasons. Exiting...")
-			rospy.signal_shutdown("Error - Navigation failed for unknown reasons. Exiting...")
+       if len(sys.argv) < 4:
+        rospy.logerr("Error: Insufficient Arguments - Usage is 'rosrun nav_goal movebase_client x y yaw' where x is distance to move in x, y is distance to move in y, and yaw is rotation in radians.")
+           rospy.signal_shutdown("Error: Insufficient Arguments - Usage is 'rosrun nav_goal movebase_client x y yaw' where x is distance to move in x, y is distance to move in y, and yaw is rotation in radians.")
+    else:
+        try:
+            x = float(sys.argv[1])
+            y = float(sys.argv[2])
+            yaw = float(sys.argv[3])
+        except:
+            rospy.logerr("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
+            rospy.signal_shutdown("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
+            sys.exit(1)
+            
+        try:
+            result = nav_goal.movebase_client.movebase_client(x, y, yaw)
+            rospy.loginfo(result)
+        except:
+            rospy.logerr("Error - Navigation failed for unknown reasons. Exiting...")
+            rospy.signal_shutdown("Error - Navigation failed for unknown reasons. Exiting...")
