@@ -2,22 +2,14 @@
 <launch>
 
    <master auto="start"/>
-   
-   <!-- Run the map server --> 
-   <arg name="map_file" default="$(find husky_navigation)/maps/playpen_map.yaml"/>
-   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
-
-   <!-- Run AMCL --> 
-   <include file="$(find husky_navigation)/launch/amcl.launch" />
 
    <!-- Run Move Base-->
    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find nav_husky_gazebo)/config/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
-    <rosparam file="$(find nav_husky_gazebo)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find nav_husky_gazebo)/config/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find nav_husky_gazebo)/config/global_costmap_params.yaml" command="load"/> 
-    <rosparam file="$(find nav_husky_gazebo)/config/base_local_planner_params.yaml" command="load" />
-    <param name="global_frame" type="string" value="map"/>
+    <rosparam file="$(find nav_husky_gazebo)/config/move_base_params/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+    <rosparam file="$(find nav_husky_gazebo)/config/move_base_params/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find nav_husky_gazebo)/config/move_base_params/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find nav_husky_gazebo)/config/move_base_params/global_costmap_params.yaml" command="load"/> 
+    <rosparam file="$(find nav_husky_gazebo)/config/move_base_params/base_local_planner_params.yaml" command="load" />
     
     <!-- Set control loop frequency to an appropriate rate -->
     <param name="controller_frequency" value="10.0" />
