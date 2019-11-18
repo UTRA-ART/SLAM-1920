@@ -14,11 +14,11 @@
 
    <!-- Run Move Base-->
    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <rosparam file="$(find nav_husky_gazebo)/config/move_base_amcl_params/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
-    <rosparam file="$(find nav_husky_gazebo)/config/move_base_amcl_params/costmap_common_params.yaml" command="load" ns="local_costmap" />
-    <rosparam file="$(find nav_husky_gazebo)/config/move_base_amcl_params/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find nav_husky_gazebo)/config/move_base_amcl_params/global_costmap_params.yaml" command="load"/> 
-    <rosparam file="$(find nav_husky_gazebo)/config/move_base_amcl_params/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find nav_amcl)/config/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+    <rosparam file="$(find nav_amcl)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find nav_amcl)/config/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find nav_amcl)/config/global_costmap_params.yaml" command="load"/> 
+    <rosparam file="$(find nav_amcl)/config/base_local_planner_params.yaml" command="load" />
     
     <!-- Set control loop frequency to an appropriate rate -->
     <param name="controller_frequency" value="10.0" />
