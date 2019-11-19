@@ -13,4 +13,4 @@ CATKIN_IGNORE
 *.pyc
 
 # VSCode
-.vscode/*
+.vscode
