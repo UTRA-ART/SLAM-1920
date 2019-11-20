@@ -1,7 +1,7 @@
 <launch>
+  <arg name="global_costmap_params" default="$(find nav_husky_gazebo)/config/global_costmap_params.yaml"/> 
 
   <master auto="start"/>
-  
   <!-- Run the map server --> 
   <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(find my_map_package)/my_map.pgm my_map_resolution"/> -->
 
@@ -13,7 +13,7 @@
     <rosparam file="$(find nav_husky_gazebo)/config/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
     <rosparam file="$(find nav_husky_gazebo)/config/costmap_common_params.yaml" command="load" ns="local_costmap" />
     <rosparam file="$(find nav_husky_gazebo)/config/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(find nav_husky_gazebo)/config/global_costmap_params.yaml" command="load" /> 
+    <rosparam file="$(arg global_costmap_params)" command="load" /> 
     <rosparam file="$(find nav_husky_gazebo)/config/base_local_planner_params.yaml" command="load" />
     
     <!-- Set control loop frequency to an appropriate rate -->

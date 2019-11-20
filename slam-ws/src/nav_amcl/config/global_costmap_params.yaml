@@ -1,7 +1,6 @@
 global_costmap:
-  global_frame: /map  
+  global_frame: map
   robot_base_frame: base_link
   update_frequency: 5.0
-  rolling_window: true  # Set this to true bc static map == false (this makes setting 2D nav goals in rviz work)
-  static_map: false     # Not supplying a static map
-  
+  rolling_window: false  # Set this to false bc static_map == true
+  static_map: true     # Not supplying a static map
