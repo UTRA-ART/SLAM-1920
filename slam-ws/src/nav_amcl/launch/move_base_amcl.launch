@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+
+   <master auto="start"/>
+   
+   <!-- Run the map server --> 
+   <arg name="map_file" default="$(find nav_amcl)/maps/playpen_map.yaml"/>
+   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+   <!-- Run AMCL --> 
+   <node pkg="amcl" type="amcl" name="amcl">
+    <rosparam file="$(find nav_amcl)/config/amcl_params.yaml" command="load" ns = "amcl"/>
+   </node>
+
+  <!--- Run Move Base -->
+  <include file="$(find nav_husky_gazebo)/launch/move_base.launch" >
+    <arg name="global_costmap_params" value="$(find nav_amcl)/config/global_costmap_params.yaml"/>
+  </include>
+
+</launch> 
