@@ -5,7 +5,6 @@ project(nav_amcl)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  move_base
   nav_msgs
   rospy
   sensor_msgs
