@@ -27,6 +27,21 @@ $ cd ./slam-ws
 $ catkin_make
 ```
 
+## Cleaning ##
+Every once in a while it is necessary to clear unnecesary logs that are saved from tests that have been run. These logs can quickly add up to the GB range, and can slow down ROS. To check how many logs you have run:
+
+```
+$ rosclean check
+```
+
+This should give you how much memory is consumed by logs. If nothing is returned you have no logs. 
+To delete logs run:
+
+```
+$ rosclean purge
+``` 
+
+
 ### Useful ROS Resources ###
 - [ROS Wiki](http://wiki.ros.org)
 - [A Gentle Introduction to ROS](https://cse.sc.edu/~jokane/agitr/agitr-letter.pdf)
