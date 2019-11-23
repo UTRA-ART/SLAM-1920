@@ -7,9 +7,9 @@ import sys
 if __name__ == '__main__':
     rospy.init_node('movebase_client_py')
 
-       if len(sys.argv) < 4:
+    if len(sys.argv) < 4:
         rospy.logerr("Error: Insufficient Arguments - Usage is 'rosrun nav_goal movebase_client x y yaw' where x is distance to move in x, y is distance to move in y, and yaw is rotation in radians.")
-           rospy.signal_shutdown("Error: Insufficient Arguments - Usage is 'rosrun nav_goal movebase_client x y yaw' where x is distance to move in x, y is distance to move in y, and yaw is rotation in radians.")
+        rospy.signal_shutdown("Error: Insufficient Arguments - Usage is 'rosrun nav_goal movebase_client x y yaw' where x is distance to move in x, y is distance to move in y, and yaw is rotation in radians.")
     else:
         try:
             x = float(sys.argv[1])
@@ -19,7 +19,7 @@ if __name__ == '__main__':
             rospy.logerr("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
             rospy.signal_shutdown("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
             sys.exit(1)
-            
+
         try:
             result = nav_goal.movebase_client.movebase_client(x, y, yaw)
             rospy.loginfo(result)
