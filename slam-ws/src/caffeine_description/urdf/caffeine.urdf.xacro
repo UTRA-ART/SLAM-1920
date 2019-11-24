@@ -4,7 +4,27 @@
    <xacro:include filename="$(find caffeine_description)/urdf/caffeine.gazebo.xacro"/>
    <xacro:include filename="$(find caffeine_description)/urdf/constants.xacro"/>
 
-   <!-- xacro macro definitions for wheels -->
+   <!-- xacro macro definitions for caster wheels -->
+   <xacro:macro name="caster_wheel_link_description">
+      <visual>
+         <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+         <geometry>
+            <cylinder length="${caster_wheel_length}" radius="${caster_wheel_diam/2.0}"/>
+         </geometry>
+      </visual>
+      <collision>
+         <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
+         <geometry>
+            <cylinder length="${caster_wheel_length}" radius="${caster_wheel_diam/2.0}"/>
+         </geometry>
+      </collision>
+      <inertial>
+        <mass value="${caster_wheel_mass}"/>
+        <xacro:cylinder_inertia mass="${caster_wheel_mass}" length="${caster_wheel_length}" radius="${caster_wheel_diam/2}"/>
+      </inertial>
+   </xacro:macro>
+
+   <!-- xacro macro for side wheels -->
    <xacro:macro name="wheel_link_description">
       <visual>
          <origin rpy="${pi/2} 0 0" xyz="0 0 0"/>
@@ -23,6 +43,7 @@
         <xacro:cylinder_inertia mass="${wheel_mass}" length="${wheel_length}" radius="${wheel_diam/2}"/>
       </inertial>
    </xacro:macro>
+
 
    <!-- Wheel motor definitions -->
    <xacro:macro name="Transmission" params="joint">
@@ -44,12 +65,12 @@
          <origin rpy="0 0 0" xyz="0 0 0"/>
          <geometry>
             <box size="${base_length} ${base_width} ${base_height}"/>
-         </geometry>
+         </geometry> 
       </visual>
       <collision>
          <origin rpy="0 0 0" xyz="0 0 0"/>
          <geometry>
-            <box size="${base_length} ${base_width} ${base_height}"/>
+             <box size="${base_length} ${base_width} ${base_height}"/>
          </geometry>
       </collision>
       <inertial>
@@ -58,77 +79,157 @@
       </inertial>
    </link>
 
-        <!-- Right front wheel -->
-        <link name="right_front_wheel">
-                <xacro:wheel_link_description />
-        </link>
-        <joint name="right_front_wheel_joint" type="continuous">
-                <parent link="base_link"/>
-                <child link="right_front_wheel"/>
-                <origin xyz="${base_length/3.0} ${-base_width/2.0 - wheel_base_offset} ${-base_height/2.5}" rpy="0 0 0"/>
-                <axis xyz="0 1 0"/>
-        </joint>
-        <xacro:Transmission joint="right_front_wheel_joint"/>
+   <!-- Front caster -->
+   <link name="front_caster">
+      <visual>
+         <origin rpy="0 0 0" xyz="0 0 ${-caster_height/2.0}"/>
+         <geometry>
+            <box size="${caster_length} ${caster_width} ${caster_height}"/>
+         </geometry>
+      </visual>
+      <collision>
+         <origin rpy="0 0 0" xyz="0 0 ${-caster_height/2.0}"/>
+         <geometry>
+            <box size="${caster_length} ${caster_width} ${caster_height}"/>
+         </geometry>
+      </collision>
+      <inertial>
+         <mass value="${caster_mass}"/>
+         <xacro:box_inertia mass="${caster_mass}" length="${caster_length}" width="${caster_width}" height="${caster_height}"/>
+      </inertial>
+   </link>
+   <joint name="front_caster_joint" type="continuous">
+      <axis xyz="0 0 1"/>
+      <parent link="base_link"/>
+      <child link="front_caster"/>
+      <origin rpy="0 0 0" xyz="${caster_x} 0 ${caster_z}"/>
+   </joint>
 
-        <!-- Right back wheel -->
-        <link name="right_back_wheel">
-                <xacro:wheel_link_description />
-        </link>
-        <joint name="right_back_wheel_joint" type="continuous">
-                <parent link="base_link"/>
-                <child link="right_back_wheel"/>
-                <origin xyz="${-base_length/3.0} ${-base_width/2.0 - wheel_base_offset} ${-base_height/2.5}" rpy="0 0 0"/>
-                <axis xyz="0 1 0"/>
-        </joint>
-        <xacro:Transmission joint="right_back_wheel_joint"/>
+   <!-- Back caster -->
+   <link name="back_caster">
+      <visual>
+         <origin rpy="0 0 0" xyz="0 0 ${-caster_height/2.0}"/>
+         <geometry>
+            <box size="${caster_length} ${caster_width} ${caster_height}"/>
+         </geometry>
+      </visual>
+      <collision>
+         <origin rpy="0 0 0" xyz="0 0 ${-caster_height/2.0}"/>
+         <geometry>
+            <box size="${caster_length} ${caster_width} ${caster_height}"/>
+         </geometry>
+      </collision>
+      <inertial>
+         <mass value="${caster_mass}"/>
+         <xacro:box_inertia mass="${caster_mass}" length="${caster_length}" width="${caster_width}" height="${caster_height}"/>
+      </inertial>
+   </link>
+   <joint name="back_caster_joint" type="continuous"> 
+      <axis xyz="0 0 1"/>
+      <parent link="base_link"/>
+      <child link="back_caster"/>
+      <origin rpy="0 0 0" xyz="${-caster_x} 0 ${caster_z}"/>
+   </joint>
 
-        <!-- Left front wheel -->
-        <link name="left_front_wheel">
-                <xacro:wheel_link_description />
-        </link>
-        <joint name="left_front_wheel_joint" type="continuous">
-                <parent link="base_link"/>
-                <child link="left_front_wheel"/>
-                <origin xyz="${base_length/3.0} ${base_width/2.0 + wheel_base_offset} ${-base_height/2.5}" rpy="0 0 0"/>
-                <axis xyz="0 1 0"/>
-        </joint>
-        <xacro:Transmission joint="left_front_wheel_joint"/>
+   <!-- Front caster wheel -->
+   <link name="front_caster_wheel">
+      <xacro:caster_wheel_link_description />
+   </link>
+   <joint name="front_caster_wheel_joint" type="continuous">
+      <axis xyz="0 0 1"/>
+      <parent link="front_caster"/>
+      <child link="front_caster_wheel"/>
+      <origin rpy="0 0 0" xyz="0 0 ${caster_wheel_z}"/>
+   </joint>
 
-        <!-- Left back wheel -->
-        <link name="left_back_wheel">
-                <xacro:wheel_link_description />
-        </link>
-        <joint name="left_back_wheel_joint" type="continuous">
-                <parent link="base_link"/>
-                <child link="left_back_wheel"/>
-                <origin xyz="${-base_length/3.0} ${base_width/2.0 + wheel_base_offset} ${-base_height/2.5}" rpy="0 0 0"/>
-                <axis xyz="0 1 0"/>
-        </joint>
-        <xacro:Transmission joint="left_back_wheel_joint"/>
+   <!-- Back caster wheel -->
+   <link name="back_caster_wheel">
+      <xacro:caster_wheel_link_description />
+   </link>
+   <joint name="back_caster_wheel_joint" type="continuous">
+      <axis xyz="0 0 1"/>
+      <parent link="back_caster"/>
+      <child link="back_caster_wheel"/>
+      <origin rpy="0 0 0" xyz="0 0 ${caster_wheel_z}"/>
+   </joint>
 
+   <!-- Basement -->
+   <link name="basement">
+      <visual>
+         <origin rpy="0 0 0" xyz="0 0 ${-basement_height/2.0}"/>
+         <geometry>
+            <box size="${basement_length} ${basement_width} ${basement_height}"/>
+         </geometry>
+      </visual>
+      <collision>
+         <origin rpy="0 0 0" xyz="0 0 0"/>
+         <geometry>
+            <box size="${basement_length} ${basement_width} ${basement_height}"/>
+         </geometry>
+      </collision>
+      <inertial>
+         <mass value="${basement_mass}"/>
+         <xacro:box_inertia mass="${basement_mass}" length="${basement_length}" width="${basement_width}" height="${basement_height}"/>
+      </inertial>
 
-        <!-- Hokuyo sensor -->
-        <link name="hokuyo_link">
-           <collision>
-              <origin xyz="0 0 0" rpy="0 0 0"/>
-              <geometry>
-                 <box size="${hokuyo_length} ${hokuyo_width} ${hokuyo_height}"/>
-              </geometry>
-           </collision>
-           <visual>
-              <origin xyz="0 0 0" rpy="0 0 0"/>
-              <geometry>
-                 <mesh filename="package://caffeine_description/urdf/meshes/hokuyo.dae"/>
-              </geometry>
-           </visual>
-           <inertial>
-              <mass value="${hokuyo_mass}"/>
-              <xacro:box_inertia mass="${hokuyo_mass}" length="${hokuyo_length}" width="${hokuyo_width}" height="${hokuyo_height}"/>
-           </inertial>
-        </link>
-        <joint name="hokuyo_joint" type="fixed">
-           <parent link="base_link"/>
-           <child link="hokuyo_link"/>
-           <origin xyz="0 0 ${base_height/2.0}" rpy="0 0 0"/>
-        </joint>
+   </link> 
+   <joint name="basement_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="basement"/>
+   </joint>
+
+   <!-- Right side motor housing -->
+   <link name="right_motor_gearbox_housing">
+      <visual>
+         <origin rpy="0 0 0" xyz="0 0 ${-gearbox_height/2.0}"/>
+         <geometry>
+            <box size="${gearbox_length} ${gearbox_width} ${gearbox_height}"/>
+         </geometry>
+      </visual>
+   </link>
+   <joint name="right_motor_gearbox_housing_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="right_motor_gearbox_housing"/>
+      <origin rpy="0 0 0" xyz="0 ${base_length/4.0} 0"/>
+   </joint>
+
+   <!-- Left side motor housing -->
+   <link name="left_motor_gearbox_housing">
+      <visual>
+         <origin rpy="0 0 0" xyz="0 0 ${-gearbox_height/2.0}"/>
+         <geometry>
+            <box size="${gearbox_length} ${gearbox_width} ${gearbox_height}"/>
+         </geometry>
+      </visual>
+   </link>
+   <joint name="left_motor_gearbox_housing_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="left_motor_gearbox_housing"/>
+      <origin rpy="0 0 0" xyz="0 ${-base_length/4.0} 0"/>
+   </joint>
+
+   <!-- Right wheel -->
+ <!--  <link name="right_wheel">
+      <xacro:wheel_link_description />
+   </link>
+   <joint name="right_wheel_joint" type="continuous">
+      <axis xyz="0 0 1"/>
+      <parent link="right_motor_gearbox_housing"/>
+      <child link="right_wheel"/>
+      <origin rpy="0 0 0" xyz="0 ${gearbox_width/2.0} ${-gearbox_height}"/>
+   </joint>
+   <xacro:Transmission joint="right_wheel_joint"/>
+-->
+   <!-- Right wheel -->
+   <link name="left_wheel">
+      <xacro:wheel_link_description />
+   </link>
+   <joint name="left_wheel_joint" type="continuous">
+      <axis xyz="0 0 1"/>
+      <parent link="left_motor_gearbox_housing"/>
+      <child link="left_wheel"/>
+      <origin rpy="0 0 0" xyz="0 ${-gearbox_width/2.0} ${-gearbox_height}"/>
+   </joint>
+   <xacro:Transmission joint="left_wheel_joint"/>
+
 </robot>

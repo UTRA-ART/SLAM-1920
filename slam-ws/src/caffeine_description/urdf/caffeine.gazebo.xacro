@@ -4,32 +4,51 @@
       <material>Gazebo/Purple</material>
    </gazebo>
 
-   <gazebo reference="right_front_wheel">
+   <gazebo reference="front_caster">
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+   <gazebo reference="back_caster">
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+   <gazebo reference="front_caster_wheel">
       <material>Gazebo/Black</material>
    </gazebo>
 
-   <gazebo reference="right_back_wheel">
+   <gazebo reference="back_caster_wheel">
       <material>Gazebo/Black</material>
    </gazebo>
 
-   <gazebo reference="left_front_wheel">
+   <gazebo reference="basement">
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+   <gazebo reference="right_motor_gearbox_housing">
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+   <gazebo reference="left_motor_gearbox_housing">
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+   <gazebo reference="left_wheel">
       <material>Gazebo/Black</material>
    </gazebo>
 
-   <gazebo reference="left_back_wheel">
+   <gazebo reference="right_wheel">
       <material>Gazebo/Black</material>
    </gazebo>
-
+<!--
    <gazebo>
-      <plugin name="caffeine_controller" filename="libgazebo_ros_skid_steer_drive.so">
+      <plugin name="caffeine_controller" filename="libgazebo_ros_diff_drive.so">
+         <alwaysOn>true</alwaysOn>
          <updateRate>30.0</updateRate>
          <robotNamespace>caffeine</robotNamespace>
-         <leftFrontJoint>left_front_wheel_joint</leftFrontJoint>
-         <rightFrontJoint>right_front_wheel_joint</rightFrontJoint>
-         <leftRearJoint>left_back_wheel_joint</leftRearJoint>
-         <rightRearJoint>right_back_wheel_joint</rightRearJoint>
-         <wheelSeparation>0.67</wheelSeparation>
-         <wheelDiameter>0.1</wheelDiameter>
+         <leftJoint>left_wheel_joint</leftJoint>
+         <rightJoint>right_wheel_joint</rightJoint>
+         <wheelSeparation>0.764</wheelSeparation>
+         <wheelDiameter>0.25</wheelDiameter>
          <robotBaseFrame>base_link</robotBaseFrame>
          <torque>20</torque>
          <topicName>cmd_vel</topicName>
@@ -41,7 +60,7 @@
          <broadcastTF>true</broadcastTF>
       </plugin>
    </gazebo>
-
+-->
    <!-- IMPORTANT: Double check the numbers I'm using here with our actual sensor-->
    <gazebo reference="hokuyo_link">
       <sensor type="gpu_ray" name="hokuyo_sensor">
