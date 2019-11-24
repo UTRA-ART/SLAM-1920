@@ -252,4 +252,51 @@
    </joint>
    <xacro:Transmission joint="left_wheel_joint"/>
 
+   <link name="stand">
+      <visual>
+         <origin rpy="0 0 0" xyz="0 0 ${stand_height/2.0}"/>
+         <geometry>
+            <box size="${stand_length} ${stand_width} ${stand_height}"/>
+         </geometry>
+      </visual>
+      <collision>
+         <origin rpy="0 0 0" xyz="0 0 ${stand_height/2.0}"/>
+         <geometry>
+            <box size="${stand_length} ${stand_width} ${stand_height}"/>
+         </geometry>
+      </collision>
+      <inertial>
+         <mass value="${stand_mass}"/>
+         <xacro:box_inertia mass="${stand_mass}" length="${stand_length}" width="${stand_width}" height="${stand_height}"/>
+      </inertial>
+   </link>
+   <joint name="stand_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="stand"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+   </joint>
+
+   <link name="hokuyo_link">
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <mesh filename="package://caffeine_description/urdf/meshes/hokuyo.dae"/>
+         </geometry>
+      </visual>
+      <collision>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <box size="${hokuyo_length} ${hokuyo_width} ${hokuyo_height}"/>
+         </geometry>
+      </collision>
+      <inertial>
+         <mass value="${hokuyo_mass}"/>
+         <xacro:box_inertia mass="${hokuyo_mass}" length="${hokuyo_length}" width="${hokuyo_width}" height="${hokuyo_height}"/>
+      </inertial>
+   </link>
+   <joint name="hokuyo_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="hokuyo_link"/>
+      <origin xyz="${-base_width/2.0} 0 ${base_height/2.0 + hokuyo_height/2.0}" rpy="0 0 0"/>
+   </joint>
 </robot>

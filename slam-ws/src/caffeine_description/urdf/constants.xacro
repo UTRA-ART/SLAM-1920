@@ -43,4 +43,10 @@
    <xacro:property name="gearbox_width" value="0.191"/>
    <xacro:property name="gearbox_length" value="0.101"/>
    <xacro:property name="gearbox_mass" value="0.1"/>
+
+  <!-- Constants for the stands -->
+  <xacro:property name="stand_length" value="0.412"/>
+  <xacro:property name="stand_width" value="0.254"/>
+  <xacro:property name="stand_height" value="1.324"/>
+  <xacro:property name="stand_mass" value="1.0"/>
 </robot>

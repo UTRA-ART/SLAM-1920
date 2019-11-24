@@ -1,0 +1,7 @@
+Current Issues:
+- Stand is wrong in general
+- Mass values are wrong in general
+- Base isn't correct (must be hexagonal!)
+- LIDAR laser seems to be hitting itself meaning some sort filtering
+or something has to be done (I'm not sure yet); temporarily adjusted the min range distance. Also LIDAR properties must be accurate to real life hokuyo sensor (currently it's not)
+- Casters move unrealistically 
