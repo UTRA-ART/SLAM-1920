@@ -1,3 +1,0 @@
-IMPORTANT NOTE:
-- Currently dimensions are wrong in general; need to change wheel locations, base dimensions, wheel dimensions, etc
-- Must change sensor properties as well for the hokuyo sensor (in the .gazebo file) as well as dimensions, etc

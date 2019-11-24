@@ -40,7 +40,7 @@
 
    <!-- Constants for the motor gearbox housing -->
    <xacro:property name="gearbox_height" value="0.102"/>
-   <xacro:property name="gearbox_width" value="0.101"/>
+   <xacro:property name="gearbox_width" value="0.191"/>
    <xacro:property name="gearbox_length" value="0.101"/>
-
+   <xacro:property name="gearbox_mass" value="0.1"/>
 </robot>

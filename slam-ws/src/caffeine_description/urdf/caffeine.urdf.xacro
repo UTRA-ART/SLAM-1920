@@ -186,6 +186,16 @@
             <box size="${gearbox_length} ${gearbox_width} ${gearbox_height}"/>
          </geometry>
       </visual>
+      <collision>
+         <origin rpy="0 0 0" xyz="0 0 0"/>
+         <geometry>
+            <box size="${gearbox_length} ${gearbox_width} ${gearbox_height}"/>
+         </geometry>
+      </collision>
+      <inertial>
+         <mass value="${gearbox_mass}"/>
+         <xacro:box_inertia mass="${gearbox_mass}" length="${gearbox_length}" width="${gearbox_width}" height="${gearbox_height}"/>
+      </inertial>
    </link>
    <joint name="right_motor_gearbox_housing_joint" type="fixed">
       <parent link="base_link"/>
@@ -201,6 +211,16 @@
             <box size="${gearbox_length} ${gearbox_width} ${gearbox_height}"/>
          </geometry>
       </visual>
+      <collision>
+         <origin rpy="0 0 0" xyz="0 0 0"/>
+         <geometry>
+            <box size="${gearbox_length} ${gearbox_width} ${gearbox_height}"/>
+         </geometry>
+      </collision>
+      <inertial>
+         <mass value="${gearbox_mass}"/>
+         <xacro:box_inertia mass="${gearbox_mass}" length="${gearbox_length}" width="${gearbox_width}" height="${gearbox_height}"/>
+      </inertial>
    </link>
    <joint name="left_motor_gearbox_housing_joint" type="fixed">
       <parent link="base_link"/>
@@ -209,26 +229,26 @@
    </joint>
 
    <!-- Right wheel -->
- <!--  <link name="right_wheel">
+   <link name="right_wheel">
       <xacro:wheel_link_description />
    </link>
    <joint name="right_wheel_joint" type="continuous">
-      <axis xyz="0 0 1"/>
+      <axis xyz="0 1 0"/>
       <parent link="right_motor_gearbox_housing"/>
       <child link="right_wheel"/>
-      <origin rpy="0 0 0" xyz="0 ${gearbox_width/2.0} ${-gearbox_height}"/>
+      <origin rpy="0 0 0" xyz="0 ${gearbox_width/1.5} ${-gearbox_height}"/>
    </joint>
    <xacro:Transmission joint="right_wheel_joint"/>
--->
-   <!-- Right wheel -->
+
+   <!-- Left wheel -->
    <link name="left_wheel">
       <xacro:wheel_link_description />
    </link>
    <joint name="left_wheel_joint" type="continuous">
-      <axis xyz="0 0 1"/>
+      <axis xyz="0 1 0"/>
       <parent link="left_motor_gearbox_housing"/>
       <child link="left_wheel"/>
-      <origin rpy="0 0 0" xyz="0 ${-gearbox_width/2.0} ${-gearbox_height}"/>
+      <origin rpy="0 0 0" xyz="0 ${-gearbox_width/1.5} ${-gearbox_height}"/>
    </joint>
    <xacro:Transmission joint="left_wheel_joint"/>
 
