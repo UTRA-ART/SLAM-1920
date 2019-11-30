@@ -1,12 +1,11 @@
 #! /usr/bin/env python
 
 import nav_goal.movebase_client
-import nav_goal.init_node
 import rospy
 import sys
 
 if __name__ == '__main__':
-    response = nav_goal.init_node.init_node(sys.argv)
+    response = nav_goal.movebase_client.init_node(sys.argv)
 
     if response != 'Failure':
         try:
