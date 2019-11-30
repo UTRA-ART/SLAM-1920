@@ -48,7 +48,6 @@
       <plugin name="caffeine_controller" filename="libgazebo_ros_diff_drive.so">
          <alwaysOn>true</alwaysOn>
          <updateRate>30.0</updateRate>
-         <robotNamespace>caffeine</robotNamespace>
          <leftJoint>left_wheel_joint</leftJoint>
          <rightJoint>right_wheel_joint</rightJoint>
          <wheelSeparation>0.764</wheelSeparation>
