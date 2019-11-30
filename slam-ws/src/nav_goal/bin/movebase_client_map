@@ -16,3 +16,4 @@ if __name__ == '__main__':
         except:
             rospy.logerr("Error - Navigation failed for unknown reasons. Exiting...")
             rospy.signal_shutdown("Error - Navigation failed for unknown reasons. Exiting...")
+            

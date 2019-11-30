@@ -19,3 +19,4 @@ def init_node(arguments):
             rospy.logerr("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
             rospy.signal_shutdown("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
             return 'Failure'
+            
