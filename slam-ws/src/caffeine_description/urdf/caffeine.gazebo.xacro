@@ -65,7 +65,7 @@
    </gazebo>
 
    <!-- IMPORTANT: Double check the numbers I'm using here with our actual sensor-->
-   <gazebo reference="hokuyo_link">
+   <gazebo reference="base_laser">
       <sensor type="ray" name="hokuyo_sensor">
          <pose>0 0 0 0 0 0</pose>
          <visualize>false</visualize>
@@ -94,7 +94,7 @@
          </ray>
          <plugin name="gazebo_ros_hokuyo_controller" filename="libgazebo_ros_laser.so">
             <topicName>/scan</topicName>
-            <frameName>hokuyo_link</frameName>
+            <frameName>base_laser</frameName>
          </plugin>
       </sensor>
    </gazebo>

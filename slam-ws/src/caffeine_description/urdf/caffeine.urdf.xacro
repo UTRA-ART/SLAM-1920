@@ -276,7 +276,7 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
    </joint>
 
-   <link name="hokuyo_link">
+   <link name="base_laser">
       <visual>
          <origin xyz="0 0 ${-hokuyo_height/2.0}" rpy="0 0 0"/>
          <geometry>
@@ -294,9 +294,9 @@
          <xacro:box_inertia mass="${hokuyo_mass}" length="${hokuyo_length}" width="${hokuyo_width}" height="${hokuyo_height}"/>
       </inertial>
    </link>
-   <joint name="hokuyo_joint" type="fixed">
+   <joint name="base_laser_joint" type="fixed">
       <parent link="base_link"/>
-      <child link="hokuyo_link"/>
+      <child link="base_laser"/>
       <origin xyz="${base_width/2.0} 0 ${base_height/2.0 + hokuyo_height/2.0 + hokuyo_height/2.0}" rpy="0 0 ${-135*pi/180}"/>
    </joint>
 </robot>
