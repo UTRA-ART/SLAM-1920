@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<robot name="constants" xmlns:xacro="http://ros.org/wiki/xacro">
+   <!-- Constants for drivebase -->
+   <xacro:property name="base_length" value="1.268"/>
+   <xacro:property name="base_width" value="0.764"/>
+   <xacro:property name="base_height" value="0.01"/>
+   <xacro:property name="base_mass" value="39.091"/>
+
+   <!-- Constants for caster wheels -->
+   <xacro:property name="caster_wheel_diam" value="0.15"/>
+   <xacro:property name="caster_wheel_length" value="0.045"/>
+   <xacro:property name="caster_wheel_mass" value="1.0"/>
+   <xacro:property name="pi" value="3.1415926"/>
+   <xacro:property name="caster_wheel_z" value="-0.141"/>
+
+   <!-- Constants for side wheels -->
+   <xacro:property name="wheel_diam" value="0.25"/>
+   <xacro:property name="wheel_length" value="0.09"/>
+   <xacro:property name="wheel_mass" value="1.0"/>
+
+   <!-- Constants for casters -->
+   <xacro:property name="caster_length" value="0.113"/>
+   <xacro:property name="caster_width" value="0.089"/>
+   <xacro:property name="caster_height" value="0.141"/>
+   <xacro:property name="caster_x" value="0.578"/>
+   <xacro:property name="caster_z" value="-0.005"/>
+   <xacro:property name="caster_mass" value="1.0"/>
+
+   <!-- Constants for hokuyo sensor -->
+   <xacro:property name="hokuyo_length" value="0.05"/>
+   <xacro:property name="hokuyo_width" value="0.05"/>
+   <xacro:property name="hokuyo_height" value="0.07"/>
+   <xacro:property name="hokuyo_mass" value="0.16"/>
+
+   <!-- Constants for the basement -->
+   <xacro:property name="basement_height" value="0.103"/>
+   <xacro:property name="basement_width" value="0.305"/>
+   <xacro:property name="basement_length" value="0.456"/>
+   <xacro:property name="basement_mass" value="1.0"/>
+
+   <!-- Constants for the motor gearbox housing -->
+   <xacro:property name="gearbox_height" value="0.102"/>
+   <xacro:property name="gearbox_width" value="0.191"/>
+   <xacro:property name="gearbox_length" value="0.101"/>
+   <xacro:property name="gearbox_mass" value="0.1"/>
+
+  <!-- Constants for the stands -->
+  <xacro:property name="stand_length" value="0.412"/>
+  <xacro:property name="stand_width" value="0.254"/>
+  <xacro:property name="stand_height" value="1.324"/>
+  <xacro:property name="stand_mass" value="1.0"/>
+</robot>
