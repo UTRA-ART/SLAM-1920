@@ -1,0 +1,14 @@
+<launch>
+    <arg name="model" default="$(find caffeine_description)/urdf/caffeine.urdf.xacro"/>
+
+    <!-- Parse and Condense URDF using xacro -->
+    <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)"/>
+	
+    <!-- Publish Joint States from URDF -->
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+	
+    <!-- Publish Robot State from URDF -->
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+	   <param name="publish_frequency" type="double" value="30.0" />
+	</node>
+</launch> 
