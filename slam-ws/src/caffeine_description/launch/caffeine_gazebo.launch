@@ -16,15 +16,14 @@
 		<arg name="headless" value="$(arg headless)"/>
 	</include>
 
-	<param name="robot_description" command="$(find xacro)/xacro.py $(arg model)"/>
+	<param name="robot_description" command="xacro --inorder '$(arg model)'"/>
 	
 	<node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
 		args="-z 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen"/>
 	
-	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
-	   	<param name="publish_frequency" type="double" value="30.0" />
-	</node>
-
-	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+	<!-- Set up Transform Tree -->
+	<include file="$(find transform)/launch/setup_tf.launch">
+		<arg name="model" value="$(arg model)"/>
+	</include>
 
 </launch>

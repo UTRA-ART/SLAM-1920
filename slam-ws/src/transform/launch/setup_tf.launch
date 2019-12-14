@@ -2,7 +2,7 @@
     <arg name="model" default="$(find caffeine_description)/urdf/caffeine.urdf.xacro"/>
 
     <!-- Parse and Condense URDF using xacro -->
-    <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)"/>
+    <param name="robot_description" command="xacro --inorder '$(arg model)'"/>
 	
     <!-- Publish Joint States from URDF -->
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
