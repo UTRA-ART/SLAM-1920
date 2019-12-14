@@ -1,0 +1,11 @@
+<launch>
+	<arg name="model" default="$(find caffeine_description)/urdf/caffeine.urdf.xacro"/>
+	
+	<param name="robot_description" command="xacro --inorder '$(arg model)'"/>
+	
+	<!-- Set up Transform Tree -->
+	<include file="$(find transform)/launch/setup_tf.launch">
+		<arg name="model" value="$(arg model)"/>
+	</include>
+
+</launch>
