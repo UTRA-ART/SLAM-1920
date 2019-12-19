@@ -40,6 +40,17 @@ To delete logs run:
 ```
 $ rosclean purge
 ``` 
+## Setting up ROS Serial for motor node ##
+ROS Serial is used to communicate with the Arduino to control the motors.
+
+cmdvel -->  rosserial_python --> Arduino UNO
+
+1. Add the sensors package(https://github.com/UTRA-ART/UTRA_ART/tree/master/UTRA_ws/src/sensors) into your workspace and run catkin_make on it
+2. source the devel/setup.bash of the sensors node.
+3. Launch arduino.launch from sensors/src/rosserial_python/launch/arduino.launch using roslaunch
+4. It should run three ros nodes, 2 encoders and 1 motor node. The encoders are *not* necessary for running the motor
+5. Make sure the Arduino is connected to /dev/ttyACM0 to interface with it. Also give write and executable permissions to it (`sudo chmod a+x /dev/ttyACM0`)
+
 
 
 ### Useful ROS Resources ###
