@@ -40,18 +40,30 @@ To delete logs run:
 ```
 $ rosclean purge
 ``` 
+
 ## Setting up ROS Serial for motor node ##
 ROS Serial is used to communicate with the Arduino to control the motors.
-
+```
 cmdvel -->  rosserial_python --> Arduino UNO
+```
+In order to communicate between ROS and Arduino via in serial connection (which is how we communicate with the Motors and Wheel Encoders), we must install the [`rosserial_arduino`](http://wiki.ros.org/rosserial_arduino) package:
+```
+$ sudo apt-get install ros-kinetic-rosserial-arduino
+```
+**Side Note:** To Flash the Arduino with the Motor and Encoder code:
+- Install the Arduino IDE
+- Add the ROS libraries to by navigating to `<sketchbook>/libraries`(where `<sketchbook>` is usually `Sketchbook` or `Arduino`) and running `rosrun rosserial_arduino make_libraries.py .`
+- Compile the file you want using the Arduino IDE (either `motorcontrol.ino` or `encoders.ino`)
+- Upload the compiled code to the Arduino connected to the USB port (give permissions to the correct USB port)
 
-1. Add the sensors package(https://github.com/UTRA-ART/UTRA_ART/tree/master/UTRA_ws/src/sensors) into your workspace and run catkin_make on it
-2. source the devel/setup.bash of the sensors node.
-3. Launch arduino.launch from sensors/src/rosserial_python/launch/arduino.launch using roslaunch
-4. It should run three ros nodes, 2 encoders and 1 motor node. The encoders are *not* necessary for running the motor
-5. Make sure the Arduino is connected to /dev/ttyACM0 to interface with it. Also give write and executable permissions to it (`sudo chmod a+x /dev/ttyACM0`)
+Before launching the Arduino ROS nodes, ensure that:
+- the Arduino is connected to `/dev/ttyACM[X]`
+- `/dev/ttyACM[X]` has read and write permissions (`chmod a+rw /dev/ttyACM[X]`)
 
-
+To launch and connect to the Arduino use: (This will launch 3 ROS nodes: 2 Wheel Encoder nodes and 1 Motor node)
+```
+$ roslaunch sensors arduino.launch
+```
 
 ### Useful ROS Resources ###
 - [ROS Wiki](http://wiki.ros.org)
