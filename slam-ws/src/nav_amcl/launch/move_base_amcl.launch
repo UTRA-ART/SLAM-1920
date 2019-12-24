@@ -13,7 +13,7 @@
    </node>
 
   <!--- Run Move Base -->
-  <include file="$(find nav_husky_gazebo)/launch/move_base.launch" >
+  <include file="$(find nav_stack)/launch/move_base.launch" >
     <arg name="global_costmap_params" value="$(find nav_amcl)/config/global_costmap_params.yaml"/>
   </include>
 
