@@ -60,6 +60,7 @@ To enable control of the motors via `cmd_vel` run:
 ```
 # Re-routes cmd_vel to cmd_vel_to_motor node to communicate with Arduino motors
 # NOTE: Also enables communication with the Arduino wheel encoders
+
 $ roslaunch motor_control motor_control.launch
 ```
 
