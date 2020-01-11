@@ -8,4 +8,7 @@
 		<arg name="model" value="$(arg model)"/>
 	</include>
 
+	<!-- Set up Base Controller (motor control) -->
+	<include file="$(find motor_control)/launch/motor_control.launch"/>
+
 </launch>
