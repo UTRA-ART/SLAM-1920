@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>nav_husky_gazebo</name>
+  <name>nav_stack</name>
   <version>0.0.0</version>
-  <description>The nav_husky_gazebo package uses the move_base package to move a husky and allow simple navigation and obstacle avoidance</description>
+  <description>The nav_stack package uses the move_base package to move a husky and allow simple navigation and obstacle avoidance</description>
   <maintainer email="erick.mejiauzeda@mail.utoronto.ca">erick</maintainer>
   <license>TODO</license>
 
