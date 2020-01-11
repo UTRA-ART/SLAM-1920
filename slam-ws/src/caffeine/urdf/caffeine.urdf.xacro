@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <robot name="caffeine" xmlns:xacro="http://ros.org/wiki/xacro">
-   <xacro:include filename="$(find caffeine_description)/urdf/inertias.xacro"/>
-   <xacro:include filename="$(find caffeine_description)/urdf/caffeine.gazebo.xacro"/>
-   <xacro:include filename="$(find caffeine_description)/urdf/constants.xacro"/>
+   <xacro:include filename="$(find caffeine)/urdf/inertias.xacro"/>
+   <xacro:include filename="$(find caffeine)/urdf/caffeine.gazebo.xacro"/>
+   <xacro:include filename="$(find caffeine)/urdf/constants.xacro"/>
 
    <!-- xacro macro definitions for caster wheels -->
    <xacro:macro name="caster_wheel_link_description">
@@ -280,7 +280,7 @@
       <visual>
          <origin xyz="0 0 ${-hokuyo_height/2.0}" rpy="0 0 0"/>
          <geometry>
-            <mesh filename="package://caffeine_description/urdf/meshes/hokuyo.dae"/>
+            <mesh filename="package://caffeine/urdf/meshes/hokuyo.dae"/>
          </geometry>
       </visual>
       <collision>

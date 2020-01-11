@@ -4,7 +4,7 @@
 	<arg name="gui" default="true"/>
 	<arg name="headless" default="false"/>
 	<arg name="debug" default="false"/>
-	<arg name="model" default="$(find caffeine_description)/urdf/caffeine.urdf.xacro"/>
+	<arg name="model" default="$(find caffeine)/urdf/caffeine.urdf.xacro"/>
 	<arg name="world" default="$(find husky_gazebo)/worlds/clearpath_playpen.world"/>
 	
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">

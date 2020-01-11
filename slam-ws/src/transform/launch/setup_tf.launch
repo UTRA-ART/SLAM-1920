@@ -1,5 +1,5 @@
 <launch>
-    <arg name="model" default="$(find caffeine_description)/urdf/caffeine.urdf.xacro"/>
+    <arg name="model" default="$(find caffeine)/urdf/caffeine.urdf.xacro"/>
 
     <!-- Parse and Condense URDF using xacro -->
     <param name="robot_description" command="xacro --inorder '$(arg model)'"/>
