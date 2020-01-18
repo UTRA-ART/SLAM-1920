@@ -1,6 +1,9 @@
 <launch>
 	<arg name="model" default="$(find caffeine)/urdf/caffeine.urdf.xacro"/>
-	
+    
+    <!-- TODO: change default into the proper port once decided -->
+    <arg name="LIDAR_serial_port" default="/dev/ttyACM0"/>
+
 	<param name="robot_description" command="xacro --inorder '$(arg model)'"/>
 	
 	<!-- Set up Transform Tree -->
@@ -10,5 +13,21 @@
 
 	<!-- Set up Base Controller (motor control) -->
 	<include file="$(find motor_control)/launch/motor_control.launch"/>
+
+    <!-- Set up the LIDAR -->
+    <node
+        pkg="urg_node"
+        type="urg_node"
+        name="urg_node"
+        args="serial_port:=$(arg LIDAR_serial_port)"
+    />
+
+    <!-- Create static transform between real life LIDAR and URDF LIDAR -->
+    <node
+        pkg="tf"
+        type="static_transform_publisher"
+        name="base_laser_to_laser_broadcaster"
+        args="0 0 0 0 0 0 base_laser laser 100"
+    />
 
 </launch>
