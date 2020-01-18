@@ -1,9 +1,29 @@
 import rospy
+import sys
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from tf.transformations import quaternion_from_euler
 
-def movebase_client(x, y, yaw):
+def init_node(arguments):
+    rospy.init_node('movebase_client_py')
+
+    if len(arguments) < 4:
+        rospy.logerr("Error: Insufficient Arguments - Usage is 'rosrun nav_goal movebase_client x y yaw' where x is distance to move in x, y is distance to move in y, and yaw is rotation in radians.")
+        rospy.signal_shutdown("Error: Insufficient Arguments - Usage is 'rosrun nav_goal movebase_client x y yaw' where x is distance to move in x, y is distance to move in y, and yaw is rotation in radians.")
+        return 'Failure'
+    else:
+        try:
+            x = float(arguments[1])
+            y = float(arguments[2])
+            yaw = float(arguments[3])
+
+            return (x, y, yaw)
+        except:
+            rospy.logerr("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
+            rospy.signal_shutdown("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
+            return 'Failure'
+
+def movebase_client(x, y, yaw, frame):
     # Create an action client called "move_base" with action definition file "MoveBaseAction"
     client = actionlib.SimpleActionClient('move_base', MoveBaseAction)
     # Waits until the action server has started up and started listening for goals.
@@ -12,7 +32,7 @@ def movebase_client(x, y, yaw):
     # Creates a new goal with the MoveBaseGoal constructor
     goal = MoveBaseGoal()
 
-    goal.target_pose.header.frame_id = "base_link"
+    goal.target_pose.header.frame_id = frame
     goal.target_pose.header.stamp = rospy.Time.now()
 
     # Set goal position
@@ -29,7 +49,7 @@ def movebase_client(x, y, yaw):
     # Sends goal and waits until the action is completed (or aborted if it is impossible)
     client.send_goal(goal)
 
-    rospy.loginfo("Goal sent to action server!")
+    rospy.loginfo("Goal of x:{} y:{} yaw:{} sent to action server!".format(x, y, yaw))
 
     wait = client.wait_for_result()
 

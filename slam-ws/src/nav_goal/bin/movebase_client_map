@@ -10,8 +10,9 @@ if __name__ == '__main__':
     if response != 'Failure':
         try:
             x, y, yaw = response
-            result = nav_goal.movebase_client.movebase_client(x, y, yaw, "base_link")
+            result = nav_goal.movebase_client.movebase_client(x, y, yaw, "map")
             rospy.loginfo(result)
         except:
             rospy.logerr("Error - Navigation failed for unknown reasons. Exiting...")
             rospy.signal_shutdown("Error - Navigation failed for unknown reasons. Exiting...")
+            
