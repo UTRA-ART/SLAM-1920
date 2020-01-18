@@ -31,4 +31,9 @@
 
 
 
+    <!-- Set up the IMU -->
+    <node pkg="tf" type="static_transform_publisher" name="base_laser_to_imu" args="0 0 0 0 0 0 base_laser imu 100"/>
+    <include file="$(find phidgets_imu)/launch/imu_single_nodes.launch"/>
+	<include file="$(find odom)/launch/odom.launch"/>
+
 </launch>
