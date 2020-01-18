@@ -1,14 +1,6 @@
 <launch>
 	<arg name="model" default="$(find caffeine)/urdf/caffeine.urdf.xacro"/>
 	
-	
-	<param name="robot_description" command="xacro --inorder '$(arg model)'"/>
-	
-	<!-- Set up Transform Tree -->
-	<include file="$(find transform)/launch/setup_tf.launch">
-		<arg name="model" value="$(arg model)"/>
-	</include>
-
 	<!-- Set up Base Controller (motor control) -->
 	<include file="$(find motor_control)/launch/motor_control.launch"/>
 
@@ -16,9 +8,27 @@
 	<arg name="motor_port" value="/dev/ttyACM0"/>
 	<arg name="encoder1_port" value="/dev/ttyACM1"/>
 	<arg name="encoder2_port" value="/dev/ttyACM2"/>
-	<!--Ports (motor control) -->
-
+    <arg name="lidar_port" default="/dev/ttyUSB0"/>
 
 	</include>
+    
+    <!-- TODO: change default into the proper port once decided -->
+
+	<param name="robot_description" command="xacro --inorder '$(arg model)'"/>
+	
+	<!-- Set up Transform Tree -->
+	<include file="$(find transform)/launch/setup_tf.launch">
+		<arg name="model" value="$(arg model)"/>
+	</include>
+
+	<!-- Set up the LIDAR -->
+    <node pkg="urg_node" type="urg_node" name="urg_node">
+        <param name="serial_port" value="$(arg lidar_port)"/>
+    </node>
+
+    <!-- Create static transform between real life LIDAR and URDF LIDAR -->
+    <node pkg="tf" type="static_transform_publisher" name="base_laser_to_laser_broadcaster" args="0 0 0 0 0 0 base_laser laser 100"/>
+
+
 
 </launch>
