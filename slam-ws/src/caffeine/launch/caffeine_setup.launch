@@ -1,6 +1,7 @@
 <launch>
 	<arg name="model" default="$(find caffeine)/urdf/caffeine.urdf.xacro"/>
 	
+	
 	<param name="robot_description" command="xacro --inorder '$(arg model)'"/>
 	
 	<!-- Set up Transform Tree -->
@@ -10,5 +11,14 @@
 
 	<!-- Set up Base Controller (motor control) -->
 	<include file="$(find motor_control)/launch/motor_control.launch"/>
+
+	<!--Ports (motor control) -->
+	<arg name="motor_port" value="/dev/ttyACM0"/>
+	<arg name="encoder1_port" value="/dev/ttyACM1"/>
+	<arg name="encoder2_port" value="/dev/ttyACM2"/>
+	<!--Ports (motor control) -->
+
+
+	</include>
 
 </launch>
