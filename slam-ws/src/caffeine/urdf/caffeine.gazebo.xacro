@@ -99,25 +99,27 @@
       </sensor>
    </gazebo>
 
-   <!-- TODO: Update values based on Phidget IMU specifications -->
+   <!-- Phidgets IMU specifications -->
    <gazebo reference="imu_link">
       <material>Gazebo/Black</material>
 
       <gravity>true</gravity>
       <sensor name="imu_sensor" type="imu">
          <always_on>true</always_on>
-         <update_rate>100</update_rate>
+         <update_rate>128</update_rate>
          <visualize>true</visualize>
-         <topic>__default_topic__</topic>
+         <topic>imu/data_raw</topic>
+
          <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
             <topicName>imu/data_raw</topicName>
             <bodyName>imu_link</bodyName>
-            <updateRateHZ>10.0</updateRateHZ>
-            <gaussianNoise>0.0</gaussianNoise>
+            <updateRateHZ>128.0</updateRateHZ>
+            <gaussianNoise>0.59</gaussianNoise>
             <xyzOffset>0 0 0</xyzOffset>
             <rpyOffset>0 0 0</rpyOffset>
             <frameName>imu_link</frameName>
          </plugin>
+         
          <pose>0 0 0 0 0 0</pose>
       </sensor>
   </gazebo>
