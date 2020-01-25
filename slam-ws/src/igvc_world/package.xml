@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>usma_gazebo</name>
+  <name>igvc_world</name>
   <version>0.0.0</version>
-  <description>The usma_gazebo package</description>
+  <description>The igvc_world package</description>
 
   <maintainer email="todo@todo.com">GitHub repo</maintainer>
 
