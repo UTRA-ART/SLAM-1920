@@ -3,7 +3,8 @@
 #include "nav_msgs/Odometry.h"
 #include "geometry_msgs/Twist.h"
 
-double vx, wz;
+double vx = 0.0;
+double wz = 0.0;
 double wheelbase = 0.91; // meters
 double manual_control = 0.0;
 
@@ -66,7 +67,7 @@ int main(int argc, char **argv)
         vl = vx - (wheelbase * wz) / 2.0 ;
 
         rvelmsg.data = vr;
-        lvelmsg.data = vl; 
+        lvelmsg.data = vl;
 
         rvel_pub.publish(rvelmsg);
         lvel_pub.publish(lvelmsg);
