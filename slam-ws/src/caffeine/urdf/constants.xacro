@@ -32,6 +32,12 @@
    <xacro:property name="hokuyo_height" value="0.07"/>
    <xacro:property name="hokuyo_mass" value="0.16"/>
 
+   <!-- Constants for Phidget IMU -->
+   <xacro:property name="phidget_length" value="0.04"/>
+   <xacro:property name="phidget_width" value="0.0375"/>
+   <xacro:property name="phidget_height" value="0.01"/>
+   <xacro:property name="phidget_mass" value="0.04"/>
+
    <!-- Constants for the basement -->
    <xacro:property name="basement_height" value="0.103"/>
    <xacro:property name="basement_width" value="0.305"/>

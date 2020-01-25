@@ -276,27 +276,62 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
    </joint>
 
+   <!-- LIDAR -->
    <link name="base_laser">
-      <visual>
-         <origin xyz="0 0 ${-hokuyo_height/2.0}" rpy="0 0 0"/>
-         <geometry>
-            <mesh filename="package://caffeine/urdf/meshes/hokuyo.dae"/>
-         </geometry>
-      </visual>
-      <collision>
-         <origin xyz="0 0 ${-hokuyo_height/2.0}" rpy="0 0 0"/>
-         <geometry>
-            <box size="${hokuyo_length} ${hokuyo_width} ${hokuyo_height}"/>
-         </geometry>
-      </collision>
       <inertial>
          <mass value="${hokuyo_mass}"/>
          <xacro:box_inertia mass="${hokuyo_mass}" length="${hokuyo_length}" width="${hokuyo_width}" height="${hokuyo_height}"/>
       </inertial>
+      
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <mesh filename="package://caffeine/urdf/meshes/hokuyo.dae"/>
+         </geometry>
+      </visual>
+
+      <collision>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <box size="${hokuyo_length} ${hokuyo_width} ${hokuyo_height}"/>
+         </geometry>
+      </collision>
    </link>
+
+   <!-- LIDAR: attach base_laser to base_link -->
    <joint name="base_laser_joint" type="fixed">
       <parent link="base_link"/>
       <child link="base_laser"/>
-      <origin xyz="${base_width/2.0} 0 ${base_height/2.0 + hokuyo_height/2.0 + hokuyo_height/2.0}" rpy="0 0 ${-135*pi/180}"/>
+      <origin xyz="${base_width / 2.0} 0 ${base_height / 2.0 + hokuyo_height / 2.0}" rpy="0 0 ${-135 * pi / 180}"/>
    </joint>
+
+   <!-- IMU -->
+   <link name="imu_link">
+      <inertial>
+         <mass value="${phidget_mass}"/>
+         <xacro:box_inertia mass="${phidget_mass}" length="${phidget_length}" width="${phidget_width}" height="${phidget_height}"/>
+      </inertial>
+
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <box size="${phidget_length} ${phidget_width} ${phidget_height}"/>
+         </geometry>
+      </visual>
+
+      <collision>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <box size="${phidget_length} ${phidget_width} ${phidget_height}"/>
+         </geometry>
+      </collision>
+   </link>
+
+   <!-- IMU: attach imu_link to base_link -->
+   <joint name="base_link_to_imu_link" type="fixed">
+      <parent link="base_link"/>
+      <child link="imu_link"/>
+      <origin xyz="${base_width / 2.0 - 0.1} 0 ${base_height / 2.0 + phidget_height / 2.0}" rpy="0 0 0"/>
+   </joint>
+
 </robot>
