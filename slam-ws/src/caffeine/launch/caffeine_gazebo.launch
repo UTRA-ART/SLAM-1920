@@ -26,4 +26,7 @@
 		<arg name="model" value="$(arg model)"/>
 	</include>
 
+	<!-- Set up robot_localization Odometry -->
+	<include file="$(find odom)/launch/odom.launch"/>
+
 </launch>
