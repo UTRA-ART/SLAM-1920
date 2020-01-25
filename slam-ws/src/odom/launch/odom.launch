@@ -19,6 +19,9 @@
                true, true, true,
                true, true, true]
         </rosparam>
+        <rosparam param="imu0_remove_gravitational_acceleration">
+            true
+        </rosparam>
     </node>
 
 </launch>
