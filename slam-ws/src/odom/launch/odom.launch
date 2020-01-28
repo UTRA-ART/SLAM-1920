@@ -12,16 +12,50 @@
         <param name="predict_current_time" value="true"/>
 
         <param name="imu0" value="imu/data_raw"/>
-        <rosparam param="imu0_config">
+        <param name="odom0" value="/odom"/>
+        <!-- 
+            [X,Y,Z] -> wheel encoders only X and Y in 2d mode
+            [r,p,y] -> orientation by wheel encoders only yaw in 2d mode
+            [dX,dY,dZ] -> linear velocities
+            [dr,dp,dy] -> Angular velocity
+            [d2X,d2Y,d2Z] -> Set to false to avoid drift or 2D mode sets to false 
+            [d2r,d2p,d2y] -> Set to false to avoid drift 2D mode sets to false
+        -->
+        <rosparam param="odom0_config">
+              [true,  true, true,
+               false, false, true,
+               true, true, false,
+               false, false, true,
+               false, false, false]
+        </rosparam>  
+       <rosparam param="imu0_config">
             [false,  false,  false,
-               false, false, false,
-               false, false, false,
-               true, true, true,
-               true, true, true]
+             false, false, true,
+             false, false, false,
+             false, false, true,
+             true, false, false]
         </rosparam>
+        <!-- set to false as Gazebo publihes this already Not sure if Gazebo sends this or ekf  -->
+        <rosparam param="publish_tf">
+             false
+        </rosparam> 
+        <!-- set to true if you dont want 3D information in your state estimate  -->
+         <rosparam param="two_d_mode">
+            true
+        </rosparam>
+        <!-- Bias to Offset Gravity  -->
         <rosparam param="imu0_remove_gravitational_acceleration">
             true
         </rosparam>
+        <!-- Uses position information to estimate velocities -->
+         <rosparam param="imu0_differential">
+            true
+        </rosparam>
+        <!--does not matter -->
+         <rosparam param="imu0_relative">
+            true
+        </rosparam>
+        
     </node>
 
 </launch>
