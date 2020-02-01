@@ -302,6 +302,7 @@
    <joint name="base_laser_joint" type="fixed">
       <parent link="base_link"/>
       <child link="base_laser"/>
+      <!-- HOTFIX: LIDAR is not obstructed by the Caffeine itself -->
       <origin xyz="${base_width / 2.0} 0 ${base_height / 2.0 + hokuyo_height / 2.0 + 0.5}" rpy="0 0 ${-135 * pi / 180}"/>
    </joint>
 
