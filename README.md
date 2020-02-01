@@ -1,21 +1,31 @@
 # SLAM on ROS #
 
-This project runs on ROS Kinetic for Ubuntu 16.04
+This project runs on ROS Kinetic for Ubuntu 16.04. Please check out our [Wiki](https://github.com/UTRA-ART/SLAM/wiki#getting-started-with-ros) for more information.
 
 ## Setting up the ROS Environment ##
-1. Perform ROS Kinetic full install. See [Getting Started with ROS](https://github.com/UTRA-ART/SLAM/wiki#getting-started-with-ros) for installation instructions.
-2. Install husky desktop and simulator. See: [Clearpath ROS Tutorial](https://www.clearpathrobotics.com/assets/guides/ros/Drive%20a%20Husky.html) or [Husky Simulation Wiki](http://wiki.ros.org/husky_gazebo/Tutorials/Simulating%20Husky) for details.
-Run:
-```
-$ sudo apt-get update
+
+### Install ROS Kinetic
+See [Getting Started with ROS](https://github.com/UTRA-ART/SLAM/wiki#getting-started-with-ros) for installation instructions.
+
+### Install the [husky-desktop]() and [husky-simulator]() Packages
+```$ sudo apt-get update
 $ sudo apt-get install ros-kinetic-husky-desktop
 $ sudo apt-get install ros-kinetic-husky-simulator
 ```
-3. Install the Navigation Stack: `sudo apt-get install ros-kinetic-navigation`
-4. Install gmapping (SLAM package): `sudo apt-get install ros-kinetic-gmapping`
+
+### Install the [navigation](http://wiki.ros.org/navigation) Package
+```
+sudo apt-get install ros-kinetic-navigation
+```
+
+### Install the [gmapping](http://wiki.ros.org/gmapping) package:
+```
+sudo apt-get install ros-kinetic-gmapping
+```
+> **Note:** This is the package we use for performing SLAM.
 
 ## Creating the ROS Workspace ##
-First clone the git repository, then create a workspace. After run:
+First clone the git repository, then create a workspace by running
 ```
 # Creates CMake file in src
 $ mkdir -p ./slam-ws/src  # These folders already exist on Github, so don't run this line
