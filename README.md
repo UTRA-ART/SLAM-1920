@@ -3,7 +3,7 @@
 This project runs on ROS Kinetic for Ubuntu 16.04
 
 ## Setting up the ROS Environment ##
-1. Perform ROS Kinetic full install. See: [ROS Kinetic Installation](http://wiki.ros.org/kinetic/Installation/Ubuntu)
+1. Perform ROS Kinetic full install. See [Getting Started with ROS](https://github.com/UTRA-ART/SLAM/wiki#getting-started-with-ros) for installation instructions.
 2. Install husky desktop and simulator. See: [Clearpath ROS Tutorial](https://www.clearpathrobotics.com/assets/guides/ros/Drive%20a%20Husky.html) or [Husky Simulation Wiki](http://wiki.ros.org/husky_gazebo/Tutorials/Simulating%20Husky) for details.
 Run:
 ```
