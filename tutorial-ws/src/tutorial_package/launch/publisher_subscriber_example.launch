@@ -1,4 +1,0 @@
-<launch>
-    <node pkg="tutorial_package" name="talker" type="publisher_example.py"/>
-    <node pkg="tutorial_package" name="listener" type="subscriber_example.py"/>
-</launch>
