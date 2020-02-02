@@ -3,6 +3,6 @@ CATKIN_PACKAGE_PREFIX = ""
 PROJECT_PKG_CONFIG_INCLUDE_DIRS = "".split(';') if "" != "" else []
 PROJECT_CATKIN_DEPENDS = "".replace(';', ' ')
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "".split(';') if "" != "" else []
-PROJECT_NAME = "tutorial_package"
-PROJECT_SPACE_DIR = "/home/chandra-gummaluru/tutorial-ws/install"
+PROJECT_NAME = "tutorial-pkg"
+PROJECT_SPACE_DIR = "/home/chandra-gummaluru/SLAM/tutorial-ws/devel"
 PROJECT_VERSION = "0.0.0"

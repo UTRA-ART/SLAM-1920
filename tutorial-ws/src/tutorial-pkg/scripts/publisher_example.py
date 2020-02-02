@@ -5,7 +5,7 @@ from std_msgs.msg import String
 
 def publisher_example():
     rospy.init_node('publisher_example')
-    pub = rospy.Publisher('chatter', String)
+    pub = rospy.Publisher('chatter', String, queue_size = 10)
     rate = rospy.Rate(10) #10 Hz.
 
     while not rospy.is_shutdown():

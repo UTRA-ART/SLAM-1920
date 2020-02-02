@@ -7,4 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export PWD="/home/chandra-gummaluru/tutorial-ws/build"
+export PWD="/home/chandra-gummaluru/SLAM/tutorial-ws/build"

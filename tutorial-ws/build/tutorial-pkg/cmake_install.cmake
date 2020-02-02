@@ -1,8 +1,8 @@
-# Install script for directory: /home/chandra-gummaluru/tutorial-ws/src/tutorial_package
+# Install script for directory: /home/chandra-gummaluru/SLAM/tutorial-ws/src/tutorial-pkg
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/chandra-gummaluru/tutorial-ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/chandra-gummaluru/SLAM/tutorial-ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -33,17 +33,17 @@ if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/chandra-gummaluru/tutorial-ws/build/tutorial_package/catkin_generated/installspace/tutorial_package.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/chandra-gummaluru/SLAM/tutorial-ws/build/tutorial-pkg/catkin_generated/installspace/tutorial-pkg.pc")
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tutorial_package/cmake" TYPE FILE FILES
-    "/home/chandra-gummaluru/tutorial-ws/build/tutorial_package/catkin_generated/installspace/tutorial_packageConfig.cmake"
-    "/home/chandra-gummaluru/tutorial-ws/build/tutorial_package/catkin_generated/installspace/tutorial_packageConfig-version.cmake"
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tutorial-pkg/cmake" TYPE FILE FILES
+    "/home/chandra-gummaluru/SLAM/tutorial-ws/build/tutorial-pkg/catkin_generated/installspace/tutorial-pkgConfig.cmake"
+    "/home/chandra-gummaluru/SLAM/tutorial-ws/build/tutorial-pkg/catkin_generated/installspace/tutorial-pkgConfig-version.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tutorial_package" TYPE FILE FILES "/home/chandra-gummaluru/tutorial-ws/src/tutorial_package/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/tutorial-pkg" TYPE FILE FILES "/home/chandra-gummaluru/SLAM/tutorial-ws/src/tutorial-pkg/package.xml")
 endif()
 

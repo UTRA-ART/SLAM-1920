@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/chandra-gummaluru/tutorial-ws/src
+CMAKE_SOURCE_DIR = /home/chandra-gummaluru/SLAM/tutorial-ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/chandra-gummaluru/tutorial-ws/build
+CMAKE_BINARY_DIR = /home/chandra-gummaluru/SLAM/tutorial-ws/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -135,9 +135,9 @@ test/fast: test
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/chandra-gummaluru/tutorial-ws/build/CMakeFiles /home/chandra-gummaluru/tutorial-ws/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/chandra-gummaluru/SLAM/tutorial-ws/build/CMakeFiles /home/chandra-gummaluru/SLAM/tutorial-ws/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/chandra-gummaluru/tutorial-ws/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/chandra-gummaluru/SLAM/tutorial-ws/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -292,7 +292,7 @@ _catkin_empty_exported_target: cmake_check_build_system
 
 # fast build rule for target.
 _catkin_empty_exported_target/fast:
-	$(MAKE) -f tutorial_package/CMakeFiles/_catkin_empty_exported_target.dir/build.make tutorial_package/CMakeFiles/_catkin_empty_exported_target.dir/build
+	$(MAKE) -f tutorial-pkg/CMakeFiles/_catkin_empty_exported_target.dir/build.make tutorial-pkg/CMakeFiles/_catkin_empty_exported_target.dir/build
 .PHONY : _catkin_empty_exported_target/fast
 
 # Help Target

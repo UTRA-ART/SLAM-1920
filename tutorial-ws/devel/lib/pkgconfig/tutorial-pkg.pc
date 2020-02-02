@@ -1,0 +1,8 @@
+prefix=/home/chandra-gummaluru/SLAM/tutorial-ws/devel
+
+Name: tutorial-pkg
+Description: Description of tutorial-pkg
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
