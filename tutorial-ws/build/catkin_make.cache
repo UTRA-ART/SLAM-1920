@@ -1,0 +1,2 @@
+tutorial_package
+-DCATKIN_DEVEL_PREFIX=/home/chandra-gummaluru/tutorial-ws/devel -DCMAKE_INSTALL_PREFIX=/home/chandra-gummaluru/tutorial-ws/install -G Unix Makefiles
