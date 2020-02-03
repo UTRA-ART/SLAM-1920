@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/SLAM/static/css/main.c29f2a4a.chunk.css",
+    "main.js": "/SLAM/static/js/main.d7b53e55.chunk.js",
+    "main.js.map": "/SLAM/static/js/main.d7b53e55.chunk.js.map",
+    "runtime-main.js": "/SLAM/static/js/runtime-main.382d5bae.js",
+    "runtime-main.js.map": "/SLAM/static/js/runtime-main.382d5bae.js.map",
+    "static/css/2.ff8bd605.chunk.css": "/SLAM/static/css/2.ff8bd605.chunk.css",
+    "static/js/2.b134a3a5.chunk.js": "/SLAM/static/js/2.b134a3a5.chunk.js",
+    "static/js/2.b134a3a5.chunk.js.map": "/SLAM/static/js/2.b134a3a5.chunk.js.map",
+    "index.html": "/SLAM/index.html",
+    "precache-manifest.15cf4a0f30a80c71d9dbd46a1414d94a.js": "/SLAM/precache-manifest.15cf4a0f30a80c71d9dbd46a1414d94a.js",
+    "service-worker.js": "/SLAM/service-worker.js",
+    "static/css/2.ff8bd605.chunk.css.map": "/SLAM/static/css/2.ff8bd605.chunk.css.map",
+    "static/css/main.c29f2a4a.chunk.css.map": "/SLAM/static/css/main.c29f2a4a.chunk.css.map",
+    "static/js/2.b134a3a5.chunk.js.LICENSE.txt": "/SLAM/static/js/2.b134a3a5.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.382d5bae.js",
+    "static/css/2.ff8bd605.chunk.css",
+    "static/js/2.b134a3a5.chunk.js",
+    "static/css/main.c29f2a4a.chunk.css",
+    "static/js/main.d7b53e55.chunk.js"
+  ]
+}
