@@ -49,3 +49,6 @@ To delete logs run:
 ```
 rosclean purge
 ``` 
+
+---
+<img src="https://raw.githubusercontent.com/UTRA-ART/SLAM/dev/docs/res/utra-logo.png" alt="UTRA logo" width="200"/>
