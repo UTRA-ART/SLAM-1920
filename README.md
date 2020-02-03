@@ -51,4 +51,6 @@ rosclean purge
 ``` 
 
 ---
+<p align="center">
 <img src="https://raw.githubusercontent.com/UTRA-ART/SLAM/dev/docs/res/utra-logo.png" alt="UTRA logo" width="200"/>
+</p>
