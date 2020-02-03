@@ -1,4 +1,4 @@
-# SLAM on ROS #
+# SLAM and Navigation on ROS #
 
 This project runs on ROS Kinetic for Ubuntu 16.04. Please check out our [Wiki](https://github.com/UTRA-ART/SLAM/wiki#getting-started-with-ros) for more information.
 
