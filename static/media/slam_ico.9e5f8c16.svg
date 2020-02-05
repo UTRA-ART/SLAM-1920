@@ -1,0 +1,37 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with Method Draw - http://github.com/duopixel/Method-Draw/ -->
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="402" width="402" y="-1" x="-1"/>
+  <g display="none" overflow="visible" y="0" x="0" height="100%" width="100%" id="canvasGrid">
+   <rect fill="url(#gridpattern)" stroke-width="0" y="0" x="0" height="100%" width="100%"/>
+  </g>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <g stroke="null" id="svg_34">
+   <g stroke="null" id="svg_23">
+    <ellipse stroke="#000" ry="34.89293" rx="35.495386" id="svg_1" cy="200.000015" cx="199.99994" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" ry="25.740684" rx="26.185119" id="svg_2" cy="113.053699" cx="199.999924" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" ry="25.740684" rx="26.185119" id="svg_3" cy="291.522452" cx="199.999889" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(0,1.624529373215833,-1.6525782569735847,0,795.1324220446108,-353.67753388382266) " ry="15.84501" rx="15.84501" id="svg_5" cy="305.194265" cx="342.231807" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(0,1.624529373215833,-1.6525782569735847,0,613.5821658159385,-175.20879338393286) " ry="15.84501" rx="15.84501" id="svg_6" cy="305.194212" cx="232.373052" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(0,1.624529373215833,-1.6525782569735847,0,555.625200369966,-118.23556962115481) " ry="12" rx="12" id="svg_8" cy="305.194212" cx="197.302423" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(0,1.624529373215833,-1.6525782569735847,0,853.0893622742404,-410.6507824349518) " ry="12" rx="12" id="svg_9" cy="305.194265" cx="377.302423" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(-1.6525782569735847,0,0,-1.624529373215833,850.7617929469745,241.44893165161074) " ry="12" rx="12" id="svg_15" cy="114.105991" cx="393.785828" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(-1.6525782569735847,0,0,-1.624529373215833,850.7616920816024,826.2795060093106) " ry="12" rx="12" id="svg_16" cy="294.105999" cx="393.785782" stroke-width="0" fill="#000000"/>
+   </g>
+   <g stroke="null" transform="matrix(1.1685492919474667,1.1487157360376474,-1.1685492919474667,1.1487157360376474,266.34462648806874,-358.4884097456953) " id="svg_33">
+    <ellipse stroke="#000" ry="16.550431" rx="16.550431" id="svg_24" cy="270.39488" cx="214.704882" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" ry="12.209334" rx="12.209334" id="svg_25" cy="229.154461" cx="214.704874" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" ry="12.209334" rx="12.209334" id="svg_26" cy="313.805848" cx="214.704858" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(0,0.7705475687980652,-0.7705475687980652,0,510.9246393640242,-40.97190871105522) " ry="15.84501" rx="15.84501" id="svg_27" cy="329.498241" cx="405.49355" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(0,0.7705475687980652,-0.7705475687980652,0,426.2732118377662,43.679471784711495) " ry="15.84501" rx="15.84501" id="svg_28" cy="329.498187" cx="295.634795" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(0,0.7705475687980652,-0.7705475687980652,0,399.2496208938237,70.70303921340837) " ry="12" rx="12" id="svg_29" cy="329.498187" cx="260.564166" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(0,0.7705475687980652,-0.7705475687980652,0,537.9482185503439,-67.99548789737491) " ry="12" rx="12" id="svg_30" cy="329.498241" cx="440.564166" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(-0.7705475687980652,0,0,-0.7705475687980652,536.8629429340363,241.3087682076675) " ry="12" rx="12" id="svg_31" cy="50.844248" cx="418.089804" stroke-width="0" fill="#000000"/>
+    <ellipse stroke="#000" transform="matrix(-0.7705475687980652,0,0,-0.7705475687980652,536.862895903545,518.705892974971) " ry="12" rx="12" id="svg_32" cy="230.844255" cx="418.089758" stroke-width="0" fill="#000000"/>
+   </g>
+  </g>
+ </g>
+</svg>
