@@ -322,14 +322,14 @@
            </geometry>
        </collision>
        <inertial>
-           <mass value="${ZED_camera_mass}"/> <!-- Obtained from google search -->
+           <mass value="${ZED_camera_mass}"/>
            <xacro:box_inertia mass="${ZED_camera_mass}" length="${ZED_camera_length}" width="${ZED_camera_width}" height="${ZED_camera_height}"/>
        </inertial>
    </link>
    <joint name="zed_camera_joint" type="fixed">
        <parent link="base_link"/>
        <child link="zed_camera_link"/>
-       <origin xyz="${stand_length/2} 0 ${stand_height + ZED_camera_height}" rpy="${pi/4} 0 ${pi/2}"/>
+       <origin xyz="${stand_length/2} 0 ${stand_height + ZED_camera_height + base_height/2}" rpy="${pi/4} 0 ${pi/2}"/>
    </joint>
 
    <!-- ZED camera lenses -->
