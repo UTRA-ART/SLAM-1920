@@ -1,4 +1,4 @@
-# SLAM on ROS #
+# SLAM and Navigation on ROS #
 
 This project runs on ROS Kinetic for Ubuntu 16.04. Please check out our [Wiki](https://github.com/UTRA-ART/SLAM/wiki#getting-started-with-ros) for more information.
 
@@ -49,3 +49,10 @@ To delete logs run:
 ```
 rosclean purge
 ``` 
+
+---
+<p align="center">
+<img src="https://raw.githubusercontent.com/UTRA-ART/SLAM/dev/docs/res/utra-logo.png" alt="UTRA logo" width="200"/>
+</p>
+<p align = "center"><b>University of Toronto Robotics Association</b></p>
+<p align = "center">Autonomous Rover Team</p>
