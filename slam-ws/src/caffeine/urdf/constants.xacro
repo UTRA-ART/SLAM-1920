@@ -49,4 +49,10 @@
   <xacro:property name="stand_width" value="0.254"/>
   <xacro:property name="stand_height" value="1.324"/>
   <xacro:property name="stand_mass" value="1.0"/>
+
+  <!-- Constants for the GPS -->
+  <xacro:property name="gps_height" value="0.1"/>
+  <xacro:property name="gps_width" value="0.07"/>
+  <xacro:property name="gps_length" value="0.07"/>
+  <xacro:property name="gps_mass" value="0.5"/>
 </robot>

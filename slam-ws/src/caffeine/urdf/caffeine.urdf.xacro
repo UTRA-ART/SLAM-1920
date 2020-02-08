@@ -252,6 +252,7 @@
    </joint>
    <xacro:Transmission joint="left_wheel_joint"/>
 
+   <!--stand-->
    <link name="stand">
       <visual>
          <origin rpy="0 0 0" xyz="0 0 ${stand_height/2.0}"/>
@@ -276,6 +277,7 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
    </joint>
 
+   <!--base laser-->
    <link name="base_laser">
       <visual>
          <origin xyz="0 0 ${-hokuyo_height/2.0}" rpy="0 0 0"/>
@@ -298,5 +300,30 @@
       <parent link="base_link"/>
       <child link="base_laser"/>
       <origin xyz="${base_width/2.0} 0 ${base_height/2.0 + hokuyo_height/2.0 + hokuyo_height/2.0}" rpy="0 0 ${-135*pi/180}"/>
+   </joint>
+
+   <!--GPS-->
+   <link name="gps_link">
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <box size="${gps_length} ${gps_width} ${gps_height}"/>
+         </geometry>
+      </visual>
+      <collision>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <box size="${gps_length} ${gps_width} ${gps_height}"/>
+         </geometry>
+      </collision>
+      <inertial>
+         <mass value="${gps_mass}"/>
+         <xacro:box_inertia mass="${gps_mass}" length="${gps_length}" width="${gps_width}" height="${gps_height}"/>
+      </inertial>
+   </link>
+   <joint name="gps_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="gps_link"/>
+      <origin xyz="${-base_width/2.0} 0 ${base_height/2.0 + gps_height}" rpy="0 0 0"/>
    </joint>
 </robot>

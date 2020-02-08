@@ -43,6 +43,10 @@
    <gazebo reference="stand">
       <material>Gazebo/Green</material>
    </gazebo>
+
+   <gazebo reference="gps_link">
+      <material>blue</material>
+   </gazebo>
    
    <gazebo>
       <plugin name="caffeine_controller" filename="libgazebo_ros_diff_drive.so">
@@ -102,6 +106,20 @@
    <gazebo>
       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
          <legacyModeNS>true</legacyModeNS>
+      </plugin>
+   </gazebo>
+
+   <gazebo>
+      <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+         <alwayson>true</alwayson>
+         <updaterate>1.0</updaterate>
+         <bodyname>gps_link</bodyname>
+         <!-- <topicname>/fix</topicname>
+         <velocitytopicname>/fix_velocity</velocitytopicname> -->
+         <drift>5.0 5.0 5.0</drift>
+         <gaussiannoise>0.1 0.1 0.1</gaussiannoise>
+         <velocitydrift>0 0 0</velocitydrift>
+         <velocitygaussiannoise>0.1 0.1 0.1</velocitygaussiannoise>
       </plugin>
    </gazebo>
 
