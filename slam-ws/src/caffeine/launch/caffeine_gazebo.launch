@@ -29,4 +29,10 @@
 	<!-- Set up robot_localization Odometry -->
 	<include file="$(find odom)/launch/odom.launch"/>
 
+	<!-- Add Lidar Filtering -->
+	<arg name="filter_chain_config" default = "$(find laser_filters)/params/lidar_config.yaml"/>
+    <node pkg = "laser_filters" type = "scan_to_scan_filter_chain" name = "laser_filters">
+        <rosparam command = "load" file="$(arg filter_chain_config)"/>
+    </node>
+
 </launch>
