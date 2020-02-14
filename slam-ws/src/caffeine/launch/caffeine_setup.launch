@@ -34,10 +34,11 @@
     <include file="$(find phidgets_imu)/launch/imu_single_nodes.launch"/>
 
     <!-- Set up ZED stereo cam -->
-    <!-- TODO: use camera_link -->
-    <node pkg="tf" type="static_transform_publisher" name="base_laser_to_zed_broadcaster" args="0 0 0 0 0 0 base_laser zed_camera_center 100"/>
+    <node pkg="tf" type="static_transform_publisher" name="zed_camera_link_to_zed_broadcaster" args="0 0 0 0 0 0 zed_camera_link zed_camera_center 100"/>
     
-    <include file="$(find zed_wrapper)/launch/zed.launch"/>
+    <include file="$(find zed_wrapper)/launch/zed.launch">
+        <arg name="common_params" value="$(find zed_wrapper)/params/caffeine_common.yaml"/>
+    </include>
 
     <!-- Set up robot_localization Odometry -->
     <include file="$(find odom)/launch/odom.launch">

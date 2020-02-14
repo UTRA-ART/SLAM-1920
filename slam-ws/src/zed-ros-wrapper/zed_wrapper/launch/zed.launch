@@ -17,6 +17,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 <launch>
+    <arg name="common_params"        default="$(find zed_wrapper)/params/common.yaml" /> <!-- <arg name="common_params" default="path/to/common/params.yaml"> -->
     <arg name="svo_file"             default="" /> <!-- <arg name="svo_file" default="path/to/svo/file.svo"> -->
     <arg name="stream"               default="" /> <!-- <arg name="stream" default="<ip_address>:<port>"> -->
 
@@ -26,6 +27,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <group ns="zed">
         <include file="$(find zed_wrapper)/launch/zed_camera.launch">
+            <arg name="common_params"       value="$(arg common_params)" />
             <arg name="svo_file"            value="$(arg svo_file)" />
             <arg name="stream"              value="$(arg stream)" />
             <arg name="node_name"           value="$(arg node_name)" />
