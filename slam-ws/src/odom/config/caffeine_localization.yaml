@@ -11,7 +11,8 @@ world_frame: odom
 # publish transform: world_frame --> base_link_frame
 publish_tf: true
 
-transform_time_offset: 0.5
+# Setting this makes the wheels lag behind the robot
+# transform_time_offset: 0.5
 
 # See /diagnostics topic for debug
 print_diagnostics: true

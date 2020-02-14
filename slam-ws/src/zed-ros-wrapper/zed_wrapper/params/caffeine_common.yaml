@@ -24,7 +24,7 @@ general:
     resolution:                 2                                   # '0': HD2K, '1': HD1080, '2': HD720, '3': VGA
     frame_rate:                 15
     gpu_id:                     -1
-    base_frame:                 'base_link'                         # must be equal to the frame_id used in the URDF file
+    base_frame:                 'zed_camera_link'                   # must be equal to the frame_id used in the URDF file
     camera_frame:               'zed_camera_center'                 # must be equal to the frame_id used in the URDF file
     left_camera_frame:          'zed_left_camera_frame'             # must be equal to the frame_id used in the URDF file
     left_camera_optical_frame:  'zed_left_camera_optical_frame'     # must be equal to the frame_id used in the URDF file
@@ -60,7 +60,7 @@ pos_tracking:
     path_pub_rate:              2.0                                 # Path positions publishing frequency
     path_max_count:             -1                                  # use '-1' for unlimited path size
     two_d_mode:                 true                                # Force navigation on a plane. If true the Z value will be fixed to "fixed_z_value", roll and pitch to zero
-    fixed_z_value:              0.00                                # Value to be used for Z coordinate if `two_d_mode` is true
+    fixed_z_value:              1.362                               # Value to be used for Z coordinate if `two_d_mode` is true (NOTE: adapt based on caffeine URDF)
 
 mapping:
     mapping_enabled:            false                               # True to enable mapping and fused point cloud pubblication

@@ -23,6 +23,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
     <arg name="node_name"            default="zed_node" />
     <arg name="camera_model"         default="zed" /> <!-- 'zed' or 'zedm' -->
+    <arg name="camera_model_urdf"    default="$(arg camera_model)" /> <!-- don't add '.urdf' extension -->
     <arg name="publish_urdf"         default="true" />
 
     <group ns="zed">
@@ -32,6 +33,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <arg name="stream"              value="$(arg stream)" />
             <arg name="node_name"           value="$(arg node_name)" />
             <arg name="camera_model"        value="$(arg camera_model)" />
+            <arg name="camera_model_urdf"   value="$(arg camera_model_urdf)" />
             <arg name="publish_urdf"        value="$(arg publish_urdf)" />
         </include>
     </group>

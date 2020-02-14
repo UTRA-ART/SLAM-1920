@@ -307,7 +307,7 @@
    </joint>
 
    <!-- ZED Camera -->
-  <link name="zed_camera_link">
+   <link name="zed_camera_link">
       <visual>
          <origin xyz="0 0 0" rpy="0 0 0"/>
             <!-- TODO: should be using the mesh but couldn't get it to work -->
