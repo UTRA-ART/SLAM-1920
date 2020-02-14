@@ -9,7 +9,7 @@ base_link_frame: base_link
 world_frame: odom
 
 # publish transform: world_frame --> base_link_frame
-publish_tf: false
+publish_tf: true
 
 transform_time_offset: 0.5
 
