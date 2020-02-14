@@ -312,13 +312,13 @@
          <origin xyz="0 0 0" rpy="0 0 0"/>
             <!-- TODO: should be using the mesh but couldn't get it to work -->
          <geometry>
-            <box size="${ZED_camera_length} ${ZED_camera_width} ${ZED_camera_height}"/>
+            <box size="${ZED_camera_width} ${ZED_camera_length} ${ZED_camera_height}"/>
          </geometry>
        </visual>  
        <collision>
            <origin xyz="0 0 0" rpy="0 0 0"/>
            <geometry>
-               <box size="${ZED_camera_length} ${ZED_camera_width} ${ZED_camera_height}"/>
+               <box size="${ZED_camera_width} ${ZED_camera_length} ${ZED_camera_height}"/>
            </geometry>
        </collision>
        <inertial>
@@ -329,7 +329,7 @@
    <joint name="zed_camera_joint" type="fixed">
        <parent link="base_link"/>
        <child link="zed_camera_link"/>
-       <origin xyz="${stand_length/2} 0 ${stand_height + ZED_camera_height + base_height/2}" rpy="${pi/4} 0 ${pi/2}"/>
+       <origin xyz="${stand_length/2} 0 ${stand_height + ZED_camera_height + base_height/2}" rpy="0 0 0"/>
    </joint>
 
    <!-- ZED camera lenses -->
@@ -344,9 +344,22 @@
        </inertial>
    </link>
    <joint name="camera_link_joint" type="fixed">
-       <origin xyz="${ZED_camera_length/2.0} 0 0" rpy="0 0 ${3*pi/2}"/>
+       <origin xyz="${ZED_camera_length/2.0} 0 0" rpy="0 0 0"/>
        <parent link="zed_camera_link"/>
        <child link="camera_link"/>
+   </joint>
+
+   <link name="camera_view_link"> 
+       <!-- Inertial tag here to ensure that link does not phase through robot-->
+       <inertial>
+            <mass value="0.0001"/>
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.00001"/>
+       </inertial>
+   </link>
+   <joint name="camera_view_link_joint" type="fixed">
+       <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+       <parent link="camera_link"/>
+       <child link="camera_view_link"/>
    </joint>
 
    <!-- IMU -->

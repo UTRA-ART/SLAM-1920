@@ -140,7 +140,7 @@
             <depthImageTopicName>depth/image_raw</depthImageTopicName>
             <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
             <pointCloudTopicName>depth/points</pointCloudTopicName>
-            <frameName>camera_link</frameName>
+            <frameName>camera_view_link</frameName>
             <hackBaseline>0.06</hackBaseline>
             <distortionK1>0.0</distortionK1>
             <distortionK2>0.0</distortionK2>

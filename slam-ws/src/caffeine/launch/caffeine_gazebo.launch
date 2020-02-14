@@ -37,6 +37,6 @@
 		<arg name="manager" value="/pipeline" />
 	</include>
 
-	<!-- <node pkg="nodelet" type="nodelet" name="disparity2depth" args="standalone rtabmap_ros/disparity_to_depth"/> -->
+	<node pkg="nodelet" type="nodelet" name="disparity2depth" args="standalone rtabmap_ros/disparity_to_depth"/>
 
 </launch>
