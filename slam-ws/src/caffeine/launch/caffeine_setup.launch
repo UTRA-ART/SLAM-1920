@@ -28,6 +28,12 @@
         <param name="serial_port" value="$(arg lidar_port)"/>
     </node>
 
+	<!-- Add Lidar Filtering -->
+	<arg name="filter_chain_config" default = "$(find laser_filters)/params/lidar_config.yaml"/>
+    <node pkg = "laser_filters" type = "scan_to_scan_filter_chain" name = "laser_filters">
+        <rosparam command = "load" file="$(arg filter_chain_config)"/>
+    </node>
+
     <!-- Set up the IMU -->
     <node pkg="tf" type="static_transform_publisher" name="imu_link_to_imu_broadcaster" args="0 0 0 0 0 0 imu_link imu 100"/>
     
