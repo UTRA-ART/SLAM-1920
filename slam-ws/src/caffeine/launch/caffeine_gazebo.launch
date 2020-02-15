@@ -33,7 +33,7 @@
 	<node pkg="nodelet" type="nodelet" name="pipeline" args="manager" />
 
 	<!-- Include the stereo_image_proc.launch file and pass in a qualified manager name -->
-	<include file="$(find stereo_image_proc)/launch/stereo_image_proc.launch" ns="stereo">
+	<include file="$(find stereo_image_proc)/launch/stereo_image_proc.launch" ns="zed">
 		<arg name="manager" value="/pipeline" />
 	</include>
 

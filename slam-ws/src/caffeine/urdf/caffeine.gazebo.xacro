@@ -131,7 +131,7 @@
             </clip>
          </camera>
          <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
-            <cameraName>stereo</cameraName>
+            <cameraName>zed</cameraName>
             <alwaysOn>true</alwaysOn>
             <updateRate>0</updateRate>
             <cameraName></cameraName>
