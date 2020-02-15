@@ -9,7 +9,7 @@
     <!-- Set Odometry source topic -->
     <remap from="odom" to="odometry/filtered"/>
 
-    <!-- Add Lidar filters -->
+    <!-- Use filtered LIDAR scan -->
     <remap from="scan" to="scan_filtered"/>
 
     <!-- Load costmap_common_params for both the global and local costmaps -->
