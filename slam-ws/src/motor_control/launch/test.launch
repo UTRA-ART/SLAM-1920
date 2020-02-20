@@ -1,4 +1,0 @@
-<launch>
-  <remap from="cmd_vel" to="kb_cmd_vel"/>
-  <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" />
-</launch>
