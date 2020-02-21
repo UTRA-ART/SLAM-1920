@@ -112,6 +112,7 @@
    <!-- For details about plugin, see: http://wiki.ros.org/hector_gazebo_plugins -->
    <!-- TODO: update these parameters to match real life Garmin. See: http://static.garmin.com/pumac/425_TechnicalSpecification.pdf -->
    <!-- For testing purposes, this is not accurate -->
+   <!-- Also, it was difficult to test this. It seems to work, but more testing MUST be done -->
   <gazebo>
       <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
         <updateRate>40.0</updateRate>
