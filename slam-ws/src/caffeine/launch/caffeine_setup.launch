@@ -10,7 +10,7 @@
     <arg name="lidar_port" value="/dev/ttyACM0"/>
 
     <!-- Configurations -->
-	<arg name="lidar_range_filter_config" default = "$(find laser_filters)/config/lidar_config.yaml"/>
+	<arg name="lidar_range_filter_config" default="$(find laser_filters)/config/lidar_config.yaml"/>
 
     <!-- Set up Transform Tree -->
     <include file="$(find transform)/launch/setup_tf.launch">
