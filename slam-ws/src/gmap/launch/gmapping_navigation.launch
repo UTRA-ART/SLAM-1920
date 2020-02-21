@@ -25,7 +25,9 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
   <arg name="caffeine" default="false"/> 
 
   <!--- Run gmapping -->
-  <include file="$(find gmap)/launch/gmapping.launch" />
+  <include file="$(find gmap)/launch/gmapping.launch">
+    <arg name="scan_topic" value="scan_filtered" />
+  </include>
 
   <!--- Run Move Base -->
   <include file="$(find nav_stack)/launch/move_base.launch">
