@@ -12,7 +12,6 @@ world_frame: odom
 publish_tf: false
 
 transform_time_offset: 0.5
-# predict_current_time: true
 
 # See /diagnostics topic for debug
 print_diagnostics: true
