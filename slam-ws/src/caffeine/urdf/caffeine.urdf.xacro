@@ -277,29 +277,76 @@
       <origin rpy="0 0 0" xyz="0 0 0"/>
    </joint>
 
-   <!--base laser-->
+   <!-- LIDAR -->
    <link name="base_laser">
-      <visual>
-         <origin xyz="0 0 ${-hokuyo_height/2.0}" rpy="0 0 0"/>
-         <geometry>
-            <mesh filename="package://caffeine/urdf/meshes/hokuyo.dae"/>
-         </geometry>
-      </visual>
-      <collision>
-         <origin xyz="0 0 ${-hokuyo_height/2.0}" rpy="0 0 0"/>
-         <geometry>
-            <box size="${hokuyo_length} ${hokuyo_width} ${hokuyo_height}"/>
-         </geometry>
-      </collision>
       <inertial>
          <mass value="${hokuyo_mass}"/>
          <xacro:box_inertia mass="${hokuyo_mass}" length="${hokuyo_length}" width="${hokuyo_width}" height="${hokuyo_height}"/>
       </inertial>
+      
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <mesh filename="package://caffeine/urdf/meshes/hokuyo.dae"/>
+         </geometry>
+      </visual>
+
+      <collision>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <box size="${hokuyo_length} ${hokuyo_width} ${hokuyo_height}"/>
+         </geometry>
+      </collision>
    </link>
+
+   <!-- LIDAR: attach base_laser to base_link -->
    <joint name="base_laser_joint" type="fixed">
       <parent link="base_link"/>
       <child link="base_laser"/>
-      <origin xyz="${base_width/2.0} 0 ${base_height/2.0 + hokuyo_height/2.0 + hokuyo_height/2.0}" rpy="0 0 ${-135*pi/180}"/>
+      <origin xyz="${base_width / 2.0} 0 ${base_height / 2.0 + hokuyo_height / 2.0}" rpy="0 0 0"/>
+   </joint>
+
+   <!-- ZED Camera -->
+  <link name="zed_camera_link">
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+            <!-- TODO: should be using the mesh but couldn't get it to work -->
+         <geometry>
+            <box size="${ZED_camera_length} ${ZED_camera_width} ${ZED_camera_height}"/>
+         </geometry>
+       </visual>  
+       <collision>
+           <origin xyz="0 0 0" rpy="0 0 0"/>
+           <geometry>
+               <box size="${ZED_camera_length} ${ZED_camera_width} ${ZED_camera_height}"/>
+           </geometry>
+       </collision>
+       <inertial>
+           <mass value="${ZED_camera_mass}"/>
+           <xacro:box_inertia mass="${ZED_camera_mass}" length="${ZED_camera_length}" width="${ZED_camera_width}" height="${ZED_camera_height}"/>
+       </inertial>
+   </link>
+   <joint name="zed_camera_joint" type="fixed">
+       <parent link="base_link"/>
+       <child link="zed_camera_link"/>
+       <origin xyz="${stand_length/2} 0 ${stand_height + ZED_camera_height + base_height/2}" rpy="${pi/4} 0 ${pi/2}"/>
+   </joint>
+
+   <!-- ZED camera lenses -->
+   <!-- NOTE: I'm only defining one and not visually showing any-->
+   <!-- I only need one for purposes of using the plugin -->
+   <!-- TODO: check if it's fine to call the left lense camera_link (rtabmap doesn't specify whether it wants the lense frame or the camera frame itself) -->
+   <link name="camera_link"> 
+       <!-- Inertial tag here to ensure that link does not phase through robot-->
+       <inertial>
+            <mass value="0.0001"/>
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.00001"/>
+       </inertial>
+   </link>
+   <joint name="camera_link_joint" type="fixed">
+       <origin xyz="${ZED_camera_length/2.0} 0 0" rpy="0 0 ${3*pi/2}"/>
+       <parent link="zed_camera_link"/>
+       <child link="camera_link"/>
    </joint>
 
   <!-- GPS -->
@@ -328,4 +375,34 @@
       <child link="gps_link"/>
       <origin xyz="${-base_width / 2.0 - 0.1} 0 ${base_height / 2.0 + gps_length / 2.0}" rpy="0 0 0"/>
   </joint>
+  
+   <!-- IMU -->
+   <link name="imu_link">
+      <inertial>
+         <mass value="${phidget_mass}"/>
+         <xacro:box_inertia mass="${phidget_mass}" length="${phidget_length}" width="${phidget_width}" height="${phidget_height}"/>
+      </inertial>
+
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <box size="${phidget_length} ${phidget_width} ${phidget_height}"/>
+         </geometry>
+      </visual>
+
+      <collision>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <box size="${phidget_length} ${phidget_width} ${phidget_height}"/>
+         </geometry>
+      </collision>
+   </link>
+
+   <!-- IMU: attach imu_link to base_link -->
+   <joint name="base_link_to_imu_link" type="fixed">
+      <parent link="base_link"/>
+      <child link="imu_link"/>
+      <origin xyz="${base_width / 2.0 - 0.1} 0 ${base_height / 2.0 + phidget_height / 2.0}" rpy="0 0 0"/>
+   </joint>
+
 </robot>

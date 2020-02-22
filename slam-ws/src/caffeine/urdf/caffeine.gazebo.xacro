@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <robot name="caffeine_sim" xmlns:xacro="http://ros.org/wiki/xacro">
+   <xacro:include filename="$(find caffeine)/urdf/constants.xacro"/>
+
    <gazebo reference="base_link">
       <material>Gazebo/Purple</material>
    </gazebo>
@@ -102,6 +104,80 @@
          </plugin>
       </sensor>
    </gazebo>
+
+   <!-- TODO: double check these numbers -->
+   <gazebo reference="camera_link">
+      <sensor type="multicamera" name="stereo_camera">
+         <update_rate>30.0</update_rate>
+         <camera name="left">
+            <horizontal_fov>1.571</horizontal_fov>
+            <image>
+               <width>1248</width>
+               <height>376</height>
+               <format>R8G8B8</format>
+            </image>
+            <clip>
+               <near>0.02</near>
+               <far>300</far>
+            </clip>
+         </camera>
+         <camera name="right">
+            <pose>0 ${-ZED_camera_length} 0 0 0 0</pose>
+            <horizontal_fov>1.571</horizontal_fov>
+            <image>
+               <width>1248</width>
+               <height>376</height>
+               <format>R8G8B8</format>
+            </image>
+            <clip>
+               <near>0.02</near>
+               <far>300</far>
+            </clip>
+         </camera>
+         <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>0</updateRate>
+            <cameraName></cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <depthImageTopicName>depth/image_raw</depthImageTopicName>
+            <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
+            <pointCloudTopicName>depth/points</pointCloudTopicName>
+            <frameName>camera_link</frameName>
+            <hackBaseline>0.06</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+         </plugin>
+      </sensor>
+   </gazebo>
+
+   <!-- Phidgets IMU specifications -->
+   <gazebo reference="imu_link">
+      <material>Gazebo/Black</material>
+
+      <gravity>true</gravity>
+      <sensor name="imu_sensor" type="imu">
+         <always_on>true</always_on>
+         <update_rate>128</update_rate>
+         <visualize>true</visualize>
+         <topic>imu/data_raw</topic>
+
+         <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+            <topicName>imu/data_raw</topicName>
+            <bodyName>imu_link</bodyName>
+            <updateRateHZ>128.0</updateRateHZ>
+            <gaussianNoise>0.0</gaussianNoise>
+            <xyzOffset>0 0 0</xyzOffset>
+            <rpyOffset>0 0 0</rpyOffset>
+            <frameName>imu_link</frameName>
+         </plugin>
+         
+         <pose>0 0 0 0 0 0</pose>
+      </sensor>
+  </gazebo>
 
    <gazebo>
       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">

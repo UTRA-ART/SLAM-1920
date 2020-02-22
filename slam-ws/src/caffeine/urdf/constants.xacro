@@ -32,6 +32,12 @@
    <xacro:property name="hokuyo_height" value="0.07"/>
    <xacro:property name="hokuyo_mass" value="0.16"/>
 
+   <!-- Constants for Phidget IMU -->
+   <xacro:property name="phidget_length" value="0.04"/>
+   <xacro:property name="phidget_width" value="0.0375"/>
+   <xacro:property name="phidget_height" value="0.01"/>
+   <xacro:property name="phidget_mass" value="0.04"/>
+
    <!-- Constants for the basement -->
    <xacro:property name="basement_height" value="0.103"/>
    <xacro:property name="basement_width" value="0.305"/>
@@ -50,10 +56,16 @@
   <xacro:property name="stand_height" value="1.324"/>
   <xacro:property name="stand_mass" value="1.0"/>
 
-
   <!-- Constants for Garmin GPS -->
   <!-- NOTE: approx as a cylinder; garmin itself is similar to a hockey puck -->
   <xacro:property name="gps_diam" value="0.061"/>
   <xacro:property name="gps_length" value="0.0195"/>
   <xacro:property name="gps_mass" value="0.165"/>
+
+  <!-- Constants for ZED camera -->
+  <!-- NOTE: approx as a rectangular prism -->
+  <xacro:property name="ZED_camera_mass" value="0.1587573"/>
+  <xacro:property name="ZED_camera_length" value="0.175"/>
+  <xacro:property name="ZED_camera_width" value="0.03"/>
+  <xacro:property name="ZED_camera_height" value="0.033"/>
 </robot>

@@ -1,12 +1,25 @@
 <launch>
-    <arg name="model" default="$(find caffeine)/urdf/caffeine.urdf.xacro"/>
+    
+    <arg name="robot_model" defaul="husky_gazebo"/>
+    <arg name="model" default=""/>
 
-    <!-- Parse and Condense URDF using xacro -->
-    <param name="robot_description" command="xacro --inorder '$(arg model)'"/>
-	
-    <!-- Publish Joint States from URDF -->
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
-	
-    <!-- Publish Robot State from URDF -->
-	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+    <group if="$(eval arg('robot_model') == 'husky_gazebo')">
+
+        <!-- Do nothing. husky_gazebo sets up the transform tree -->
+
+    </group>
+    <group if="$(eval arg('robot_model') == 'caffeine')">
+
+        <!-- Parse and Condense URDF using xacro -->
+        <param name="robot_description" command="xacro --inorder '$(find caffeine)/urdf/caffeine.urdf.xacro'" if="$(eval arg('model') == '')"/>
+        <param name="robot_description" command="xacro --inorder '$(arg model)'" unless="$(eval arg('model') == '')"/>
+        
+        <!-- Publish Joint States from URDF -->
+        <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+        
+        <!-- Publish Robot State from URDF -->
+        <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher"/>
+
+    </group>
+
 </launch> 
