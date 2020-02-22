@@ -1,29 +1,57 @@
 <launch>
-  <arg name="global_costmap_params" default="$(find nav_stack)/config/global_costmap_params.yaml"/> 
-  <arg name="caffeine" default="false"/> 
+
+  <arg name="robot_model" default="husky_gazebo"/>
+  <arg name="global_costmap_params" default=""/>
 
   <master auto="start"/>
 
-  <!-- Run Move Base -->
-  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-    <!-- Set Odometry source topic -->
-    <remap from="odom" to="odometry/filtered"/>
+  <group if="$(eval arg('robot_model') == 'husky_gazebo')">
 
-    <!-- Load costmap_common_params for both the global and local costmaps -->
-    <rosparam file="$(find nav_stack)/config/caffeine_costmap_common_params.yaml" command="load" ns="global_costmap" if="$(arg caffeine)" /> 
-    <rosparam file="$(find nav_stack)/config/caffeine_costmap_common_params.yaml" command="load" ns="local_costmap" if="$(arg caffeine)" />
-    
-    <rosparam file="$(find nav_stack)/config/husky_costmap_common_params.yaml" command="load" ns="global_costmap" unless="$(arg caffeine)" /> 
-    <rosparam file="$(find nav_stack)/config/husky_costmap_common_params.yaml" command="load" ns="local_costmap" unless="$(arg caffeine)" />
-    
-    <!-- Load costmap (global/local) specific parameters -->
-    <rosparam file="$(find nav_stack)/config/local_costmap_params.yaml" command="load" />
-    <rosparam file="$(arg global_costmap_params)" command="load" /> 
+    <!-- Run Move Base -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+      <remap from="odom" to="odometry/filtered"/>
+      <remap from="scan" to="scan_filtered"/>
 
-    <!-- Load parameters for the base_local_planner -->
-    <rosparam file="$(find nav_stack)/config/base_local_planner_params.yaml" command="load" />
-    
-    <!-- Set control loop frequency to an appropriate rate -->
-    <param name="controller_frequency" value="10.0" />
-  </node> 
+      <!-- Load costmap_common_params for both the global and local costmaps -->
+      <rosparam file="$(find nav_stack)/config/husky_costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+      <rosparam file="$(find nav_stack)/config/husky_costmap_common_params.yaml" command="load" ns="local_costmap" />
+      
+      <!-- Load costmap (global/local) specific parameters -->
+      <rosparam file="$(find nav_stack)/config/local_costmap_params.yaml" command="load" />
+      <rosparam file="$(find nav_stack)/config/global_costmap_params.yaml" command="load" if="$(eval arg('global_costmap_params') == '')" /> 
+      <rosparam file="$(arg global_costmap_params)" command="load" unless="$(eval arg('global_costmap_params') == '')" /> 
+
+      <!-- Load parameters for the base_local_planner -->
+      <rosparam file="$(find nav_stack)/config/base_local_planner_params.yaml" command="load" />
+      
+      <!-- Set control loop frequency to an appropriate rate -->
+      <param name="controller_frequency" value="10.0" />
+    </node> 
+
+  </group>
+  <group if="$(eval arg('robot_model') == 'caffeine')">
+
+    <!-- Run Move Base -->
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+      <remap from="odom" to="odometry/filtered"/>
+      <remap from="scan" to="scan_filtered"/>
+
+      <!-- Load costmap_common_params for both the global and local costmaps -->
+      <rosparam file="$(find nav_stack)/config/caffeine_costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+      <rosparam file="$(find nav_stack)/config/caffeine_costmap_common_params.yaml" command="load" ns="local_costmap" />
+      
+      <!-- Load costmap (global/local) specific parameters -->
+      <rosparam file="$(find nav_stack)/config/local_costmap_params.yaml" command="load" />
+      <rosparam file="$(find nav_stack)/config/global_costmap_params.yaml" command="load" if="$(eval arg('global_costmap_params') == '')" /> 
+      <rosparam file="$(arg global_costmap_params)" command="load" unless="$(eval arg('global_costmap_params') == '')" /> 
+
+      <!-- Load parameters for the base_local_planner -->
+      <rosparam file="$(find nav_stack)/config/base_local_planner_params.yaml" command="load" />
+      
+      <!-- Set control loop frequency to an appropriate rate -->
+      <param name="controller_frequency" value="10.0" />
+    </node> 
+
+  </group>
+
 </launch> 
