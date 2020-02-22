@@ -1,13 +1,10 @@
 <launch>
   <arg name="global_costmap_params" default="$(find nav_stack)/config/global_costmap_params.yaml"/> 
   <arg name="caffeine" default="false"/> 
+  <arg name="config_locks"  default="$(find twist_mux)/config/twist_mux_locks.yaml"/>
+  <arg name="config_topics" default="$(find twist_mux)/config/twist_mux_topics.yaml"/>
 
   <master auto="start"/>
-
-  <!-- Remap cmd_vel topic name from keyboard teleop -->
-  <node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py">
-    <remap from="cmd_vel" to="key_vel"/>
-  </node>
 
   <!-- Run Move Base -->
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
@@ -38,18 +35,14 @@
     <remap from="cmd_vel" to="nav_vel"/>
   </node> 
 
-  <arg name="config_locks"  default="$(find twist_mux)/config/twist_mux_locks.yaml"/>
-  <arg name="config_topics" default="$(find twist_mux)/config/twist_mux_topics.yaml"/>
-
+  <!-- Launch Twist Multiplexer -->
   <node pkg="twist_mux" type="twist_mux" name="twist_mux" output="screen">
+    <!-- Rename output cmd_vel-->
     <remap from="cmd_vel_out" to="cmd_vel"/>
 
+    <!-- Load topics and locks priorities-->
     <rosparam file="$(arg config_locks)"  command="load"/>
     <rosparam file="$(arg config_topics)" command="load"/>
   </node>
 
-  <node pkg="twist_mux" type="twist_marker" name="twist_marker">
-    <remap from="twist"  to="cmd_vel"/>
-    <remap from="marker" to="twist_marker"/>
-  </node>
 </launch> 
