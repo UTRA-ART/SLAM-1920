@@ -42,8 +42,6 @@
     <include file="$(find phidgets_imu)/launch/imu_single_nodes.launch"/>
 
     <!-- Set up robot_localization Odometry -->
-    <include file="$(find odom)/launch/odom.launch">
-        <arg name="sensor_ekf_config" value="$(find odom)/config/caffeine_localization.yaml"/>
-    </include>
+    <include file="$(find odom)/launch/odom.launch"/>
 
 </launch>
