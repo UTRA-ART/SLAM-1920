@@ -24,7 +24,7 @@
     
     <!-- Set up Transform Tree -->
     <include file="$(find transform)/launch/setup_tf.launch">
-        <arg name="model" value="$(arg model)"/>
+        <arg name="robot_model" value="caffeine"/>
     </include>
 
     <!-- Add Lidar Filtering -->
@@ -33,6 +33,8 @@
     </node>
     
     <!-- Set up robot_localization Odometry -->
-    <include file="$(find odom)/launch/odom.launch"/>
+    <include file="$(find odom)/launch/odom.launch">
+        <arg name="robot_model" value="caffeine_gazebo"/>
+    </include>
     
 </launch>
