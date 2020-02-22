@@ -27,12 +27,12 @@
         <arg name="robot_model" value="caffeine"/>
     </include>
 
-	<group ns="zed">
-		<node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc"/>
+    <group ns="zed">
+        <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc"/>
 
-		<!-- Disparity to depth -->
-		<node pkg="nodelet" type="nodelet" name="disparity2depth" args="standalone rtabmap_ros/disparity_to_depth"/>
-	</group>
+        <!-- Disparity to depth -->
+        <node pkg="nodelet" type="nodelet" name="disparity2depth" args="standalone rtabmap_ros/disparity_to_depth"/>
+    </group>
 
     <!-- Add Lidar Filtering -->
     <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filters">
