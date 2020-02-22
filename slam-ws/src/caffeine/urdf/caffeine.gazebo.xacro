@@ -140,7 +140,7 @@
             <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
             <pointCloudTopicName>depth/points</pointCloudTopicName>
             <frameName>camera_link</frameName>
-            <hackBaseline>0.06</hackBaseline>
+            <hackBaseline>${ZED_camera_length}</hackBaseline>
             <distortionK1>0.0</distortionK1>
             <distortionK2>0.0</distortionK2>
             <distortionK3>0.0</distortionK3>

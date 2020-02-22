@@ -16,6 +16,16 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
 )
 
+catkin_package(
+  CATKIN_DEPENDS
+    geometry_msgs
+    nav_msgs
+    roscpp
+    rospy
+    rosserial_python
+    std_msgs
+)
+
 ###########
 ## Build ##
 ###########
