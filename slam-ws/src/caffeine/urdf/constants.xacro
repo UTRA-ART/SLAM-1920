@@ -62,4 +62,11 @@
   <xacro:property name="ZED_camera_length" value="0.175"/>
   <xacro:property name="ZED_camera_width" value="0.03"/>
   <xacro:property name="ZED_camera_height" value="0.033"/>
+
+  <!-- Constants for Garmin GPS -->
+  <!-- NOTE: approx as a cylinder; garmin itself is similar to a hockey puck -->
+  <xacro:property name="gps_diam" value="0.061"/>
+  <xacro:property name="gps_length" value="0.0195"/>
+  <xacro:property name="gps_mass" value="0.165"/>
+
 </robot>
