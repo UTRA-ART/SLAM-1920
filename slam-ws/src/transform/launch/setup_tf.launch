@@ -1,6 +1,6 @@
 <launch>
     
-    <arg name="robot_model" defaul="husky_gazebo"/>
+    <arg name="robot_model" default="husky_gazebo"/>
     <arg name="model" default=""/>
 
     <group if="$(eval arg('robot_model') == 'husky_gazebo')">
