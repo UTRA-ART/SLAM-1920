@@ -177,23 +177,24 @@
 
    <!-- For details about plugin, see: http://wiki.ros.org/hector_gazebo_plugins -->
    <!-- TODO: update these parameters to match real life Garmin. See: http://static.garmin.com/pumac/425_TechnicalSpecification.pdf -->
-   <!-- For testing purposes, this is not accurate -->
-   <!-- Also, it was difficult to test this. It seems to work, but more testing MUST be done -->
-  <gazebo>
+   <gazebo>
       <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
-        <updateRate>40.0</updateRate>
-        <bodyName>gps_link</bodyName>
-        <frameId>gps_link</frameId>
-        <topicName>gps/fix</topicName>
-        <velocityTopicName>gps/fix_velocity</velocityTopicName>
-        <referenceHeading>0</referenceHeading>
-        <referenceAltitude>0</referenceAltitude>
-        <!-- TODO: change drift parameter & gaussian noise parameters -->
-	<!-- Also might need to add velocity drift & gaussian noise for  velocity -->
-        <drift>0.0001 0.0001 0.0001</drift>
-        <gaussianNoise>0.01 0.01 0.1</gaussianNoise>
+         <updateRate>5.0</updateRate>  <!-- 5 Hz -->
+         <bodyName>gps_link</bodyName>
+         <frameId>gps_link</frameId>
+         <topicName>gps/fix</topicName>
+         <velocityTopicName>gps/fix_velocity</velocityTopicName>
+         <!-- Set reference GPS coordinates to UofT -->
+         <referenceLatitude>43.6570</referenceLatitude>
+         <referenceLongitude>-79.3903</referenceLongitude>
+         <referenceAltitude>76</referenceAltitude>
+         <!-- Model GPS behaviour -->
+         <service>1</service> <!-- SERVICE_GPS = 1 -->
+         <drift>1.5 1.5 1.5</drift> <!-- m -->
+         <velocityDrift>0.05 0.05 0.05</velocityDrift> <!-- m/s-->
+         <!-- TODO: add Gaussian noise based off Garmin GPS -->
       </plugin>
-  </gazebo>
+   </gazebo>
 
    <gazebo>
       <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
