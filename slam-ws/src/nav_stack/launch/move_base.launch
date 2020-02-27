@@ -2,6 +2,8 @@
 
   <arg name="robot_model" default="husky_gazebo"/>
   <arg name="global_costmap_params" default=""/>
+  <arg name="config_locks"  default="$(find twist_mux)/config/twist_mux_locks.yaml"/>
+  <arg name="config_topics" default="$(find twist_mux)/config/twist_mux_topics.yaml"/>
 
   <master auto="start"/>
 
@@ -26,6 +28,9 @@
       
       <!-- Set control loop frequency to an appropriate rate -->
       <param name="controller_frequency" value="10.0" />
+
+      <!-- Rename cmd_vel topic name from move_base -->
+      <remap from="cmd_vel" to="nav_vel"/>
     </node> 
 
   </group>
@@ -50,8 +55,21 @@
       
       <!-- Set control loop frequency to an appropriate rate -->
       <param name="controller_frequency" value="10.0" />
+
+      <!-- Rename cmd_vel topic name from move_base -->
+      <remap from="cmd_vel" to="nav_vel"/>
     </node> 
 
   </group>
+
+  <!-- Launch Twist Multiplexer -->
+  <node pkg="twist_mux" type="twist_mux" name="twist_mux" output="screen">
+    <!-- Rename output cmd_vel-->
+    <remap from="cmd_vel_out" to="cmd_vel"/>
+
+    <!-- Load topics and locks priorities-->
+    <rosparam file="$(arg config_locks)"  command="load"/>
+    <rosparam file="$(arg config_topics)" command="load"/>
+  </node>
 
 </launch> 
