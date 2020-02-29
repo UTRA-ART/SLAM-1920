@@ -53,7 +53,7 @@ int main(int argc, char **argv)
     ros::Rate loop_rate(100);
 
     std_msgs::Float64 rvelmsg;
-    std_msgs::Float64 lvelmsg;	
+    std_msgs::Float64 lvelmsg;    
 
     double v, vl, vr, rcommand, lcommand;
 
