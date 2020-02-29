@@ -109,8 +109,8 @@
          <camera name="left">
             <horizontal_fov>1.571</horizontal_fov>
             <image>
-               <width>1248</width>
-               <height>376</height>
+               <width>1280</width>
+               <height>720</height>
                <format>R8G8B8</format>
             </image>
             <clip>
@@ -122,8 +122,8 @@
             <pose>0 ${-ZED_camera_length} 0 0 0 0</pose>
             <horizontal_fov>1.571</horizontal_fov>
             <image>
-               <width>1248</width>
-               <height>376</height>
+               <width>1280</width>
+               <height>720</height>
                <format>R8G8B8</format>
             </image>
             <clip>
@@ -132,7 +132,7 @@
             </clip>
          </camera>
          <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
-            <cameraName>zed</cameraName>
+            <cameraName>zed/zed_node</cameraName>
             <alwaysOn>true</alwaysOn>
             <updateRate>0</updateRate>
             <cameraName></cameraName>
