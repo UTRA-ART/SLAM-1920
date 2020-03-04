@@ -182,8 +182,8 @@
          <updateRate>5.0</updateRate>  <!-- 5 Hz -->
          <bodyName>gps_link</bodyName>
          <frameId>gps_link</frameId>
-         <topicName>gps/fix</topicName>
-         <velocityTopicName>gps/fix_velocity</velocityTopicName>
+         <topicName>fix</topicName>
+         <velocityTopicName>fix_velocity</velocityTopicName>
          <!-- Set reference GPS coordinates to UofT -->
          <referenceLatitude>43.6570</referenceLatitude>
          <referenceLongitude>-79.3903</referenceLongitude>

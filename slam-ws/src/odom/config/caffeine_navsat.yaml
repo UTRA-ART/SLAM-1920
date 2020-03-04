@@ -1,0 +1,17 @@
+frequency: 5.0
+delay: 90.0
+
+# Initial configuration
+magnetic_declination_radians: 0.0
+yaw_offset: 1.5707963 # pi/2 rad since 0 yaw == North
+zero_altitude: 0
+
+# Publishing data
+publish_filtered_gps: false
+broadcast_utm_transform: true
+broadcast_utm_transform_as_parent_frame: true
+
+# Misc
+use_odometry_yaw: false
+wait_for_datum: false
+transform_timeout: 0

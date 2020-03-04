@@ -10,19 +10,46 @@
   </group>
   <group if="$(eval arg('robot_model') == 'caffeine_gazebo')">
 
-    <!-- Connect Odometry Sensors to robot_localization ekf node -->
+    <!-- Merge continuous Odometry data -->
+    <!-- NOTE: computes odometry/local (continuous)-->
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" clear_params="true" output="screen">
+      <remap from="odometry/filtered" to="odometry/local"/>
+
       <rosparam command="load" file="$(find odom)/config/localization.yaml" if="$(eval arg('sensor_ekf_config') == '')"/>
       <rosparam command="load" file="$(arg sensor_ekf_config)" unless="$(eval arg('sensor_ekf_config') == '')"/>
     </node>
 
+    <!-- Establish Transform b/w Earth reference and robot reference -->
+    <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform_node" respawn="true">
+      <remap from="imu/data" to="imu/data_raw"/>
+      <remap from="odometry/filtered" to="odometry/local"/>
+      <remap from="gps/fix" to="fix"/>
+
+      <rosparam command="load" file="$(find odom)/config/caffeine_navsat.yaml"/>
+    </node>
+
+    <!-- Compute absolute Odometry data -->
+    <!-- NOTE: computes odometry/filtered (non-continuous) -->
+    <!-- <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" clear_params="true" output="screen">
+    </node> -->
+
   </group>
   <group if="$(eval arg('robot_model') == 'caffeine')">
 
-    <!-- Connect Odometry Sensors to robot_localization ekf node -->
+    <!-- Merge continuous Odometry data -->
+    <!-- NOTE: computes odometry/local (continuous)-->
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" clear_params="true" output="screen">
       <rosparam command="load" file="$(find odom)/config/caffeine_localization.yaml" if="$(eval arg('sensor_ekf_config') == '')"/>
       <rosparam command="load" file="$(arg sensor_ekf_config)" unless="$(eval arg('sensor_ekf_config') == '')"/>
+    </node>
+
+    <!-- Establish Transform b/w Earth reference and robot reference -->
+    <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform_node" respawn="true">
+      <remap from="imu/data" to="imu/data_raw"/>
+      <remap from="odometry/filtered" to="odometry/local"/>
+      <remap from="gps/fix" to="fix"/>
+
+      <rosparam command="load" file="$(find odom)/config/caffeine_navsat.yaml"/>
     </node>
 
   </group>
