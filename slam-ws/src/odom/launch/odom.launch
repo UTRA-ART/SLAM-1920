@@ -12,7 +12,7 @@
 
     <!-- Merge continuous Odometry data -->
     <!-- NOTE: computes odometry/local (continuous)-->
-    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" clear_params="true" output="screen">
+    <node pkg="robot_localization" type="ekf_localization_node" name="local_ekf_localization" clear_params="true" output="screen">
       <remap from="odometry/filtered" to="odometry/local"/>
 
       <rosparam command="load" file="$(find odom)/config/localization.yaml" if="$(eval arg('sensor_ekf_config') == '')"/>
@@ -30,15 +30,16 @@
 
     <!-- Compute absolute Odometry data -->
     <!-- NOTE: computes odometry/filtered (non-continuous) -->
-    <!-- <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" clear_params="true" output="screen">
-    </node> -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="world_ekf_localization" clear_params="true" output="screen">
+      <rosparam command="load" file="$(find odom)/config/caffeine_abs_localization.yaml"/>
+    </node>
 
   </group>
   <group if="$(eval arg('robot_model') == 'caffeine')">
 
     <!-- Merge continuous Odometry data -->
     <!-- NOTE: computes odometry/local (continuous)-->
-    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" clear_params="true" output="screen">
+    <node pkg="robot_localization" type="ekf_localization_node" name="local_ekf_localization" clear_params="true" output="screen">
       <rosparam command="load" file="$(find odom)/config/caffeine_localization.yaml" if="$(eval arg('sensor_ekf_config') == '')"/>
       <rosparam command="load" file="$(arg sensor_ekf_config)" unless="$(eval arg('sensor_ekf_config') == '')"/>
     </node>
@@ -50,6 +51,12 @@
       <remap from="gps/fix" to="fix"/>
 
       <rosparam command="load" file="$(find odom)/config/caffeine_navsat.yaml"/>
+    </node>
+
+    <!-- Compute absolute Odometry data -->
+    <!-- NOTE: computes odometry/filtered (non-continuous) -->
+    <node pkg="robot_localization" type="ekf_localization_node" name="world_ekf_localization" clear_params="true" output="screen">
+      <rosparam command="load" file="$(find odom)/config/caffeine_abs_localization.yaml"/>
     </node>
 
   </group>
