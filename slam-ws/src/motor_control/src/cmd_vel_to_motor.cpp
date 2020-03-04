@@ -6,30 +6,11 @@
 double vx = 0.0;
 double wz = 0.0;
 double wheelbase = 0.91; // meters
-double manual_control = 0.0;
 
-void targetcb(const geometry_msgs::Twist& msg, bool active)
+void targetcb(const geometry_msgs::Twist& msg)
 {
-    if (active)
-    {
-        vx = msg.linear.x;
-        wz = msg.angular.z;
-    }
-}
-
-void targetcb_manual(const geometry_msgs::Twist& msg)
-{
-    targetcb(msg, manual_control == 1.0);
-}
-
-void targetcb_automatic(const geometry_msgs::Twist& msg)
-{
-    targetcb(msg, manual_control == 0.0);
-}
-
-void controlcb(const std_msgs::Float64& msg)
-{
-    manual_control = msg.data;
+    vx = msg.linear.x;
+    wz = msg.angular.z;
 }
 
 int main(int argc, char **argv)
@@ -42,9 +23,7 @@ int main(int argc, char **argv)
     current_time = ros::Time::now();
 
     // Subscribe to cmd_vel topics
-    ros::Subscriber cmd_vel_manual_sub = n.subscribe("/cmd_vel2", 1, targetcb_manual);
-    ros::Subscriber cmd_vel_automatic_sub = n.subscribe("/cmd_vel", 1, targetcb_automatic);
-    ros::Subscriber stop_command_sub = n.subscribe("/stop_command", 1, controlcb);
+    ros::Subscriber cmd_vel_sub = n.subscribe("/cmd_vel", 1, targetcb);
 
     // Publish to right and left wheels
     ros::Publisher rvel_pub = n.advertise<std_msgs::Float64>("/right_wheel/command", 1);
