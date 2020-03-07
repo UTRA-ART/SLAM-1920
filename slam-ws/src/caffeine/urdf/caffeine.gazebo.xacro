@@ -50,6 +50,7 @@
       <plugin name="caffeine_controller" filename="libgazebo_ros_diff_drive.so">
          <alwaysOn>true</alwaysOn>
          <updateRate>30.0</updateRate>
+         <legacyMode>true</legacyMode>
          <leftJoint>left_wheel_joint</leftJoint>
          <rightJoint>right_wheel_joint</rightJoint>
          <wheelSeparation>0.764</wheelSeparation>
@@ -108,8 +109,8 @@
          <camera name="left">
             <horizontal_fov>1.571</horizontal_fov>
             <image>
-               <width>1248</width>
-               <height>376</height>
+               <width>1280</width>
+               <height>720</height>
                <format>R8G8B8</format>
             </image>
             <clip>
@@ -121,8 +122,8 @@
             <pose>0 ${-ZED_camera_length} 0 0 0 0</pose>
             <horizontal_fov>1.571</horizontal_fov>
             <image>
-               <width>1248</width>
-               <height>376</height>
+               <width>1280</width>
+               <height>720</height>
                <format>R8G8B8</format>
             </image>
             <clip>
@@ -131,6 +132,7 @@
             </clip>
          </camera>
          <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
+            <cameraName>zed/zed_node</cameraName>
             <alwaysOn>true</alwaysOn>
             <updateRate>0</updateRate>
             <cameraName></cameraName>
@@ -139,7 +141,7 @@
             <depthImageTopicName>depth/image_raw</depthImageTopicName>
             <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
             <pointCloudTopicName>depth/points</pointCloudTopicName>
-            <frameName>camera_link</frameName>
+            <frameName>camera_view_link</frameName>
             <hackBaseline>${ZED_camera_length}</hackBaseline>
             <distortionK1>0.0</distortionK1>
             <distortionK2>0.0</distortionK2>
