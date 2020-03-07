@@ -1,0 +1,19 @@
+<launch>
+    <arg name="robot_model" default="caffeine"/>
+
+    <!-- robot_model == husky_gazebo is unimplemented-->
+    <group if="$(eval arg('robot_model') == 'caffeine')">
+
+        <!--- Run Move Base -->
+        <include file="$(find nav_stack)/launch/move_base.launch">
+            <arg name="robot_model" value="$(arg robot_model)" />
+        </include>
+
+        <!-- Run Rtabmap-->
+        <include file="$(find nav_rtab)/launch/rtab.launch">
+            <arg name="robot_model" value="$(arg robot_model)" />
+        </include>
+
+    </group>  
+    
+</launch>

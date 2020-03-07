@@ -59,8 +59,6 @@
 
       <!-- Rename cmd_vel topic name from move_base -->
       <remap from="cmd_vel" to="nav_vel"/>
-
-      <remap from="map" to="rtabmap/grid_map"/>
     </node> 
 
   </group>
