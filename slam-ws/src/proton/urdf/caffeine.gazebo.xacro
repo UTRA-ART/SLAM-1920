@@ -1,0 +1,205 @@
+<?xml version="1.0"?>
+<robot name="caffeine_sim" xmlns:xacro="http://ros.org/wiki/xacro">
+   <xacro:include filename="$(find caffeine)/urdf/constants.xacro"/>
+
+   <gazebo reference="base_link">
+      <material>Gazebo/Purple</material>
+   </gazebo>
+
+   <gazebo reference="front_caster">
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+   <gazebo reference="back_caster">
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+   <gazebo reference="front_caster_wheel">
+      <material>Gazebo/Black</material>
+   </gazebo>
+
+   <gazebo reference="back_caster_wheel">
+      <material>Gazebo/Black</material>
+   </gazebo>
+
+   <gazebo reference="basement">
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+   <gazebo reference="right_motor_gearbox_housing">
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+   <gazebo reference="left_motor_gearbox_housing">
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+   <gazebo reference="left_wheel">
+      <material>Gazebo/Black</material>
+   </gazebo>
+
+   <gazebo reference="right_wheel">
+      <material>Gazebo/Black</material>
+   </gazebo>
+
+   <gazebo reference="stand">
+      <material>Gazebo/Green</material>
+   </gazebo>
+   
+   <gazebo>
+      <plugin name="caffeine_controller" filename="libgazebo_ros_diff_drive.so">
+         <alwaysOn>true</alwaysOn>
+         <updateRate>30.0</updateRate>
+         <leftJoint>left_wheel_joint</leftJoint>
+         <rightJoint>right_wheel_joint</rightJoint>
+         <wheelSeparation>0.764</wheelSeparation>
+         <wheelDiameter>0.25</wheelDiameter>
+         <robotBaseFrame>base_link</robotBaseFrame>
+         <torque>20</torque>
+         <topicName>cmd_vel</topicName>
+         <odometryTopic>odom</odometryTopic>
+         <odometryFrame>odom</odometryFrame>
+         <odometrySource>world</odometrySource>
+         <publishOdomTF>true</publishOdomTF>
+         <publishWheelJointState>true</publishWheelJointState>
+         <broadcastTF>true</broadcastTF>
+      </plugin>
+   </gazebo>
+
+   <!-- IMPORTANT: Double check the numbers I'm using here with our actual sensor-->
+   <gazebo reference="base_laser">
+      <sensor type="ray" name="hokuyo_sensor">
+         <pose>0 0 0 0 0 0</pose>
+         <visualize>false</visualize>
+         <update_rate>30</update_rate>
+         <ray>
+            <scan>
+               <horizontal>
+                  <samples>1080</samples>
+                  <resolution>1</resolution>
+                  <min_angle>0.0</min_angle>
+                  <max_angle>4.71</max_angle>
+               </horizontal>
+            </scan>
+            <range>
+               <min>0.1</min>
+               <max>5.6</max>
+               <resolution>0.01</resolution>
+            </range>
+            <noise>
+               <type>gaussian</type>
+               <!-- Noise based on gazebosim.org's tutorial on writing gazebo plugins w/ ROS. The comment they put will be reproduced:
+                    Noise parameters based on published spec for Hokuyo laser achieving "+-30mm" accuracy at range < 10 m. A mean of 0.0m and                     stddev of 0.01m will put 99.7% of samples within 0.03m of the true reading. -->
+               <mean>0.0</mean>
+               <stddev>0.01</stddev>
+            </noise>
+         </ray>
+         <plugin name="gazebo_ros_hokuyo_controller" filename="libgazebo_ros_laser.so">
+            <topicName>/scan</topicName>
+            <frameName>base_laser</frameName>
+         </plugin>
+      </sensor>
+   </gazebo>
+
+   <!-- TODO: double check these numbers -->
+   <gazebo reference="camera_link">
+      <sensor type="multicamera" name="stereo_camera">
+         <update_rate>30.0</update_rate>
+         <camera name="left">
+            <horizontal_fov>1.571</horizontal_fov>
+            <image>
+               <width>1248</width>
+               <height>376</height>
+               <format>R8G8B8</format>
+            </image>
+            <clip>
+               <near>0.02</near>
+               <far>300</far>
+            </clip>
+         </camera>
+         <camera name="right">
+            <pose>0 ${-ZED_camera_length} 0 0 0 0</pose>
+            <horizontal_fov>1.571</horizontal_fov>
+            <image>
+               <width>1248</width>
+               <height>376</height>
+               <format>R8G8B8</format>
+            </image>
+            <clip>
+               <near>0.02</near>
+               <far>300</far>
+            </clip>
+         </camera>
+         <plugin name="stereo_camera_controller" filename="libgazebo_ros_multicamera.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>0</updateRate>
+            <cameraName></cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <depthImageTopicName>depth/image_raw</depthImageTopicName>
+            <depthImageInfoTopicName>depth/camera_info</depthImageInfoTopicName>
+            <pointCloudTopicName>depth/points</pointCloudTopicName>
+            <frameName>camera_link</frameName>
+            <hackBaseline>${ZED_camera_length}</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+         </plugin>
+      </sensor>
+   </gazebo>
+
+   <!-- Phidgets IMU specifications -->
+   <gazebo reference="imu_link">
+      <material>Gazebo/Black</material>
+
+      <gravity>true</gravity>
+      <sensor name="imu_sensor" type="imu">
+         <always_on>true</always_on>
+         <update_rate>128</update_rate>
+         <visualize>true</visualize>
+         <topic>imu/data_raw</topic>
+
+         <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+            <topicName>imu/data_raw</topicName>
+            <bodyName>imu_link</bodyName>
+            <updateRateHZ>128.0</updateRateHZ>
+            <gaussianNoise>0.0</gaussianNoise>
+            <xyzOffset>0 0 0</xyzOffset>
+            <rpyOffset>0 0 0</rpyOffset>
+            <frameName>imu_link</frameName>
+         </plugin>
+         
+         <pose>0 0 0 0 0 0</pose>
+      </sensor>
+  </gazebo>
+
+   <!-- For details about plugin, see: http://wiki.ros.org/hector_gazebo_plugins -->
+   <!-- TODO: update these parameters to match real life Garmin. See: http://static.garmin.com/pumac/425_TechnicalSpecification.pdf -->
+   <gazebo>
+      <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+         <updateRate>5.0</updateRate>  <!-- 5 Hz -->
+         <bodyName>gps_link</bodyName>
+         <frameId>gps_link</frameId>
+         <topicName>gps/fix</topicName>
+         <velocityTopicName>gps/fix_velocity</velocityTopicName>
+         <!-- Set reference GPS coordinates to UofT -->
+         <referenceLatitude>43.6570</referenceLatitude>
+         <referenceLongitude>-79.3903</referenceLongitude>
+         <referenceAltitude>76</referenceAltitude>
+         <!-- Model GPS behaviour -->
+         <service>1</service> <!-- SERVICE_GPS = 1 -->
+         <drift>1.5 1.5 1.5</drift> <!-- m -->
+         <velocityDrift>0.05 0.05 0.05</velocityDrift> <!-- m/s-->
+         <!-- TODO: add Gaussian noise based off Garmin GPS -->
+      </plugin>
+   </gazebo>
+
+   <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+         <legacyModeNS>true</legacyModeNS>
+      </plugin>
+   </gazebo>
+
+</robot>
