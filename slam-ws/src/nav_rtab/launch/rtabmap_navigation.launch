@@ -1,7 +1,11 @@
 <launch>
-    <arg name="robot_model" default="caffeine"/>
+    <arg name="robot_model" default="husky_gazebo"/>
 
-    <!-- robot_model == husky_gazebo is unimplemented-->
+    <group if="$(eval arg('robot_model') == 'husky_gazebo')">
+
+        <!-- Unimplemented for husky_gazebo -->
+
+    </group>
     <group if="$(eval arg('robot_model') == 'caffeine')">
 
         <!--- Run Move Base -->
