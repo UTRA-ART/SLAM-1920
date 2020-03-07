@@ -17,7 +17,7 @@
             <remap from="depth/image" to="zed/zed_node/depth"/>
             <remap from="rtabmap/odom" to="odometry/filtered"/>
             <remap from="scan" to="scan_filtered"/>
-            <remap from="rtabmap/grid_map" to="map"/>
+            <remap from="grid_map" to="map"/>
 
             <!-- Load rtabmap parameters -->
             <rosparam file="$(find nav_rtab)/config/rtab_config.yaml" command="load"/>

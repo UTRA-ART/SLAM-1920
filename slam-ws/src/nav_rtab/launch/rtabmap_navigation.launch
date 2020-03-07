@@ -7,6 +7,8 @@
         <!--- Run Move Base -->
         <include file="$(find nav_stack)/launch/move_base.launch">
             <arg name="robot_model" value="$(arg robot_model)" />
+            <arg name="global_costmap_params" value="$(find gmap)/config/global_costmap_params.yaml"/>
+
         </include>
 
         <!-- Run Rtabmap-->
