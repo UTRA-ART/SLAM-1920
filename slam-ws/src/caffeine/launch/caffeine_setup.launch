@@ -36,7 +36,8 @@
     <!-- Set up the IMU -->
     <node pkg="tf" type="static_transform_publisher" name="imu_link_to_imu_broadcaster" args="0 0 0 0 0 0 imu_link imu 100"/>
     
-    <include file="$(find phidgets_imu)/launch/imu_single_nodes.launch"/>
+    <!-- TODO: phidgets imu topic is now imu/data (not imu/data_raw anymore) -->
+    <include file="$(find phidgets_imu)/launch/imu_enu.launch"/>
 
     <!-- Set up robot_localization Odometry -->
     <include file="$(find odom)/launch/odom.launch">
