@@ -22,7 +22,7 @@ sudo apt-get install ros-kinetic-navigation
 ```
 sudo apt-get install ros-kinetic-gmapping
 ```
-> **Note:** This **was**** the package we use for performing SLAM.
+> **Note:** This **was** the package we used for performing SLAM.
 
 ### Install the [rtabmap_ros](http://wiki.ros.org/rtabmap_ros) Package:
 ```
