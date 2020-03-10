@@ -20,7 +20,7 @@ print_diagnostics: true
 
 odom0: odom
 odom0_config: [true,  true,  false,
-               false, false, true,
+               false, false, false,
                true,  true,  false,
                false, false, true,
                false, false, false]
@@ -30,9 +30,9 @@ odom0_relative: false
 
 ## IMU Sensor(s) ##
 
-imu0: imu/data_raw
+imu0: imu/data
 imu0_config:  [false, false, false,
-               false, false, false,
+               false, false, true,
                true,  true,  false,
                false, false, true,
                true, true, false]
