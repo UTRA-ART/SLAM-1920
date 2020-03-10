@@ -1,33 +1,15 @@
-<!-- Phidgets IMU launch file -->
-
 <launch>
   <!-- IMU Driver: Does not provide orientation -->
 
-  <node pkg="phidgets_imu" type="phidgets_imu_node" name="phidgets_imu_node" 
-    output="screen">
-
+  <node pkg="phidgets_imu" type="phidgets_imu_node" name="phidgets_imu_node" output="screen">
     <!-- supported data rates: 4 8 16 24 32 40 ... 1000 (in ms) -->
     <param name="period" value="4"/>
   </node>
 
   <!-- IMU Orientation Filter: Fuses with magnetometer for Orientation -->
 
-  <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter_node" 
-    output="screen">
-
-    <param name="use_mag" value="true"/>
-    <param name="use_magnetic_field_msg" value="true"/>
-    <param name="world_frame" value="enu"/> <!-- REP-103 Convention (required for robot_localization) -->
-
-    <!-- NOTE: Magnetic Field at Toronto, ON, Canada (REP-103: ENU)-->
-    <param name="mag_bias_x" value="-0.0000033369"/>    <!-- East -->
-    <param name="mag_bias_y" value="0.000018497"/>      <!-- North -->
-    <param name="mag_bias_z" value="-0.0000502264"/>    <!-- Up -->
-
-    <!-- NOTE: there is no option to also add magnetic declination in imu_filter_madgwick (must be added in robot_localization) -->
-    <!-- Magnetic declination: -10 degrees, at Toronto, ON, Canada -->
-
-    <!-- NOTE: it seems that our IMU has yaw = 0 when pointing East (once magnetic bias and declination are accounted for) -->
+  <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter_node" output="screen">
+    <rosparam command="load" file="$(find phidgets_imu)/config/imu_mag_toronto.yaml"/>
   </node>
 
 </launch>
