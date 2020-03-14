@@ -145,7 +145,7 @@ public:
     ROS_DEBUG("ScanBlobFilter  %d Points from scan with min radius: %.2f, num of pints: %d", (int)indices_to_publish.size(), max_radius_, min_points_);
     for ( std::set<int>::iterator it = indices_to_publish.begin(); it != indices_to_publish.end(); ++it)
       {
-	scan_out.ranges[*it] = fabs(scan_in.ranges[*it]); // valid only the ranges that passwd the test (*)
+    scan_out.ranges[*it] = fabs(scan_in.ranges[*it]); // valid only the ranges that passwd the test (*)
       }
     return true;
   }
