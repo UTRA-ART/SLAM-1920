@@ -2,11 +2,14 @@
     <arg name="paused" default="false"/>
     <arg name="use_sim_time" default="true"/>
     <!-- TURN GUI OFF TEMPORARILY -->
-    <arg name="gui" default="false"/>
+    <arg name="gui" default="true"/>
     <arg name="headless" default="false"/>
     <arg name="debug" default="false"/>
     <arg name="model" default="$(find caffeine)/urdf/caffeine.urdf.xacro"/>
-    <arg name="world" default="$(find husky_gazebo)/worlds/clearpath_playpen.world"/>
+
+    <!-- <arg name="world" default="$(find husky_gazebo)/worlds/clearpath_playpen.world"/> -->
+    <arg name="world" default="$(find igvc_world)/worlds/igvc_basic_ground.world"/>
+
     <arg name="lidar_range_filter_config" default="$(find laser_filters)/config/lidar_config.yaml"/>
     <arg name="camera" default="/zed/zed_node"/>
     
