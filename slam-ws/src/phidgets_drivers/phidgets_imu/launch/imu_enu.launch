@@ -1,0 +1,15 @@
+<launch>
+  <!-- IMU Driver: Does not provide orientation -->
+
+  <node pkg="phidgets_imu" type="phidgets_imu_node" name="phidgets_imu_node" output="screen">
+    <!-- supported data rates: 4 8 16 24 32 40 ... 1000 (in ms) -->
+    <param name="period" value="4"/>
+  </node>
+
+  <!-- IMU Orientation Filter: Fuses with magnetometer for Orientation -->
+
+  <node pkg="imu_filter_madgwick" type="imu_filter_node" name="imu_filter_node" output="screen">
+    <rosparam command="load" file="$(find phidgets_imu)/config/imu_mag_toronto.yaml"/>
+  </node>
+
+</launch>
