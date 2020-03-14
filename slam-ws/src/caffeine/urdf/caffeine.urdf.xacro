@@ -326,9 +326,9 @@
        </inertial>
    </link>
    <joint name="zed_camera_joint" type="fixed">
-       <parent link="base_link"/>
+       <parent link="stand"/>
        <child link="zed_camera_link"/>
-       <origin xyz="${stand_length/2} 0 ${stand_height + ZED_camera_height + base_height/2}" rpy="0 ${pi/4} 0"/>
+       <origin xyz="${stand_length/2} 0 ${stand_height + ZED_camera_height}" rpy="0 0 0"/>
    </joint>
 
    <!-- ZED camera lenses -->
