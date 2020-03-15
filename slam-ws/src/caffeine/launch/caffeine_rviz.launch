@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <launch>
    <arg name="model" default="caffeine"/>
-   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find caffeine)/rviz/rviz_custom.rviz" output="screen"/>
+   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find caffeine)/rviz/rviz_caffeine.rviz" output="screen"/>
 </launch>
