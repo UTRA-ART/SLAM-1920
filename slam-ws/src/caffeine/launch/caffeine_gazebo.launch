@@ -1,8 +1,7 @@
 <launch>
     <arg name="paused" default="false"/>
     <arg name="use_sim_time" default="true"/>
-    <!-- TURN GUI OFF TEMPORARILY -->
-    <arg name="gui" default="false"/>
+    <arg name="gui" default="false"/>   <!-- Turn Gazebo GUI off by default -->
     <arg name="headless" default="false"/>
     <arg name="debug" default="false"/>
     <arg name="model" default="$(find caffeine)/urdf/caffeine.urdf.xacro"/>
