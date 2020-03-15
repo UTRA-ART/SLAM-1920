@@ -1,5 +1,5 @@
 subscibe_depth: true
-subscribe_laserScan: true
+subscribe_scan: true
 frame_id: /base_link
 queue_size: 30
 
@@ -15,4 +15,3 @@ Vis:
 
 RGBD:
   CreateOccupancyGrid: true
-   
