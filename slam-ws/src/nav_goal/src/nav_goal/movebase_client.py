@@ -3,6 +3,10 @@ import sys
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
 from tf.transformations import quaternion_from_euler
+from geodesy.utm import fromLatLong
+from geometry_msgs.msg import PoseStamped
+import tf2_ros
+import tf2_geometry_msgs
 
 def init_node(arguments):
     rospy.init_node('movebase_client_py')
@@ -22,6 +26,60 @@ def init_node(arguments):
             rospy.logerr("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
             rospy.signal_shutdown("Error: Incorrect Argument Types - All 3 arguments must be floats or integers.")
             return 'Failure'
+
+def init_gps_node(arguments):
+    rospy.init_node('movebase_client_py')
+
+    if len(arguments) < 3:
+        rospy.logerr("Error: Insufficient Arguments - Usage is 'rosrun nav_goal movebase_client latitutde longitude'")
+        rospy.signal_shutdown("Error: Insufficient Arguments - U Usage is 'rosrun nav_goal movebase_client latitutde longitude'")
+        return 'Failure'
+    else:
+        try:
+            lat = float(arguments[1])
+            long = float(arguments[2])
+
+            return (lat, long)
+        except:
+            rospy.logerr("Error: Incorrect Argument Types - All 2 arguments must be floats or integers.")
+            rospy.signal_shutdown("Error: Incorrect Argument Types - All 2 arguments must be floats or integers.")
+            return 'Failure'
+
+def gps_to_map(lat, long):
+    utm = fromLatLong(lat, long)
+
+    # create PoseStamped message to set up for do_transform_pose 
+    utm_pose = PoseStamped()
+    utm_pose.header.frame_id = 'utm'
+    utm_pose.pose.position.x = utm.easting
+    utm_pose.pose.position.y = utm.northing
+
+    # get the utm->odom transform using tf2_ros
+    tfbuffer = tf2_ros.Buffer()
+    tflistener = tf2_ros.TransformListener(tfbuffer)
+    T = tfbuffer.lookup_transform('map', 'utm', rospy.Time(0), rospy.Duration(1.0))
+
+    # apply the transform
+    map_pose = tf2_geometry_msgs.do_transform_pose(utm_pose, T)
+    
+    return (map_pose.pose.position.x, map_pose.pose.position.y)
+
+def map_to_utm(x, y):
+    # create PoseStamped message to set up for do_transform_pose 
+    map_pose = PoseStamped()
+    map_pose.header.frame_id = 'map'
+    map_pose.pose.position.x = x
+    map_pose.pose.position.y = y
+
+    # get the utm->odom transform using tf2_ros
+    tfbuffer = tf2_ros.Buffer()
+    tflistener = tf2_ros.TransformListener(tfbuffer)
+    T = tfbuffer.lookup_transform('utm', 'map', rospy.Time(0), rospy.Duration(1.0))
+
+    # apply the transform
+    utm_pose = tf2_geometry_msgs.do_transform_pose(map_pose, T)
+    
+    return (utm_pose.pose.position.x, utm_pose.pose.position.y)
 
 def movebase_client(x, y, yaw, frame):
     # Create an action client called "move_base" with action definition file "MoveBaseAction"
