@@ -1,5 +1,5 @@
 frequency: 5.0
-delay: 90.0
+delay: 1.0
 
 # Initial configuration
 magnetic_declination_radians: 0.0
@@ -9,7 +9,7 @@ zero_altitude: 0
 # Publishing data
 publish_filtered_gps: false
 broadcast_utm_transform: true
-broadcast_utm_transform_as_parent_frame: true
+broadcast_utm_transform_as_parent_frame: false
 
 # Misc
 use_odometry_yaw: false
