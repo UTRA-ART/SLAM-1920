@@ -5,7 +5,7 @@
     <arg name="headless" default="false"/>
     <arg name="debug" default="false"/>
     <arg name="model" default="$(find caffeine)/urdf/caffeine.urdf.xacro"/>
-    <arg name="world" default="$(find igvc_world)/worlds/igvc_walls.world"/>
+    <arg name="world" default="$(find igvc_world)/worlds/igvc_basic.world"/>
     <arg name="lidar_range_filter_config" default="$(find laser_filters)/config/lidar_config.yaml"/>
     <arg name="camera" default="/zed/zed_node"/>
 
@@ -15,7 +15,7 @@
     <arg name="z" default="1.0"/>
     <arg name="roll" default="0"/>
     <arg name="pitch" default="0"/>
-    <arg name="yaw" default="0"/> 
+    <arg name="yaw" default="3.14"/> 
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="world_name" value="$(arg world)"/>
