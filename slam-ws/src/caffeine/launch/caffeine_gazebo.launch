@@ -21,7 +21,7 @@
     <param name="robot_description" command="xacro --inorder '$(arg model)'"/>
     
     <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen"/>
+        args="-y -21.5 -z 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen"/>
     
     <!-- Set up Transform Tree -->
     <include file="$(find transform)/launch/setup_tf.launch">
