@@ -15,7 +15,7 @@ sudo apt-get install ros-kinetic-husky-simulator
 
 ### Install the [navigation](http://wiki.ros.org/navigation) Package
 ```
-sudo apt-get install ros-kinetic-navigation
+sudo apt-get install ros-kinetic-navigation  
 ```
 
 ### Install the [gmapping](http://wiki.ros.org/gmapping) Package:
