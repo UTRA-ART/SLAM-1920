@@ -241,7 +241,7 @@ class RosSerialServer:
             self.socket = clientsocket
             self.isConnected = True
 
-            if (self.fork_server == True):	# if configured to launch server in a separate process
+            if (self.fork_server == True):    # if configured to launch server in a separate process
                 rospy.loginfo("Forking a socket server process")
                 process = multiprocessing.Process(target=self.startSocketServer, args=(address))
                 process.daemon = True
