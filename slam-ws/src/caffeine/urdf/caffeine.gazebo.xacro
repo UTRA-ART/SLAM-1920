@@ -3,7 +3,7 @@
    <xacro:include filename="$(find caffeine)/urdf/constants.xacro"/>
 
    <gazebo reference="base_link">
-      <material>Gazebo/Purple</material>
+       <material>Gazebo/Purple</material>
    </gazebo>
 
    <gazebo reference="front_caster">
