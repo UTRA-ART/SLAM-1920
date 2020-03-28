@@ -8,6 +8,14 @@
     <arg name="world" default="$(find igvc_world)/worlds/igvc_basic.world"/>
     <arg name="lidar_range_filter_config" default="$(find laser_filters)/config/lidar_config.yaml"/>
     <arg name="camera" default="/zed/zed_node"/>
+
+    <!-- Robot Initial Pose -->
+    <arg name="x" default="0"/>
+    <arg name="y" default="-21.5"/>
+    <arg name="z" default="1.0"/>
+    <arg name="roll" default="0"/>
+    <arg name="pitch" default="0"/>
+    <arg name="yaw" default="3.14"/> 
     
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="world_name" value="$(arg world)"/>
@@ -20,8 +28,8 @@
 
     <param name="robot_description" command="xacro --inorder '$(arg model)'"/>
     
-    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-z 1.0 -unpause -urdf -model robot -param robot_description" respawn="false" output="screen"/>
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
+        args="-x $(arg x) -y $(arg y) -z $(arg z) -R $(arg roll) -P $(arg pitch) -Y $(arg yaw) -unpause -urdf -model robot -param robot_description" />
     
     <!-- Set up Transform Tree -->
     <include file="$(find transform)/launch/setup_tf.launch">
