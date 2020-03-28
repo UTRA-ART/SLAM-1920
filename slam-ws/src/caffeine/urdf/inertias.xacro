@@ -22,4 +22,37 @@
             izz="${0.5*mass*radius*radius}"
         />
     </xacro:macro>
+
+    <!-- Chassis link inertia -->
+    <xacro:macro name="chassis_link_inertia">
+        <inertia
+            ixx="1.0" ixy="0.0" ixz="0.0" 
+            iyy="1.0" iyz="0.0" izz="1.0"
+        />
+    </xacro:macro>
+
+    <!-- Side wheel inertia -->
+    <xacro:macro name="wheel_inertia">
+        <inertia
+            ixx="1.0" ixy="0.0" ixz="0.0"
+            iyy="1.0" iyz="0.0" izz="1.0"
+        />
+    </xacro:macro>
+
+    <!-- Caster support inertia -->
+    <xacro:macro name="caster_inertia">
+        <inertia
+            ixx="1.0" ixy="0.0" ixz="0.0"
+            iyy="1.0" iyz="0.0" izz="1.0"
+        />
+    </xacro:macro>
+
+    <!-- Caster wheel inertia -->
+    <xacro:macro name="caster_wheel_inertia">
+        <inertia
+            ixx="1.0" ixy="0.0" ixz="0.0" 
+            iyy="1.0" iyz="0.0" izz="1.0"
+        />
+    </xacro:macro>
+
 </robot>

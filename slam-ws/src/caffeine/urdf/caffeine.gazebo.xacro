@@ -1,50 +1,6 @@
 <?xml version="1.0"?>
 <robot name="caffeine_sim" xmlns:xacro="http://ros.org/wiki/xacro">
    <xacro:include filename="$(find caffeine)/urdf/constants.xacro"/>
-
-   <gazebo reference="base_link">
-       <material>Gazebo/Purple</material>
-   </gazebo>
-
-   <gazebo reference="front_caster">
-      <material>Gazebo/Grey</material>
-   </gazebo>
-
-   <gazebo reference="back_caster">
-      <material>Gazebo/Grey</material>
-   </gazebo>
-
-   <gazebo reference="front_caster_wheel">
-      <material>Gazebo/Black</material>
-   </gazebo>
-
-   <gazebo reference="back_caster_wheel">
-      <material>Gazebo/Black</material>
-   </gazebo>
-
-   <gazebo reference="basement">
-      <material>Gazebo/Grey</material>
-   </gazebo>
-
-   <gazebo reference="right_motor_gearbox_housing">
-      <material>Gazebo/Grey</material>
-   </gazebo>
-
-   <gazebo reference="left_motor_gearbox_housing">
-      <material>Gazebo/Grey</material>
-   </gazebo>
-
-   <gazebo reference="left_wheel">
-      <material>Gazebo/Black</material>
-   </gazebo>
-
-   <gazebo reference="right_wheel">
-      <material>Gazebo/Black</material>
-   </gazebo>
-
-   <gazebo reference="stand">
-      <material>Gazebo/Green</material>
-   </gazebo>
    
    <gazebo>
       <plugin name="caffeine_controller" filename="libgazebo_ros_diff_drive.so">
@@ -53,8 +9,8 @@
          <legacyMode>true</legacyMode>
          <leftJoint>left_wheel_joint</leftJoint>
          <rightJoint>right_wheel_joint</rightJoint>
-         <wheelSeparation>0.764</wheelSeparation>
-         <wheelDiameter>0.25</wheelDiameter>
+         <wheelSeparation>${wheel_separation}</wheelSeparation>
+         <wheelDiameter>${wheel_diam}</wheelDiameter>
          <robotBaseFrame>base_link</robotBaseFrame>
          <torque>20</torque>
          <topicName>cmd_vel</topicName>
@@ -71,15 +27,15 @@
    <gazebo reference="base_laser">
       <sensor type="ray" name="hokuyo_sensor">
          <pose>0 0 0 0 0 0</pose>
-         <visualize>false</visualize>
+         <visualize>true</visualize>
          <update_rate>30</update_rate>
          <ray>
             <scan>
                <horizontal>
                   <samples>1080</samples>
                   <resolution>1</resolution>
-                  <min_angle>0.0</min_angle>
-                  <max_angle>4.71</max_angle>
+                  <min_angle>-2.356</min_angle>
+                  <max_angle>2.356</max_angle>
                </horizontal>
             </scan>
             <range>

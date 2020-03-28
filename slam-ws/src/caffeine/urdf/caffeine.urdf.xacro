@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <robot name="caffeine" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:include filename="$(find caffeine)/urdf/inertias.xacro"/>
     <xacro:include filename="$(find caffeine)/urdf/constants.xacro"/>
     <xacro:include filename="$(find caffeine)/urdf/caffeine.gazebo.xacro"/>
+    <xacro:include filename="$(find caffeine)/urdf/inertias.xacro"/>
 
     <xacro:macro name="Transmission" params="joint">
         <transmission name="trans_${joint}">
@@ -19,25 +19,43 @@
 
     <!-- Base link -->
     <link name="base_link">
+    </link>
+
+    <!-- Chassis link -->
+    <link name="chassis_link">
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://caffeine/urdf/meshes/base_link.dae"/>
+                <mesh filename="package://caffeine/urdf/meshes/chassis_link.dae"/>
             </geometry>
         </visual>
 
         <collision>
             <origin rpy="0 0 0" xyz="0 0 0"/>
             <geometry>
-                <mesh filename="package://caffeine/urdf/meshes/base_link.dae"/>
+                <mesh filename="package://caffeine/urdf/meshes/chassis_link.dae"/>
             </geometry>
         </collision>
 
         <inertial>
-            <mass value="30"/>
-            <xacro:box_inertia mass="30" length="1" width="1" height="1"/>
+            <mass value="${chassis_link_mass}"/>
+            <xacro:chassis_link_inertia/>
         </inertial>
     </link>
+    <joint name="chassis_link_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis_link"/>
+        <origin rpy="0 0 0" xyz="0 0 ${base_link_z}"/>
+    </joint>
+
+    <!-- Stand link -->
+    <link name="stand_link">
+    </link>
+    <joint name="stand_link_joint" type="fixed">
+        <parent link="chassis_link"/>
+        <child link="stand_link"/>
+        <origin rpy="0 0 0" xyz="0 0 ${stand_link_z}"/>
+    </joint>
 
     <!-- Left wheel -->
     <link name="left_wheel">
@@ -57,18 +75,18 @@
 
         <inertial>
             <mass value="${wheel_mass}"/>
-            <xacro:cylinder_inertia mass="${wheel_mass}" length="${wheel_length}" radius="${wheel_diam/2.0}"/>
+            <xacro:wheel_inertia/>
         </inertial>
     </link>
     <joint name="left_wheel_joint" type="continuous">
         <axis xyz="0 1 0"/>
-        <parent link="base_link"/>
+        <parent link="chassis_link"/>
         <child link="left_wheel"/>
-        <origin rpy="0 0 0" xyz="0 0.43751887 -0.61759696"/>
+        <origin rpy="0 0 0" xyz="0 ${left_wheel_y} ${wheel_z}"/>
     </joint>
     <xacro:Transmission joint="left_wheel_joint"/>
 
-    <!-- RIght wheel -->
+    <!-- Right wheel -->
     <link name="right_wheel">
         <visual>
             <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -86,14 +104,14 @@
 
         <inertial>
             <mass value="${wheel_mass}"/>
-            <xacro:cylinder_inertia mass="${wheel_mass}" length="${wheel_length}" radius="${wheel_diam/2.0}"/>
+            <xacro:wheel_inertia/>
         </inertial>
     </link>
     <joint name="right_wheel_joint" type="continuous">
         <axis xyz="0 1 0"/>
-        <parent link="base_link"/>
+        <parent link="chassis_link"/>
         <child link="right_wheel"/>
-        <origin rpy="0 0 0" xyz="0 -0.43751887 -0.61759696"/>
+        <origin rpy="0 0 0" xyz="0 ${right_wheel_y} ${wheel_z}"/>
     </joint>
     <xacro:Transmission joint="right_wheel_joint"/>
 
@@ -114,15 +132,15 @@
         </collision>
 
         <inertial>
-            <mass value="1.0"/>
-            <xacro:cylinder_inertia mass="1.0" length="1.0" radius="1.0"/>
+            <mass value="${caster_mass}"/>
+            <xacro:caster_inertia/>
         </inertial>
     </link>
     <joint name="front_caster_joint" type="continuous">
         <axis xyz="0 0 1"/>
-        <parent link="base_link"/>
+        <parent link="chassis_link"/>
         <child link="front_caster"/>
-        <origin rpy="0 0 0" xyz="0.55951056 0 -0.619167561"/>
+        <origin rpy="0 0 0" xyz="${front_caster_x} 0 ${caster_z}"/>
     </joint>
 
     <link name="front_caster_wheel">
@@ -141,8 +159,8 @@
         </collision>
 
         <inertial>
-            <mass value="1.0"/>
-            <xacro:cylinder_inertia mass="1.0" length="1.0" radius="1.0"/>
+            <mass value="${caster_wheel_mass}"/>
+            <xacro:caster_wheel_inertia/>
         </inertial>
     </link>
 
@@ -150,7 +168,7 @@
         <axis xyz="0 1 0"/>
         <parent link="front_caster"/>
         <child link="front_caster_wheel"/>
-        <origin rpy="0 0 0" xyz="0.03621719 0 -0.04361749"/>
+        <origin rpy="0 0 0" xyz="${front_caster_wheel_x} 0 ${caster_wheel_z}"/>
     </joint>
 
     <!-- Back caster wheel support -->
@@ -170,15 +188,15 @@
         </collision>
 
         <inertial>
-            <mass value="1.0"/>
-            <xacro:cylinder_inertia mass="1.0" length="1.0" radius="1.0"/>
+            <mass value="${caster_mass}"/>
+            <xacro:caster_inertia/>
         </inertial>
     </link>
     <joint name="back_caster_joint" type="continuous">
         <axis xyz="0 0 1"/>
-        <parent link="base_link"/>
+        <parent link="chassis_link"/>
         <child link="back_caster"/>
-        <origin rpy="0 0 0" xyz="-0.55951056 0 -0.619167561"/>
+        <origin rpy="0 0 0" xyz="${back_caster_x} 0 ${caster_z}"/>
     </joint>
 
     <link name="back_caster_wheel">
@@ -197,15 +215,159 @@
         </collision>
 
         <inertial>
-            <mass value="1.0"/>
-            <xacro:cylinder_inertia mass="1.0" length="1.0" radius="1.0"/>
+            <mass value="${caster_wheel_mass}"/>
+            <xacro:caster_wheel_inertia/>
         </inertial>
     </link>
     <joint name="back_caster_wheel_joint" type="continuous">
         <axis xyz="0 1 0"/>
         <parent link="back_caster"/>
         <child link="back_caster_wheel"/>
-        <origin rpy="0 0 0" xyz="-0.03621719 0 -0.04361749"/>
+        <origin rpy="0 0 0" xyz="${back_caster_wheel_x} 0 ${caster_wheel_z}"/>
     </joint>
+
+    <!-- Base laser / LIDAR -->
+    <link name="base_laser">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://caffeine/urdf/meshes/hokuyo.dae"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <mesh filename="package://caffeine/urdf/meshes/hokuyo.dae"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="${hokuyo_mass}"/>
+            <xacro:box_inertia mass="${hokuyo_mass}" length="${hokuyo_length}" width="${hokuyo_width}" height="${hokuyo_height}"/>
+        </inertial>
+    </link>
+    <joint name="base_laser_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_laser"/>
+        <origin xyz="${hokuyo_x} 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- ZED Camera -->
+    <link name="zed_camera_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <!-- TODO: should be using the mesh but couldn't get it to work -->
+            <geometry>
+                <box size="${ZED_camera_width} ${ZED_camera_length} ${ZED_camera_height}"/>
+            </geometry>
+        </visual>
+
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="${ZED_camera_width} ${ZED_camera_length} ${ZED_camera_height}"/>
+            </geometry>
+        </collision>
+
+        <inertial>
+            <mass value="${ZED_camera_mass}"/>
+            <xacro:box_inertia mass="${ZED_camera_mass}" length="${ZED_camera_length}" width="${ZED_camera_width}" height="${ZED_camera_height}"/>
+        </inertial>
+    </link>
+    <joint name="zed_camera_joint" type="fixed">
+        <parent link="stand_link"/>
+        <child link="zed_camera_link"/>
+        <origin xyz="${ZED_camera_x} 0 0" rpy="0 ${pi/4} 0"/>
+    </joint>
+
+   <!-- ZED camera lenses -->
+   <!-- NOTE: I'm only defining one and not visually showing any-->
+   <!-- I only need one for purposes of using the plugin -->
+   <!-- TODO: check if it's fine to call the left lense camera_link (rtabmap doesn't specify whether it wants the lense frame or the camera frame itself) -->
+   <link name="camera_link"> 
+       <!-- Inertial tag here to ensure that link does not phase through robot-->
+       <inertial>
+            <mass value="0.0001"/>
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.00001"/>
+       </inertial>
+   </link>
+   <joint name="camera_link_joint" type="fixed">
+       <origin xyz="${ZED_camera_length/2.0} 0 0" rpy="0 0 0"/>
+       <parent link="zed_camera_link"/>
+       <child link="camera_link"/>
+   </joint>
+
+   <link name="camera_view_link"> 
+       <!-- Inertial tag here to ensure that link does not phase through robot-->
+       <inertial>
+            <mass value="0.0001"/>
+            <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.00001"/>
+       </inertial>
+   </link>
+   <joint name="camera_view_link_joint" type="fixed">
+       <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
+       <parent link="camera_link"/>
+       <child link="camera_view_link"/>
+   </joint>
+
+   <!-- IMU -->
+   <link name="imu_link">
+      <inertial>
+         <mass value="${phidget_mass}"/>
+         <xacro:box_inertia mass="${phidget_mass}" length="${phidget_length}" width="${phidget_width}" height="${phidget_height}"/>
+      </inertial>
+
+      <visual>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <box size="${phidget_length} ${phidget_width} ${phidget_height}"/>
+         </geometry>
+      </visual>
+
+      <collision>
+         <origin xyz="0 0 0" rpy="0 0 0"/>
+         <geometry>
+            <box size="${phidget_length} ${phidget_width} ${phidget_height}"/>
+         </geometry>
+      </collision>
+   </link>
+
+   <!-- IMU: attach imu_link to base_link -->
+   <joint name="base_link_to_imu_link" type="fixed">
+      <parent link="stand_link"/>
+      <child link="imu_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+   </joint>
+
+  <!-- GPS -->
+  <link name="gps_link">
+      <inertial>
+          <mass value="${gps_mass}"/>
+          <xacro:cylinder_inertia mass="${gps_mass}" length="${gps_length}" radius="${gps_diam / 2.0}"/>
+      </inertial>
+
+      <visual>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+              <cylinder length="${gps_length}" radius="${gps_diam / 2.0}"/>
+          </geometry>
+      </visual>
+      <collision>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+              <cylinder length="${gps_length}" radius="${gps_diam / 2.0}"/>
+          </geometry>
+      </collision>
+  </link>
+
+  <!-- GPS: attach gps_link to base_link -->
+  <joint name="gps_joint" type="fixed">
+      <parent link="stand_link"/>
+      <child link="gps_link"/>
+      <origin xyz="${gps_x} 0 0" rpy="0 0 0"/>
+  </joint>
+
+
 </robot>
 
