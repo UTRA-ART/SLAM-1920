@@ -18,9 +18,9 @@ def populate_waypoint_table():
     print("Loaded waypoints:", all_waypoints)
     return 
 
-def handle_waypoint_number(req):
-    print ("Returning request for waypoint #%s "%(req.waypoint_number))
-    return LoadWaypointResponse(all_waypoints[req.waypoint_number])
+def handle_waypoint_request(waypoint_request):
+    print ("Returning request for waypoint #%s "%(waypoint_request.waypoint_number))
+    return LoadWaypointResponse(all_waypoints[waypoint_request.waypoint_number])
 
 def load_waypoints_server():
     # Must init node before reading any files
