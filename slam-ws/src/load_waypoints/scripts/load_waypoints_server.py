@@ -22,14 +22,14 @@ def handle_waypoint_request(waypoint_request):
     print ("Returning request for waypoint #%s "%(waypoint_request.waypoint_number))
     return LoadWaypointResponse(all_waypoints[waypoint_request.waypoint_number])
 
-def load_waypoints_server():
+def load_waypoint_server():
     # Must init node before reading any files
-    rospy.init_node('load_waypoints_server')
+    rospy.init_node('load_waypoint_server')
     parse_json()
     s = rospy.Service('load_waypoint', LoadWaypoint, handle_waypoint_number)
     print("Ready to load waypoints.")
     rospy.spin() # Keeps code from exiting until the service is shutdown
 
 if __name__ == "__main__":
-    load_waypoints_server()
+    load_waypoint_server()
     
