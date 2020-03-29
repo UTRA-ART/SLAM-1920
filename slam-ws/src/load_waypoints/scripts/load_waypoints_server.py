@@ -24,13 +24,13 @@ def populate_waypoint_table():
 
 def handle_waypoint_request(waypoint_request):
     print ("Returning request for waypoint #%s "%(waypoint_request.waypoint_number))
-    return LoadWaypointResponse(all_waypoints[waypoint_request.waypoint_number])
+    return WaypointRequestResponse(all_waypoints[waypoint_request.waypoint_number])
 
 def load_waypoint_server():
     # Must init node before reading any files
     rospy.init_node('load_waypoint_server')
     populate_waypoint_table()
-    s = rospy.Service('load_waypoint', LoadWaypoint, handle_waypoint_number)
+    s = rospy.Service('load_waypoint', WaypointRequest, handle_waypoint_request)
     print("Ready to load waypoints.")
     rospy.spin() # Keeps code from exiting until the service is shutdown
 
