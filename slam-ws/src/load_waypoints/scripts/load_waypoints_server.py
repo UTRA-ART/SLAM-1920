@@ -19,7 +19,8 @@ def populate_waypoint_table():
     for waypoint in data["waypoints"]:
         all_waypoints.append([waypoint['coordinate 1'], waypoint['coordinate 2']])
 
-    rospy.loginfo("Loaded waypoints:", all_waypoints)
+    rospy.loginfo("Loaded waypoints: %s", all_waypoints)
+
     return 
 
 def handle_waypoint_request(waypoint_request):
