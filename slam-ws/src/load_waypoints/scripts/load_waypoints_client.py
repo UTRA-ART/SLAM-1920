@@ -29,3 +29,4 @@ if __name__ == "__main__":
         
     print("Requesting waypoint #%s"%(x))
     print("Waypoint #%s is %s"%(x, load_waypoint_client(x)))
+    

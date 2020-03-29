@@ -32,3 +32,4 @@ def load_waypoints_server():
 
 if __name__ == "__main__":
     load_waypoints_server()
+    
