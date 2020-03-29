@@ -5,7 +5,7 @@ from load_waypoints.srv import *
 
 all_waypoints = list()
 
-def parse_json():
+def populate_waypoint_table():
     base_dir = rospy.get_param('~arg_name') # ~ added to arg_name because private param 
     
     with open(base_dir + '/scripts/waypoints.json') as f:
