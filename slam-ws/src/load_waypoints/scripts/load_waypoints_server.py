@@ -25,7 +25,7 @@ def populate_waypoint_table():
 
 def handle_waypoint_request(waypoint_request):
     rospy.loginfo("Returning request for waypoint #%s "%(waypoint_request.waypoint_number))
-    if (waypoint_request.waypoint_number > 3) or (waypoint_request.waypoint_number < 0):
+    if (waypoint_request.waypoint_number > (len(all_waypoints) - 1)) or (waypoint_request.waypoint_number < 0):
         waypoint = None 
         valid_request_flag = False
         description = "Request error: Invalid waypoint number"
