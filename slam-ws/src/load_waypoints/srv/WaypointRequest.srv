@@ -1,3 +1,5 @@
-int32 waypoint_number
+int8 waypoint_number
 ---
-int32[2] waypoint_coord
+float32[2] waypoint_coord
+bool valid_request_flag 
+string description

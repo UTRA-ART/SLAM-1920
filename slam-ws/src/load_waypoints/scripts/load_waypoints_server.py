@@ -11,7 +11,7 @@ def populate_waypoint_table():
     with open(base_dir + '/scripts/waypoints.json') as f:
         try:
             data = json.load(f)
-        except ValueError, e:
+        except ValueError as e:
             rospy.loginfo("Invalid JSON")
             sys.exit(1)
 
@@ -25,13 +25,22 @@ def populate_waypoint_table():
 
 def handle_waypoint_request(waypoint_request):
     rospy.loginfo("Returning request for waypoint #%s "%(waypoint_request.waypoint_number))
-    return WaypointRequestResponse(all_waypoints[waypoint_request.waypoint_number])
+    if (waypoint_request.waypoint_number > 3) or (waypoint_request.waypoint_number < 0):
+        waypoint = None 
+        valid_request_flag = False
+        description = "Request error: Invalid waypoint number"
+        rospy.loginfo(description)  # Print in server terminal 
+    else:
+        waypoint = all_waypoints[waypoint_request.waypoint_number]
+        valid_request_flag = True
+        description = ""
+    return WaypointRequestResponse(waypoint, valid_request_flag, description)
 
 def load_waypoint_server():
     # Must init node before reading any files
     rospy.init_node('load_waypoint_server')
     populate_waypoint_table()
-    s = rospy.Service('load_waypoint', WaypointRequest, handle_waypoint_request)
+    rospy.Service('load_waypoint', WaypointRequest, handle_waypoint_request)
     rospy.loginfo("Ready to load waypoints.")
     rospy.spin() # Keeps code from exiting until the service is shutdown
 
