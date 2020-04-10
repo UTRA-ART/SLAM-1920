@@ -40,7 +40,7 @@ odom1_relative: false
 
 ## IMU Sensor(s) ##
 
-imu0: imu/data_raw
+imu0: imu/data
 imu0_config:  [false, false, false,
                false, false, false,
                true,  true,  false,

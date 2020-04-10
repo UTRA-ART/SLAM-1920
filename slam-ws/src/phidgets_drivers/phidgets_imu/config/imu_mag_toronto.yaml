@@ -1,0 +1,13 @@
+use_mag: true
+use_magnetic_field_msg: true
+
+# REP-103 Convention (required for robot_localization)
+world_frame: "enu"
+
+# Magnetic Field [Tesla] at Toronto, ON, Canada (REP-103: ENU)
+mag_bias_x: -3.3369e-06   # East
+mag_bias_y: 18.497e-06    # North
+mag_bias_z: -50.2264e-06  # Up
+
+# NOTE: there is no option to also add magnetic declination in imu_filter_madgwick (must be added in robot_localization)
+# Magnetic declination is -10 degrees, at Toronto, ON, Canada
