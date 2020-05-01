@@ -90,10 +90,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        camera_view_link:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
         front_caster:
           Alpha: 1
           Show Axes: false
@@ -144,6 +140,10 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        zed_camera_link_optical:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
@@ -181,8 +181,6 @@ Visualization Manager:
           Value: false
         camera_link:
           Value: false
-        camera_view_link:
-          Value: false
         front_caster:
           Value: false
         front_caster_wheel:
@@ -195,8 +193,6 @@ Visualization Manager:
           Value: false
         left_wheel:
           Value: false
-        map:
-          Value: true
         odom:
           Value: true
         right_motor_gearbox_housing:
@@ -207,41 +203,42 @@ Visualization Manager:
           Value: false
         zed_camera_link:
           Value: false
+        zed_camera_link_optical:
+          Value: true
       Marker Scale: 1
       Name: TF (map, odom, base_link)
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        map:
-          odom:
-            base_link:
-              back_caster:
-                back_caster_wheel:
-                  {}
-              base_laser:
+        odom:
+          base_link:
+            back_caster:
+              back_caster_wheel:
                 {}
-              basement:
+            base_laser:
+              {}
+            basement:
+              {}
+            front_caster:
+              front_caster_wheel:
                 {}
-              front_caster:
-                front_caster_wheel:
-                  {}
-              gps_link:
+            gps_link:
+              {}
+            imu_link:
+              {}
+            left_motor_gearbox_housing:
+              left_wheel:
                 {}
-              imu_link:
+            right_motor_gearbox_housing:
+              right_wheel:
                 {}
-              left_motor_gearbox_housing:
-                left_wheel:
-                  {}
-              right_motor_gearbox_housing:
-                right_wheel:
-                  {}
-              stand:
-                {}
+            stand:
               zed_camera_link:
                 camera_link:
-                  camera_view_link:
-                    {}
+                  {}
+                zed_camera_link_optical:
+                  {}
       Update Interval: 0
       Value: true
     - Class: rviz/InteractiveMarkers
@@ -255,40 +252,6 @@ Visualization Manager:
       Value: false
     - Class: rviz/Group
       Displays:
-        - Angle Tolerance: 0.100000001
-          Class: rviz/Odometry
-          Covariance:
-            Orientation:
-              Alpha: 0.5
-              Color: 255; 255; 127
-              Color Style: Unique
-              Frame: Local
-              Offset: 1
-              Scale: 1
-              Value: true
-            Position:
-              Alpha: 0.300000012
-              Color: 204; 51; 204
-              Scale: 1
-              Value: true
-            Value: true
-          Enabled: false
-          Keep: 1
-          Name: Odometry
-          Position Tolerance: 0.100000001
-          Shape:
-            Alpha: 1
-            Axes Length: 1
-            Axes Radius: 0.100000001
-            Color: 255; 25; 0
-            Head Length: 0.300000012
-            Head Radius: 0.100000001
-            Shaft Length: 1
-            Shaft Radius: 0.0500000007
-            Value: Arrow
-          Topic: /odom
-          Unreliable: false
-          Value: false
         - Angle Tolerance: 0.100000001
           Class: rviz/Odometry
           Covariance:
@@ -342,7 +305,41 @@ Visualization Manager:
             Value: true
           Enabled: false
           Keep: 1
-          Name: Odometry (From /stereo_odometer)
+          Name: Odometry (Encoders)
+          Position Tolerance: 0.100000001
+          Shape:
+            Alpha: 1
+            Axes Length: 1
+            Axes Radius: 0.100000001
+            Color: 0; 255; 0
+            Head Length: 0.300000012
+            Head Radius: 0.100000001
+            Shaft Length: 1
+            Shaft Radius: 0.0500000007
+            Value: Arrow
+          Topic: /odom
+          Unreliable: false
+          Value: false
+        - Angle Tolerance: 0.100000001
+          Class: rviz/Odometry
+          Covariance:
+            Orientation:
+              Alpha: 0.5
+              Color: 255; 255; 127
+              Color Style: Unique
+              Frame: Local
+              Offset: 1
+              Scale: 1
+              Value: true
+            Position:
+              Alpha: 0.300000012
+              Color: 204; 51; 204
+              Scale: 1
+              Value: true
+            Value: true
+          Enabled: false
+          Keep: 1
+          Name: Odometry (Stereo)
           Position Tolerance: 0.100000001
           Shape:
             Alpha: 1
@@ -354,38 +351,8 @@ Visualization Manager:
             Shaft Length: 1
             Shaft Radius: 0.0500000007
             Value: Arrow
-          Topic: /stereo_odometer/odometry
+          Topic: /zed/zed_node/odom
           Unreliable: false
-          Value: false
-        - Alpha: 1
-          Autocompute Intensity Bounds: true
-          Autocompute Value Bounds:
-            Max Value: 10
-            Min Value: -10
-            Value: true
-          Axis: Z
-          Channel Name: intensity
-          Class: rviz/LaserScan
-          Color: 255; 255; 255
-          Color Transformer: Intensity
-          Decay Time: 0
-          Enabled: false
-          Invert Rainbow: false
-          Max Color: 255; 255; 255
-          Max Intensity: 999999
-          Min Color: 0; 0; 0
-          Min Intensity: -999999
-          Name: "LaserScan "
-          Position Transformer: XYZ
-          Queue Size: 10
-          Selectable: true
-          Size (Pixels): 3
-          Size (m): 0.00999999978
-          Style: Flat Squares
-          Topic: /scan
-          Unreliable: false
-          Use Fixed Frame: true
-          Use rainbow: true
           Value: false
         - Alpha: 1
           Autocompute Intensity Bounds: true
@@ -417,6 +384,36 @@ Visualization Manager:
           Use Fixed Frame: true
           Use rainbow: true
           Value: true
+        - Alpha: 1
+          Autocompute Intensity Bounds: true
+          Autocompute Value Bounds:
+            Max Value: 10
+            Min Value: -10
+            Value: true
+          Axis: Z
+          Channel Name: intensity
+          Class: rviz/LaserScan
+          Color: 255; 255; 255
+          Color Transformer: Intensity
+          Decay Time: 0
+          Enabled: false
+          Invert Rainbow: false
+          Max Color: 255; 255; 255
+          Max Intensity: 999999
+          Min Color: 0; 0; 0
+          Min Intensity: -999999
+          Name: "LaserScan "
+          Position Transformer: XYZ
+          Queue Size: 10
+          Selectable: true
+          Size (Pixels): 3
+          Size (m): 0.00999999978
+          Style: Flat Squares
+          Topic: /scan
+          Unreliable: false
+          Use Fixed Frame: true
+          Use rainbow: true
+          Value: false
         - Alpha: 1
           Autocompute Intensity Bounds: true
           Autocompute Value Bounds:
@@ -604,9 +601,9 @@ Visualization Manager:
               Imu: true
               "LaserScan ": true
               LaserScan (Filtered): true
-              Odometry: true
+              Odometry (Encoders): true
               Odometry (Filtered): true
-              Odometry (From /stereo_odometer): true
+              Odometry (Stereo): true
               PointCloud2: true
               Value: true
             Stereo Camera:
@@ -614,7 +611,7 @@ Visualization Manager:
               Right Camera: true
               Value: true
             TF: true
-            TF (map, odom, base_link): true
+            TF (map, odom, base_link): false
             TwistMarker: true
             Value: true
           Zoom Factor: 1
@@ -646,9 +643,9 @@ Visualization Manager:
               Imu: true
               "LaserScan ": true
               LaserScan (Filtered): true
-              Odometry: true
+              Odometry (Encoders): true
               Odometry (Filtered): true
-              Odometry (From /stereo_odometer): true
+              Odometry (Stereo): true
               PointCloud2: true
               Value: true
             Stereo Camera:
@@ -656,7 +653,7 @@ Visualization Manager:
               Left Camera: true
               Value: true
             TF: true
-            TF (map, odom, base_link): true
+            TF (map, odom, base_link): false
             TwistMarker: true
             Value: true
           Zoom Factor: 1
@@ -737,7 +734,7 @@ Window Geometry:
     collapsed: false
   Left Camera:
     collapsed: false
-  QMainWindow State: 000000ff00000000fd000000040000000000000208000005a3fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006f00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000004000000295000000fa00fffffffb0000001800520069006700680074002000430061006d00650072006101000002e1000000f60000002400fffffffb00000016004c006500660074002000430061006d00650072006101000003e3000000f20000002400fffffffb0000000a0049006d00610067006501000004e1000001020000002400ffffff000000010000016c000005a3fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730100000040000005a3000000e500fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004a00000003efc0100000002fb0000000800540069006d00650000000000000004a00000057800fffffffb0000000800540069006d0065010000000000000450000000000000000000000674000005a300000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd0000000400000000000002a1000005a3fc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006f00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000004000000295000000fa00fffffffb0000001800520069006700680074002000430061006d00650072006101000002e1000000f60000002400fffffffb00000016004c006500660074002000430061006d00650072006101000003e3000000f20000002400fffffffb0000000a0049006d00610067006501000004e1000001020000002400ffffff000000010000016c000005a3fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730100000040000005a3000000e500fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004a00000003efc0100000002fb0000000800540069006d00650000000000000004a00000057800fffffffb0000000800540069006d00650100000000000004500000000000000000000005db000005a300000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Right Camera:
     collapsed: false
   Selection:
