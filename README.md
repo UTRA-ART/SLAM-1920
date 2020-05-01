@@ -22,7 +22,13 @@ sudo apt-get install ros-kinetic-navigation
 ```
 sudo apt-get install ros-kinetic-gmapping
 ```
-> **Note:** This is the package we use for performing SLAM.
+> **Note:** This **was** the package we used for performing SLAM.
+
+### Install the [rtabmap_ros](http://wiki.ros.org/rtabmap_ros) Package:
+```
+sudo apt-get install ros-kinetic-rtabmap-ros
+```
+> **Note:** This **is** the package we use for performing SLAM.
 
 ## Creating the ROS Workspace
 First clone the git repository, then create a workspace by running
