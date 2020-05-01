@@ -1,5 +1,6 @@
 frequency: 5.0
-delay: 90.0
+delay: 0.0  # Simulated GPS needs no start-up time
+# delay: 90.0 # Real GPS start-up time
 
 # Initial configuration
 magnetic_declination_radians: 0.0
@@ -9,7 +10,7 @@ zero_altitude: 0
 # Publishing data
 publish_filtered_gps: false
 broadcast_utm_transform: true
-broadcast_utm_transform_as_parent_frame: true
+broadcast_utm_transform_as_parent_frame: false
 
 # Misc
 use_odometry_yaw: false

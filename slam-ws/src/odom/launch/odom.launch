@@ -21,7 +21,7 @@
 
     <!-- Establish Transform b/w Earth reference and robot reference -->
     <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform_node" respawn="true">
-      <remap from="imu/data" to="imu/data_raw"/>
+      <remap from="imu/data" to="imu/data"/>
       <remap from="odometry/filtered" to="odometry/local"/>
       <remap from="gps/fix" to="fix"/>
 
@@ -30,6 +30,8 @@
 
     <!-- Compute absolute Odometry data -->
     <!-- NOTE: computes odometry/filtered (non-continuous) -->
+    <!-- NOTE: gives WARN of "Transform from odom to map was unavailable for the time requested. Using latest instead" -->
+    <!-- May explain offset issues if we have them -->
     <node pkg="robot_localization" type="ekf_localization_node" name="world_ekf_localization" clear_params="true" output="screen">
       <rosparam command="load" file="$(find odom)/config/caffeine_abs_localization.yaml"/>
     </node>
@@ -46,7 +48,7 @@
 
     <!-- Establish Transform b/w Earth reference and robot reference -->
     <node pkg="robot_localization" type="navsat_transform_node" name="navsat_transform_node" respawn="true">
-      <remap from="imu/data" to="imu/data_raw"/>
+      <remap from="imu/data" to="imu/data"/>
       <remap from="odometry/filtered" to="odometry/local"/>
       <remap from="gps/fix" to="fix"/>
 
