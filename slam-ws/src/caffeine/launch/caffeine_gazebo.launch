@@ -7,7 +7,7 @@
     <arg name="model" default="$(find caffeine)/urdf/caffeine.urdf.xacro"/>
     <arg name="world" default="$(find igvc_world)/worlds/igvc_basic.world"/>
     <arg name="lidar_range_filter_config" default="$(find laser_filters)/config/lidar_config.yaml"/>
-    <arg name="camera" default="/zed/zed_node"/>
+    <arg name="camera_ns" default="/zed/zed_node"/>
 
     <!-- Robot Initial Pose -->
     <arg name="x" default="0"/>
@@ -36,19 +36,10 @@
         <arg name="robot_model" value="caffeine"/>
     </include>
 
-    <group ns="$(arg camera)">
-        <node pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc"/>
-
-        <!-- Disparity to depth -->
-        <node pkg="nodelet" type="nodelet" name="disparity2depth" args="standalone rtabmap_ros/disparity_to_depth"/>
-    </group>
-
-    <!-- Viso2 -->
-    <node pkg="viso2_ros" type="stereo_odometer" name="stereo_odometer">
-        <remap from="stereo" to="$(arg camera)"/>
-        <remap from="image" to="image_rect_color"/>
-        <param name="base_link_frame_id" value="base_link"/>
-    </node>
+    <!-- Emulate ZED stereo camera image processing -->
+    <include file="$(find caffeine)/launch/zed_emulation.launch">
+        <arg name="camera_ns" value="$(arg camera_ns)"/>
+    </include>
 
     <!-- Add Lidar Filtering -->
     <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filters">
