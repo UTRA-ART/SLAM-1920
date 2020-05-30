@@ -7,7 +7,7 @@ This project runs on ROS Kinetic for Ubuntu 16.04. Please check out our [Wiki](h
 ### Install ROS Kinetic
 See [Getting Started with ROS](https://github.com/UTRA-ART/SLAM/wiki#getting-started-with-ros) for installation instructions.
 
-### Install the [husky-desktop]() and [husky-simulator]() Packages
+### Install the [husky-desktop](https://www.clearpathrobotics.com/assets/guides/kinetic/ros/Drive%20a%20Husky.html) and [husky-simulator](http://wiki.ros.org/husky_gazebo/Tutorials/Simulating%20Husky) Packages
 ```sudo apt-get update
 sudo apt-get install ros-kinetic-husky-desktop
 sudo apt-get install ros-kinetic-husky-simulator
